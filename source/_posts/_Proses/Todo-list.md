@@ -1,0 +1,37 @@
+## short-term
+- [ ] Learn reverse engineering
+	- [ ] 加密与解密
+	- [ ] Windows program design
+	- [ ] Reverse Engineering for Beginners
+	- [ ] Practical Reverse Engineering
+- [ ] Learn bypass anti-virus
+- [ ] Social engineering methods: pdf, rar, word ...
+- [ ] Reproduce and analyze Web component vulnerability
+	- Struts2
+	- WebLogic
+	- OAs
+- [ ] SRC
+- [ ] Intranet pentest
+- [ ] Study JNDI exploit and memshell
+	- [ ] Learn Tomcat and Spring memshell exploitation method
+	- [ ] Decompile JNDIExploit1.4 to get the latest exploit code, study the methods to create Godzilla memshell
+	- [ ] Study JNDI-Injection-Tool project and ysoserial, proof by log4j or fastjson
+- [ ] Explore a memshell exploit method of NC cloud jsinvoke Vulnerability 
+- [ ] Learn Tomcat pipline structure and [web spider](https://learnku.com/docs/python-learning/advanced-crawler-crawler-framework/10979), design Poc structure program
+- [ ] Learn python asyncio program at [here](https://zhuanlan.zhihu.com/p/96969508) and [here](https://zhuanlan.zhihu.com/p/115823089)
+
+
+## long-term
+- [ ] Continue to write your pentest architecture(`BatchExp...`), the goal of the project comes to implementing a burp-cmd comprehensive tool as well as a pentest sdk
+- [ ] Master design mode
+- [ ] Learn source code of Tomcat and Spring
+- [ ] Learn concurrency programming
+- [ ] Learn Docker Container tech
+- [ ] Learn <span style="background:#affad1">Cloud Security</span>
+- [ ] Master Go and Java development
+- [ ] Master NodeJS development
+- [ ] Learn to write java memory shell, ysoserial, JNDIExploit
+- [ ] Master common theories of <span style="background:#affad1">algorithm</span>
+- [ ] Master <span style="background:#d3f8b6">reverse engineering</span>
+- [ ] Bypass anti-virus
+

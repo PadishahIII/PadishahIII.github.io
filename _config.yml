@@ -102,4 +102,7 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/PadishahIII/padishahiii.github.io.git
+  branch: release
+  token: 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

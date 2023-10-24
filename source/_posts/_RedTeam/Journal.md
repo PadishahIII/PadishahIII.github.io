@@ -1,0 +1,14 @@
+## 2023-09-09
+- [x] Launch intranet socks5 proxy success
+- [x] Connect the target server on CS and scan the intranet
+- [ ] Generate linux beacon with CrossC2
+- [x] How to scan live hosts and ports in intranet
+	- msf `ping_sweep` , nmap
+- [ ] Learn the usage of viper(msf) and cobalt strike
+- [ ] Explore other RAT like silver
+- [x] Learn goby
+- [ ] Reproduce OA vulns, write poc for xray or goby
+- [ ] Learn Yarn
+- [ ] Explore several poc repo
+- [ ] Learn Powershell
+- [ ] Learn phishing

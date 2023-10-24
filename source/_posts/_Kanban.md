@@ -6,7 +6,7 @@ kanban-plugin: basic
 
 ## 2023/10/20 Short term plan
 
-- [ ] JNDIExploit and ysoserial research [[Memshell study, JNDI inject memshell, JNDI exploit tool development|This note]]
+- [ ] JNDIExploit and ysoserial research [[Memshell study JNDI inject memshell JNDI exploit tool development|This note]]
 - [ ] Reproduce Fastjson, log4j2, struts2 vulnerabilities in [here](https://mp.weixin.qq.com/s/Y_6ahFAdl1kkuIS_8oTKyg)
 - [ ] Read penetration documents
 - [ ] Practice pentest, explore tools

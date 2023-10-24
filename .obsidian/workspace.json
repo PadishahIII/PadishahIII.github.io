@@ -35,9 +35,11 @@
             "id": "95c165db37702595",
             "type": "leaf",
             "state": {
-              "type": "kanban",
+              "type": "markdown",
               "state": {
-                "file": "source/_posts/_Kanban.md"
+                "file": "source/_posts/Pentest/Memshell study JNDI inject memshell JNDI exploit tool development.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -92,7 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 211.5
+    "width": 257.5
   },
   "right": {
     "id": "bfc59ab39d58d074",
@@ -108,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/_Kanban.md",
+                "file": "source/_posts/Pentest/Memshell study JNDI inject memshell JNDI exploit tool development.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/_Kanban.md",
+                "file": "source/_posts/Pentest/Memshell study JNDI inject memshell JNDI exploit tool development.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -148,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/_Kanban.md"
+                "file": "source/_posts/Pentest/Memshell study JNDI inject memshell JNDI exploit tool development.md"
               }
             }
           },
@@ -188,47 +190,53 @@
       "obsidian-translator:Translate": false
     }
   },
-  "active": "d1f757f6d2696c65",
+  "active": "95c165db37702595",
   "lastOpenFiles": [
-    "source/_posts/_RedTeam/Methodology - A Whole Pentest Routinue.md",
-    "source/_posts/_RedTeam/Metasploit.md",
-    "source/_posts/_Programming/Poc framework design, using python.md",
-    "source/_posts/Pentest/Java Deserialize Vulnerabilities, ysoserial study.md",
-    "source/_posts/Pentest/Memshell study, JNDI inject memshell, JNDI exploit tool development.md",
-    "RedTeam/Journal.md",
-    "RedTeam/Metasploit.md",
-    "Proses/Todo-list.md",
-    "Programming/Poc framework design, using python.md",
-    "Programming/Python.md",
-    "Android/Frida, Objection.md",
-    "Android/Burp Proxy - import pem as system-level certificates.md",
-    "Android/Tips.md",
-    "ASP.NET/ASP.NET development.md",
-    "Paper Reading/Password Guessing using Random Forest.md",
-    "Kanban.md",
-    "RedTeam/Methodology - A Whole Pentest Routinue.md",
-    "Classes/网络基础.md",
-    "Classes/LAS.md",
-    "Classes/安全产品使用.md",
-    "Classes/安服.md",
-    "Books.md",
-    "RedTeam/Vulnerabilities/Shiro.md",
-    "Pentest/Memshell study, JNDI inject memshell, JNDI exploit tool development.md",
-    "Pentest/Java Deserialize Vulnerabilities, ysoserial study.md",
-    "Proses/Short-term and long-term plans.md",
-    "Attachments/Pasted image 20231008190210.png",
-    "Attachments/Pasted image 20231008160842.png",
-    "Pentest",
-    "Java",
-    "Diary",
-    "RedTeam/Vulnerabilities",
-    "RedTeam",
-    "Programming",
-    "Paper Reading",
-    "Plan",
-    "ASP.NET",
-    "Proses",
-    "Untitled.canvas",
-    "Attachments/Pasted image 20230708100705.png"
+    "source/_posts/Pentest/Java Deserialize Vulnerabilities ysoserial study.md",
+    "source/_posts/Pentest/Memshell study JNDI inject memshell JNDI exploit tool development.md",
+    "public/2023/10/24/Pentest/Memshell study JNDI inject memshell JNDI exploit tool development/index.html",
+    "public/2023/10/24/Pentest/Memshell study JNDI inject memshell JNDI exploit tool development",
+    "public/index.html",
+    "public/2023/10/24/Pentest/Memshell_study_JNDI_inject_memshell/index.html",
+    "public/2023/10/24/Pentest/Java Deserialize Vulnerabilities ysoserial study/index.html",
+    "public/2023/10/24/Pentest/Memshell_study_JNDI_inject_memshell",
+    "public/2023/10/24/Pentest/Java Deserialize Vulnerabilities ysoserial study",
+    "public/2023/10/24/Pentest",
+    "public/2023/10/24",
+    "public/2023/10",
+    "source/_posts/_Kanban.md",
+    "public/css/images/banner.jpg",
+    "node_modules/hexo-generator-tag/README.md",
+    "node_modules/hexo-generator-archive/README.md",
+    "node_modules/hexo-pagination/README.md",
+    "node_modules/hexo-i18n/README.md",
+    "node_modules/hexo-front-matter/README.md",
+    "node_modules/fast-equals/README.md",
+    "node_modules/fast-equals/CHANGELOG.md",
+    "node_modules/fast-equals/BUILD.md",
+    "node_modules/hexo-log/README.md",
+    "node_modules/is-plain-object/README.md",
+    "node_modules/abab/README.md",
+    "node_modules/abab/LICENSE.md",
+    "node_modules/hexo-theme-fluid/README.md",
+    "node_modules/hexo-theme-landscape/source/css/images/banner.jpg",
+    "node_modules/hexo-theme-landscape/README.md",
+    "node_modules/nib/docs/README.md",
+    "node_modules/nib/iconic/iconic_stroke.svg",
+    "node_modules/nib/README.md",
+    "node_modules/iconv-lite/README.md",
+    "node_modules/iconv-lite/Changelog.md",
+    "node_modules/entities/readme.md",
+    "node_modules/asap/LICENSE.md",
+    "node_modules/moize/README.md",
+    "node_modules/moize/CHANGELOG.md",
+    "node_modules/hexo-theme-fluid/source/img/loading.gif",
+    "node_modules/hexo-theme-fluid/source/img/police_beian.png",
+    "node_modules/hexo-theme-fluid/source/img/fluid.png",
+    "node_modules/hexo-theme-fluid/source/img/default.png",
+    "node_modules/hexo-theme-fluid/source/img/avatar.png",
+    "node_modules/highlight.js/styles/pojoaque.jpg",
+    "node_modules/highlight.js/styles/brown-papersq.png",
+    "Untitled.canvas"
   ]
 }

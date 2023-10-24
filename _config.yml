@@ -13,7 +13,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://padishah.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -97,7 +97,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: even
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -106,3 +106,11 @@ deploy:
   repo: https://github.com/PadishahIII/padishahiii.github.io.git
   branch: release
   token: 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
+
+feed:
+  # Generate atom feed
+  type: atom
+
+  path:
+    - atom.xml
+    - rss2.xml

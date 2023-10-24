@@ -158,8 +158,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "72c5f39b905b5995",
+  "active": "ecd0cf0a7f431faf",
   "lastOpenFiles": [
+    "index.html",
     "public/2023/10/24/Test/index.html",
     "public/2023/10/24/hello-world/index.html",
     "public/archives/2023/10/index.html",
@@ -171,7 +172,6 @@
     "public/2023/10/24",
     "public/js/jquery-3.6.4.min.js",
     "public/fancybox/jquery.fancybox.min.js",
-    "public/fancybox/jquery.fancybox.min.css",
     "source/_posts/hello-world.md",
     "source/_posts/Test.md",
     "_obsidian/Hexo-template.md",

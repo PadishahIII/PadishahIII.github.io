@@ -8,30 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "d4fa7a9c7c11e55d",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
-            "id": "87d0fefd2823e324",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
-            "id": "8e4f6d6778ff0a68",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
             "id": "95c165db37702595",
             "type": "leaf",
             "state": {
@@ -40,9 +16,33 @@
                 "file": "source/_posts/_Kanban.md"
               }
             }
+          },
+          {
+            "id": "90d53be24ce175a8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c3ecdfee2bd08824",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/_Kanban.md",
+                "file": "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -126,7 +126,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/_Kanban.md",
+                "file": "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -149,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/_Kanban.md"
+                "file": "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md"
               }
             }
           },
@@ -189,9 +189,12 @@
       "obsidian-translator:Translate": false
     }
   },
-  "active": "95c165db37702595",
+  "active": "90d53be24ce175a8",
   "lastOpenFiles": [
-    "source/_posts/Pentest/Memshell study JNDI inject memshell JNDI exploit tool development.md",
+    "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
+    "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
+    "source/_posts/_Kanban.md",
+    "source/_posts/Pentest/JavaSec",
     "node_modules/basic-auth/index.js",
     "node_modules/basic-auth/package.json",
     "node_modules/morgan/README.md",
@@ -205,7 +208,6 @@
     "node_modules/on-headers/HISTORY.md",
     "node_modules/on-headers/LICENSE",
     "node_modules/on-headers/index.js",
-    "node_modules/on-headers",
     "node_modules/safe-buffer/README.md",
     "node_modules/mime-types/README.md",
     "node_modules/mime-types/HISTORY.md",
@@ -227,9 +229,6 @@
     "node_modules/require-main-filename/CHANGELOG.md",
     "node_modules/get-caller-file/README.md",
     "node_modules/get-caller-file/LICENSE.md",
-    "node_modules/emoji-regex/README.md",
-    "node_modules/escape-string-regexp/readme.md",
-    "node_modules/read-pkg/readme.md",
     "public/lib/fancybox/helpers/fancybox_buttons.png",
     "public/lib/fancybox/fancybox_sprite@2x.png",
     "public/lib/fancybox/fancybox_sprite.png",

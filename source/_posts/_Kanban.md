@@ -26,9 +26,11 @@ kanban-plugin: basic
 
 ## Long term fundamental learning
 
+- [ ] Go develop
 - [ ] NodeJS
+- [ ] Tomcat architecture
+- [ ] Android Reverse engineering
 - [ ] Docker
-- [ ] Reverse engineering
 
 
 ## Long term Pentest learning
@@ -38,6 +40,7 @@ kanban-plugin: basic
 - [ ] Intranet pentest
 - [ ] PHP audit
 - [ ] Java audit
+- [ ] Track and analyze middleware vulnerabilities
 - [ ] Develop or explore penetration tools
 
 

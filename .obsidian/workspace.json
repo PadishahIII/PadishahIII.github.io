@@ -41,8 +41,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -109,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
+                "file": "source/_posts/_Kanban.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -126,7 +125,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
+                "file": "source/_posts/_Kanban.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -149,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md"
+                "file": "source/_posts/_Kanban.md"
               }
             }
           },
@@ -189,15 +188,19 @@
       "obsidian-translator:Translate": false
     }
   },
-  "active": "90d53be24ce175a8",
+  "active": "95c165db37702595",
   "lastOpenFiles": [
     "source/_posts/_Proses/Todo-list.md",
+    "source/_posts/_Proses/Short-term and long-term plans.md",
+    "source/_posts/_RedTeam/Journal.md",
+    "source/_posts/_RedTeam/Metasploit.md",
+    "source/_posts/_RedTeam/Methodology - A Whole Pentest Routinue.md",
+    "source/_posts/_Kanban.md",
     "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
     "public/2023/10/ac9c8c888b5f.html",
     "public/2023/10/1726c701d497.html",
     "Attachments/Pasted image 20231025153102.png",
     "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
-    "source/_posts/_Kanban.md",
     "source/_posts/Pentest/JavaSec",
     "node_modules/basic-auth/index.js",
     "node_modules/basic-auth/package.json",
@@ -227,10 +230,6 @@
     "node_modules/validate-npm-package-license/README.md",
     "node_modules/global-modules/README.md",
     "node_modules/homedir-polyfill/README.md",
-    "node_modules/require-main-filename/README.md",
-    "node_modules/require-main-filename/CHANGELOG.md",
-    "node_modules/get-caller-file/README.md",
-    "node_modules/get-caller-file/LICENSE.md",
     "public/lib/fancybox/helpers/fancybox_buttons.png",
     "public/lib/fancybox/fancybox_sprite@2x.png",
     "public/lib/fancybox/fancybox_sprite.png",

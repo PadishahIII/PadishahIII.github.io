@@ -19,19 +19,24 @@
 - [ ] Explore a memshell exploit method of NC cloud jsinvoke Vulnerability 
 - [ ] Learn Tomcat pipline structure and [web spider](https://learnku.com/docs/python-learning/advanced-crawler-crawler-framework/10979), design Poc structure program
 - [ ] Learn python asyncio program at [here](https://zhuanlan.zhihu.com/p/96969508) and [here](https://zhuanlan.zhihu.com/p/115823089)
+- [ ] Learn php code audit
+- [ ] Master java code audit, assess audit tools
+- [ ] Learn php code audit
 
 
 ## long-term
 - [ ] Continue to write your pentest architecture(`BatchExp...`), the goal of the project comes to implementing a burp-cmd comprehensive tool as well as a pentest sdk
+- [ ] Master common theories of <span style="background:#affad1">algorithm</span>
+- [ ] Master Go and Java development
 - [ ] Master design mode
+- [ ] Master NodeJS development
+- [ ] Keep developing penetration tool
 - [ ] Learn source code of Tomcat and Spring
+- [ ] Master <span style="background:rgba(5, 117, 197, 0.2)">Android reverse engineering</span> 
 - [ ] Learn concurrency programming
 - [ ] Learn Docker Container tech
 - [ ] Learn <span style="background:#affad1">Cloud Security</span>
-- [ ] Master Go and Java development
-- [ ] Master NodeJS development
 - [ ] Learn to write java memory shell, ysoserial, JNDIExploit
-- [ ] Master common theories of <span style="background:#affad1">algorithm</span>
 - [ ] Master <span style="background:#d3f8b6">reverse engineering</span>
 - [ ] Bypass anti-virus
 

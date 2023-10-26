@@ -35,6 +35,9 @@
 	- Reverse engineering, Java security, penetration, red team and development are foundation of further progress.
 	- Keep researching, keep recording
 
+- <span style="background:rgba(136, 49, 204, 0.2)">Penetration</span>
+	- Track and analyze middleware vulnerabilities. Track aliyun vulnerability announcement, analyze git commit, reproduce.
+
 - <span style="background:#b1ffff">Future career propose</span>
 	- Most hopefully, I wanna do cutting-edge, advanced study as future job given which the ***Innovation Institute*** is a good choice. <font color="#ff0000">Tianji-laboratory</font>, which dedicates in the attack-and-defense of mainstream middlewares and formostly had participated BlackHat conference, is the best choice.
 	- I also like to dig into some difficult problems as the work in ***Competency Center*** provide. 

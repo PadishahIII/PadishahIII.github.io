@@ -40,7 +40,7 @@ kanban-plugin: basic
 - [ ] Intranet pentest
 - [ ] PHP audit
 - [ ] Java audit
-- [ ] Track and analyze middleware vulnerabilities
+- [ ] Track and analyze middleware vulnerabilities. Track aliyun vulnerability announcement, analyze git commit, reproduce
 - [ ] Develop or explore penetration tools
 
 

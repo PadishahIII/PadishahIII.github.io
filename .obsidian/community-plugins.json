@@ -5,5 +5,6 @@
   "editing-toolbar",
   "obsidian-translator",
   "obsidian-kanban",
-  "obsidian-git"
+  "obsidian-git",
+  "obsidian-shellcommands"
 ]

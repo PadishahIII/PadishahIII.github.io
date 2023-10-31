@@ -132,5 +132,14 @@
       ],
       "key": "Q"
     }
+  ],
+  "obsidian-shellcommands:shell-command-se87ec4il4": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "D"
+    }
   ]
 }

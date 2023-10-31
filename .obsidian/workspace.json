@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
+                "file": "source/_posts/_Programming/Git.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
+                "file": "source/_posts/_Programming/Git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
+                "file": "source/_posts/_Programming/Git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md"
+                "file": "source/_posts/_Programming/Git.md"
               }
             }
           },
@@ -148,7 +148,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -165,25 +165,36 @@
       "obsidian-translator:Translate": false
     }
   },
-  "active": "7da95714aa1be4ba",
+  "active": "72c87041a6827bee",
   "lastOpenFiles": [
-    "public/2023/10/31/hello-world/index.html",
-    "public/2023/10/31/hello-world",
-    "public/2023/10/31",
+    "themes/even/_config.yml",
     "source/_posts/hello-world.md",
     "source/_posts/Test.md",
-    "public/js/script.js",
-    "public/js/jquery-3.6.4.min.js",
-    "public/fancybox/jquery.fancybox.min.js",
-    "public/fancybox/jquery.fancybox.min.css",
-    "public/fancybox",
-    "public/css/style.css",
-    "public/css/images/banner.jpg",
-    "public/css/images",
+    "public/2023/10/24/hello-world/index.html",
     "public/2023/10/24/Test/index.html",
-    "source/_posts/_Research/Password Guessing using Random Forest.md",
-    "source/_posts/_Research/Password Guessing using Random Forest.md",
+    "public/2023/10/24/hello-world",
+    "public/2023/10/24/Test",
+    "public/2023/10/24",
     "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
+    "source/_posts/_Programming/Git.md",
+    "themes/hexo-theme-even-master.zip",
+    "themes/hexo-theme-fluid-1.9.5.zip",
+    "themes/hexo-theme-xoxo-master.zip",
+    "themes/fluid/package.json",
+    "public/js/script.js",
+    "public/css/images/banner.jpg",
+    "themes/xoxo/README.md",
+    "themes/fluid/source/img/police_beian.png",
+    "themes/fluid/source/img/profile.jpg",
+    "themes/fluid/source/img/avatar.png",
+    "themes/fluid/source/img/loading.gif",
+    "themes/fluid/source/img/fluid.png",
+    "themes/fluid/source/img/default.png",
+    "themes/even/source/lib/fancybox/helpers/fancybox_buttons.png",
+    "themes/even/source/fonts/chancery/apple-chancery-webfont.svg",
+    "themes/even/source/lib/fancybox/fancybox_sprite.png",
+    "source/_posts/_Research/Password Guessing using Random Forest.md",
+    "source/_posts/_Research/Password Guessing using Random Forest.md",
     "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
     "source/_posts/_Proses/Short-term and long-term plans.md",
     "source/_posts/_Proses/Todo-list.md",
@@ -193,7 +204,6 @@
     "source/_posts/_Kanban.md",
     "source/_posts/_RedTeam/Metasploit.md",
     "source/_posts/_RedTeam/Methodology - A Whole Pentest Routinue.md",
-    "Attachments/Pasted image 20231025153102.png",
     "node_modules/morgan/README.md",
     "node_modules/morgan/HISTORY.md",
     "node_modules/on-headers/README.md",
@@ -203,16 +213,6 @@
     "node_modules/mime-types/HISTORY.md",
     "node_modules/is-docker/readme.md",
     "node_modules/is-wsl/readme.md",
-    "node_modules/open/readme.md",
-    "node_modules/tar/coverage/lcov-report/sort-arrow-sprite.png",
-    "node_modules/nan/tools/README.md",
-    "node_modules/css-selector-extract/coverage/lcov-report/sort-arrow-sprite.png",
-    "node_modules/css-node-extract/coverage/lcov-report/sort-arrow-sprite.png",
-    "public/lib/fancybox/helpers/fancybox_buttons.png",
-    "public/lib/fancybox/fancybox_sprite@2x.png",
-    "public/lib/fancybox/fancybox_sprite.png",
-    "public/lib/fancybox/fancybox_overlay.png",
-    "public/lib/fancybox/fancybox_loading@2x.gif",
     "Untitled.canvas"
   ]
 }

@@ -11,8 +11,12 @@
             "id": "41387558c18786ee",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
+                "mode": "preview",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md"
+              }
             }
           },
           {
@@ -159,6 +167,7 @@
   },
   "active": "41387558c18786ee",
   "lastOpenFiles": [
+    "source/_posts/_Programming/Git.md",
     "themes/even/layout/_script/_comments/utterances.swig",
     "themes/even/layout/_script/_comments/gitalk.swig",
     "themes/even/layout/_script/_comments/livere.swig",
@@ -169,7 +178,6 @@
     "themes/even/layout/_script/_comments/changyan.swig",
     "themes/even/layout/_partial/_head/meta.swig",
     "themes/even/layout/_partial/_footer/social.swig",
-    "themes/even/layout/_script/_analytics/baidu-analytics.swig",
     "source/tags/index.md",
     "source/categories/index.md",
     "source/about/index.md",

@@ -60,7 +60,7 @@ B<sub>s</sub>B<sub>s</sub>B<sub>s</sub>B<sub>s</sub>B<sub>s</sub>p , B<sub>s</su
 
 ### Targeted guessing based on PII
 基于长度的思想并不能很好地提取出密码中的PII特征，但我们只需要做一些修改即可实现基于类型的特征提取方法。我们在[[#基本思想|此节]]简单介绍了基于类型的PII匹配方式，用字母表示PII类型，数字表示更加细化的PII类型，如`N`表示`姓名`这一PII类型，N<sub>1</sub>表示`全名`，N<sub>3</sub>表示`姓氏`，后面两者都属于`姓名`信息。其他编码可以在[这里](https://github.com/PadishahIII/RFGuess#pattern-format)查看。将这样的数据元转化成特征向量是很简单的，把N<sub>1</sub>编码成1001，N<sub>2</sub>编码成1002，B<sub>1</sub>编码成2001，依次类推。
-一个密码可能有多种表示方式，如`zhangsan0908`就可以编码成N<sub>1</sub>B<sub>2</sub>，同时也可以编码成N<sub>2</sub>N<sub>3</sub>B<sub>2</sub>，所以我们要确定唯一的表示方式。
+一个密码可能有多种表示方式(*Representation*, i.e. *Rep*)，如`zhangsan0908`就可以编码成N<sub>1</sub>B<sub>2</sub>，同时也可以编码成N<sub>2</sub>N<sub>3</sub>B<sub>2</sub>，所以我们要确定唯一的表示方式。
 
 
 
@@ -75,4 +75,3 @@ RFGuess-PII模型100次猜测中成功率20%~28%，比现有模型高出7%~13%
 
 # 工具化
 
-aaaaaaaaaa

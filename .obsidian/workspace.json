@@ -169,9 +169,9 @@
   },
   "active": "7da95714aa1be4ba",
   "lastOpenFiles": [
+    "_proxychains.conf",
     "_deploy.ps1",
     "_deploy.cmd",
-    "_proxychains.conf",
     "source/_posts/_Programming/Git.md",
     "source/_posts/_Programming/Hexo blog building.md",
     "source/_posts/_Programming/Poc framework design, using python.md",

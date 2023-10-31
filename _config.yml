@@ -13,8 +13,8 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
-permalink: :year/:month/:day/:title/
+url: http://padishah.github.io
+permalink: :year/:month/:hash.html
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -31,7 +31,7 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: :category/:title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link:
@@ -97,9 +97,30 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: fluid
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/PadishahIII/padishahiii.github.io.git
+  branch: release
+  token: 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
+
+feed:
+  # Generate atom feed
+  type: atom
+
+  path:
+    - atom.xml
+    - rss2.xml
+
+node_sass:
+  debug: false
+  outputStyle: compressed
+  precision: 5
+  sourceComments: false
+
+auto_category:
+  enable: true
+  depth: 2

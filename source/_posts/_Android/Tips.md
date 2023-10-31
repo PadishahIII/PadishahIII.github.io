@@ -1,0 +1,1 @@
+1. Get system arch type : `getprop ro.product.cpu.abilist`

@@ -1,0 +1,210 @@
+{
+  "main": {
+    "id": "c62b5abe338ad627",
+    "type": "split",
+    "children": [
+      {
+        "id": "ecf73b1483c0c251",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "41387558c18786ee",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4977841df00330ac",
+    "type": "split",
+    "children": [
+      {
+        "id": "602e8b66050fc65a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d1f757f6d2696c65",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byModifiedTime"
+              }
+            }
+          },
+          {
+            "id": "e50378c939c20e7f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "[\"aliases\"]",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2040648171d9f24e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 257.5
+  },
+  "right": {
+    "id": "bfc59ab39d58d074",
+    "type": "split",
+    "children": [
+      {
+        "id": "5d9501e0a1e4ead2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2f63b26b22668a58",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2427521253cf9227",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "098f693db746206e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "72c87041a6827bee",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "7da95714aa1be4ba",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "47c38fb55eb69800",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency"
+              }
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "obsidian-translator:Translate": false
+    }
+  },
+  "active": "41387558c18786ee",
+  "lastOpenFiles": [
+    "themes/xoxo/source/js/xoxo.js",
+    "themes/xoxo/scripts/tags/note.js",
+    "themes/xoxo/scripts/tags/lazy-image.js",
+    "themes/xoxo/scripts/tags/center-quote.js",
+    "themes/xoxo/source/css/xxoo.css",
+    "themes/xoxo/source/css/xxoo.css.map",
+    "themes/xoxo/source/css/xoxo.less",
+    "themes/xoxo/source/css/xoxo.css.map",
+    "themes/xoxo/source/css/mixin.less",
+    "themes/xoxo/source/css/variables.less",
+    "themes/xoxo/source/css/xoxo.css",
+    "themes/xoxo/README.md",
+    "themes/fluid/source/img/police_beian.png",
+    "themes/fluid/source/img/profile.jpg",
+    "themes/fluid/source/img/loading.gif",
+    "themes/fluid/source/img/fluid.png",
+    "themes/fluid/source/img/default.png",
+    "themes/fluid/source/img/avatar.png",
+    "themes/fluid/README_en.md",
+    "themes/fluid/README.md",
+    "themes/even/source/lib/fancybox/helpers/fancybox_buttons.png",
+    "themes/even/source/fonts/chancery/apple-chancery-webfont.svg",
+    "themes/even/source/lib/fancybox/fancybox_sprite.png",
+    "themes/even/source/lib/fancybox/fancybox_overlay.png",
+    "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
+    "source/_posts/hello-world.md",
+    "source/_posts/_Programming/Git.md",
+    "source/_posts/Test.md",
+    "source/_posts/_Proses/Todo-list.md",
+    "source/_posts/_Proses/Wises in future.md",
+    "source/_posts/_Proses/Short-term and long-term plans.md",
+    "source/_posts/_Diary/2023-10-13.md",
+    "source/_posts/_Diary/2023-09-28.md",
+    "source/_posts/_Classes/LAS.md",
+    "source/_posts/_Classes/网络基础.md",
+    "source/_posts/_Classes/安服.md",
+    "source/_posts/_Classes/安全产品使用.md",
+    "source/_posts/_Block Chain/Block Chain.md",
+    "source/_posts/_Android/Tips.md",
+    "source/_posts/_Android/Burp Proxy - import pem as system-level certificates.md",
+    "source/_posts/_Android/Frida, Objection.md",
+    "source/_posts/_ASP.NET/ASP.NET development.md",
+    "source/tags/index.md",
+    "source/categories/index.md",
+    "source/about/index.md",
+    "source/_posts/_Research/Password Guessing using Random Forest.md",
+    "Untitled.canvas"
+  ]
+}

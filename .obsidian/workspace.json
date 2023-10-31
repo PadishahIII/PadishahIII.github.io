@@ -165,8 +165,11 @@
       "obsidian-translator:Translate": false
     }
   },
-  "active": "0a42593def5f0f6d",
+  "active": "7da95714aa1be4ba",
   "lastOpenFiles": [
+    "_deploy.cmd",
+    "新建文本文档.txt",
+    "deploy.cmd",
     "themes/even/_config.yml",
     "source/_posts/_Programming/Hexo blog building.md",
     "source/_posts/_Programming/Git.md",
@@ -184,8 +187,6 @@
     "themes/even/layout/_script/_comments/cusdis.swig",
     "themes/even/layout/_partial/_post/toc.swig",
     "themes/even/layout/_script/_analytics/google-analytics.swig",
-    "themes/even/layout/_script/_comments/changyan.swig",
-    "themes/even/layout/_partial/_head/meta.swig",
     "source/tags/index.md",
     "source/categories/index.md",
     "source/about/index.md",

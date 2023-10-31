@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/_Research/Password Guessing using Random Forest.md",
+                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/_Research/Password Guessing using Random Forest.md",
+                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/_Research/Password Guessing using Random Forest.md",
+                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/_Research/Password Guessing using Random Forest.md"
+                "file": "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md"
               }
             }
           },

@@ -3,11 +3,11 @@
   <title>Padishah&#39;s blog</title>
   
   <subtitle>Padishah</subtitle>
-  <link href="https://padishah.github.io/atom.xml" rel="self"/>
+  <link href="https://padishahiii.github.io/atom.xml" rel="self"/>
   
-  <link href="https://padishah.github.io/"/>
+  <link href="https://padishahiii.github.io/"/>
   <updated>2023-10-31T08:40:29.227Z</updated>
-  <id>https://padishah.github.io/</id>
+  <id>https://padishahiii.github.io/</id>
   
   <author>
     <name>Padishah</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Java Deserialize Vulnerabilities, ysoserial study</title>
-    <link href="https://padishah.github.io/2023/10/1726c701d497.html"/>
-    <id>https://padishah.github.io/2023/10/1726c701d497.html</id>
+    <link href="https://padishahiii.github.io/2023/10/1726c701d497.html"/>
+    <id>https://padishahiii.github.io/2023/10/1726c701d497.html</id>
     <published>2023-10-23T16:00:00.000Z</published>
     <updated>2023-10-31T08:40:29.227Z</updated>
     
@@ -33,17 +33,17 @@
     
     
     
-    <category term="Pentest" scheme="https://padishah.github.io/categories/Pentest/"/>
+    <category term="Pentest" scheme="https://padishahiii.github.io/categories/Pentest/"/>
     
-    <category term="JavaSec" scheme="https://padishah.github.io/categories/Pentest/JavaSec/"/>
+    <category term="JavaSec" scheme="https://padishahiii.github.io/categories/Pentest/JavaSec/"/>
     
     
   </entry>
   
   <entry>
     <title>Memshell study, JNDI inject memshell, JNDI exploit tool development</title>
-    <link href="https://padishah.github.io/2023/10/ac9c8c888b5f.html"/>
-    <id>https://padishah.github.io/2023/10/ac9c8c888b5f.html</id>
+    <link href="https://padishahiii.github.io/2023/10/ac9c8c888b5f.html"/>
+    <id>https://padishahiii.github.io/2023/10/ac9c8c888b5f.html</id>
     <published>2023-10-23T16:00:00.000Z</published>
     <updated>2023-10-31T06:21:42.147Z</updated>
     
@@ -57,9 +57,9 @@
     
     
     
-    <category term="Pentest" scheme="https://padishah.github.io/categories/Pentest/"/>
+    <category term="Pentest" scheme="https://padishahiii.github.io/categories/Pentest/"/>
     
-    <category term="JavaSec" scheme="https://padishah.github.io/categories/Pentest/JavaSec/"/>
+    <category term="JavaSec" scheme="https://padishahiii.github.io/categories/Pentest/JavaSec/"/>
     
     
   </entry>

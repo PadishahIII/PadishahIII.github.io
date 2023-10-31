@@ -25,7 +25,7 @@
     {
       "id": "se87ec4il4",
       "platform_specific_commands": {
-        "default": "chcp 65001;git checkout release;proxychains -f _proxychains.conf hexo g -d --silent;git checkout main"
+        "default": "chcp 65001;git checkout release;proxychains -f {{vault_path}}\\_proxychains.conf hexo g -d --silent;git checkout main"
       },
       "shells": {
         "win32": "PowerShell.exe"

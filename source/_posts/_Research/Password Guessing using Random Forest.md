@@ -40,6 +40,8 @@ Markov n元模型提出一个假设：密码中的每一个字符只和前面n�
 
 
 ## 提取特征
+### 基本思想
+
 首先我们需要将密码分割，主要有两种思想，*length-based*思想主要在*trawling guessing*场景适用，*type-based*思想是前者的改进，以更好地应用在基于PII的场景中。对于基于长度(*length-based*)的口令猜解模型（如PCFG），密码会被解析成若干个段，数字段用D表示，字母段用L，特殊字符段用S，然后用下标表示段的长度，如L<sub>8</sub>表示连续8个字母组成的段，如此一来，`Password123!`会编码成L<sub>8</sub>D<sub>3</sub>S<sub>1</sub>。基于类型(*type-based*)的口令猜解模型依然会把密码解析成若干个段，但是段的下标表示的是段的类型，例如，我们用`N`表示"姓名"这一种个人信息，用N<sub>1</sub>表示全名，N<sub>2</sub>表示姓氏，N<sub>3</sub>表示名字，用`B`表示"生日"，B<sub>1</sub>表示YYYYMMDD格式的生日，B<sub>2</sub>表示MMDD格式的生日，那么密码字符串`zhangsan0908`就可以编码成N<sub>1</sub>B<sub>2</sub>，同时也可以编码成N<sub>2</sub>N<sub>3</sub>B<sub>2</sub>，而对于密码中不属于个人信息的字符则保留该字符的原始特征。
 
 ### Trawling guessing
@@ -57,7 +59,9 @@ B<sub>s</sub>B<sub>s</sub>B<sub>s</sub>B<sub>s</sub>B<sub>s</sub>p , B<sub>s</su
 数据元的标签就是它在密码中的下一个字符，将该字符按照上述方式编码成4维向量。
 
 ### Targeted guessing based on PII
-基于长度的思想并不能很好地提取出密码中的PII特征，但我们只需要做一些修改即可实现基于类型的特征提取方法。
+基于长度的思想并不能很好地提取出密码中的PII特征，但我们只需要做一些修改即可实现基于类型的特征提取方法。我们在[[#基本思想|此节]]简单介绍了基于类型的PII匹配方式，用字母表示PII类型，数字表示更加细化的PII类型，如`N`表示`姓名`这一PII类型，N<sub>1</sub>表示`全名`，N<sub>3</sub>表示`姓氏`，后面两者都属于`姓名`信息。其他编码可以在[这里](https://github.com/PadishahIII/RFGuess#pattern-format)查看。将这样的数据元转化成特征向量是很简单的，把N<sub>1</sub>编码成1001，N<sub>2</sub>编码成1002，B<sub>1</sub>编码成2001，依次类推。
+一个密码可能有多种表示方式，如`zhangsan0908`就可以编码成N<sub>1</sub>B<sub>2</sub>，同时也可以编码成N<sub>2</sub>N<sub>3</sub>B<sub>2</sub>，所以我们要确定唯一的表示方式。
+
 
 
 

@@ -169,25 +169,15 @@
   },
   "active": "0a42593def5f0f6d",
   "lastOpenFiles": [
-<<<<<<< Updated upstream
     "_proxychains.conf",
     "_deploy.ps1",
     "_deploy.cmd",
-=======
     "source/_posts/_Research/Password Guessing using Random Forest.md",
-    "_deploy.cmd",
-    "_proxychains.conf",
-    "_deploy.ps1",
->>>>>>> Stashed changes
     "source/_posts/_Programming/Git.md",
     "source/_posts/_Programming/Hexo blog building.md",
     "source/_posts/_Programming/Poc framework design, using python.md",
     "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
     "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
-<<<<<<< Updated upstream
-    "source/_posts/_Research/Password Guessing using Random Forest.md",
-=======
->>>>>>> Stashed changes
     "新建文本文档.txt",
     "deploy.cmd",
     "themes/even/_config.yml",

@@ -11,12 +11,8 @@
             "id": "41387558c18786ee",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/_Programming/Git.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/_Programming/Git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/_Programming/Git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "source/_posts/_Programming/Git.md"
-              }
+              "state": {}
             }
           },
           {
@@ -165,54 +157,54 @@
       "obsidian-translator:Translate": false
     }
   },
-  "active": "72c87041a6827bee",
+  "active": "41387558c18786ee",
   "lastOpenFiles": [
+    "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
     "themes/even/_config.yml",
     "source/_posts/hello-world.md",
-    "source/_posts/Test.md",
-    "public/2023/10/24/hello-world/index.html",
-    "public/2023/10/24/Test/index.html",
-    "public/2023/10/24/hello-world",
-    "public/2023/10/24/Test",
-    "public/2023/10/24",
-    "source/_posts/Pentest/JavaSec/Java Deserialize Vulnerabilities ysoserial study.md",
     "source/_posts/_Programming/Git.md",
-    "themes/hexo-theme-even-master.zip",
-    "themes/hexo-theme-fluid-1.9.5.zip",
-    "themes/hexo-theme-xoxo-master.zip",
-    "themes/fluid/package.json",
-    "public/js/script.js",
-    "public/css/images/banner.jpg",
+    "source/_posts/Test.md",
+    "public/2023/10/24/Test/index.html",
+    "public/2023/10/24/hello-world/index.html",
+    "public/2023/10/24/Test",
+    "public/2023/10/24/hello-world",
+    "public/2023/10/24",
+    "themes/xoxo/source/js/xoxo.js",
+    "themes/xoxo/scripts/tags/note.js",
+    "themes/xoxo/scripts/tags/center-quote.js",
+    "themes/xoxo/scripts/tags/lazy-image.js",
     "themes/xoxo/README.md",
-    "themes/fluid/source/img/police_beian.png",
-    "themes/fluid/source/img/profile.jpg",
-    "themes/fluid/source/img/avatar.png",
-    "themes/fluid/source/img/loading.gif",
-    "themes/fluid/source/img/fluid.png",
-    "themes/fluid/source/img/default.png",
     "themes/even/source/lib/fancybox/helpers/fancybox_buttons.png",
-    "themes/even/source/fonts/chancery/apple-chancery-webfont.svg",
     "themes/even/source/lib/fancybox/fancybox_sprite.png",
-    "source/_posts/_Research/Password Guessing using Random Forest.md",
-    "source/_posts/_Research/Password Guessing using Random Forest.md",
-    "source/_posts/Pentest/JavaSec/Memshell study JNDI inject memshell JNDI exploit tool development.md",
-    "source/_posts/_Proses/Short-term and long-term plans.md",
+    "themes/even/source/lib/fancybox/fancybox_sprite@2x.png",
+    "themes/even/source/lib/fancybox/fancybox_overlay.png",
+    "themes/even/source/lib/fancybox/fancybox_loading@2x.gif",
+    "themes/even/source/lib/fancybox/fancybox_loading.gif",
+    "themes/even/source/lib/fancybox/blank.gif",
+    "themes/even/source/fonts/chancery/apple-chancery-webfont.svg",
     "source/_posts/_Proses/Todo-list.md",
-    "source/_posts/_Programming/Python.md",
-    "source/_posts/_RedTeam/Journal.md",
-    "source/_posts/_Programming/Poc framework design, using python.md",
-    "source/_posts/_Kanban.md",
-    "source/_posts/_RedTeam/Metasploit.md",
-    "source/_posts/_RedTeam/Methodology - A Whole Pentest Routinue.md",
-    "node_modules/morgan/README.md",
-    "node_modules/morgan/HISTORY.md",
-    "node_modules/on-headers/README.md",
-    "node_modules/on-headers/HISTORY.md",
-    "node_modules/safe-buffer/README.md",
-    "node_modules/mime-types/README.md",
-    "node_modules/mime-types/HISTORY.md",
-    "node_modules/is-docker/readme.md",
-    "node_modules/is-wsl/readme.md",
+    "source/_posts/_Proses/Wises in future.md",
+    "source/_posts/_Proses/Short-term and long-term plans.md",
+    "source/_posts/_Diary/2023-10-13.md",
+    "source/_posts/_Diary/2023-09-28.md",
+    "source/_posts/_Classes/LAS.md",
+    "source/_posts/_Classes/网络基础.md",
+    "source/_posts/_Classes/安服.md",
+    "source/_posts/_Classes/安全产品使用.md",
+    "source/_posts/_Block Chain/Block Chain.md",
+    "source/_posts/_Android/Tips.md",
+    "source/_posts/_Android/Burp Proxy - import pem as system-level certificates.md",
+    "source/_posts/_Android/Frida, Objection.md",
+    "source/_posts/_ASP.NET/ASP.NET development.md",
+    "public/img/profile.jpg",
+    "public/img/police_beian.png",
+    "themes/fluid/README_en.md",
+    "themes/fluid/README.md",
+    "source/tags/index.md",
+    "source/categories/index.md",
+    "source/about/index.md",
+    "source/_posts/_Research/Password Guessing using Random Forest.md",
+    "source/_posts/_RedTeam/Vulnerabilities/Shiro.md",
     "Untitled.canvas"
   ]
 }

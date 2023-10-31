@@ -24,11 +24,7 @@ PII(personal identifiable information)即个人信息，如姓名、生日、手
 
 
 ## Targeted guessing based on password reuse
-<<<<<<< Updated upstream
 基于密码复用的定向猜解指的是，已知一个人曾经用过的密码，通过施加一些变换猜测出现在使用的密码，比如插入、删除字符、leet变换等。统计模型有*TarGuess-II*，深度学习模型有*Pass2Path*。
-=======
-基于密码复用的定向猜解指的是，已知一个人曾经用过的密码，通过施加一些变换猜测出现在使用的密码，比如插入、删除字符、leet变换等。统计模型有*TarGuess-II*，深度学习模型有*Pass2Path*。 **This is a hook test.**
->>>>>>> Stashed changes
 
 
 # RFGuess提出的背景

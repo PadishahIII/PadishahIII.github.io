@@ -167,6 +167,7 @@
   },
   "active": "7da95714aa1be4ba",
   "lastOpenFiles": [
+    "_deploy.ps1",
     "_proxychains.conf",
     "_deploy.cmd",
     "新建文本文档.txt",
@@ -186,7 +187,6 @@
     "themes/even/layout/_script/_comments/livere.swig",
     "themes/even/layout/_script/_comments/disqus.swig",
     "themes/even/layout/_script/_comments/cusdis.swig",
-    "themes/even/layout/_partial/_post/toc.swig",
     "source/tags/index.md",
     "source/categories/index.md",
     "source/about/index.md",

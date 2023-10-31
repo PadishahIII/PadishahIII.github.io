@@ -25,10 +25,10 @@
     {
       "id": "se87ec4il4",
       "platform_specific_commands": {
-        "default": "_deploy.cmd"
+        "default": "chcp 65001;git checkout release;proxychains -f _proxychains.conf hexo g -d --silent;git checkout main"
       },
       "shells": {
-        "win32": "1i8wbf4miv"
+        "win32": "PowerShell.exe"
       },
       "alias": "Deploy",
       "icon": "axe",

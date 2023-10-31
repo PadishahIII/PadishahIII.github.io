@@ -11,11 +11,10 @@
             "id": "0a42593def5f0f6d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "diff-view",
               "state": {
-                "file": "source/_posts/_Research/Password Guessing using Random Forest.md",
-                "mode": "source",
-                "source": false
+                "file": ".obsidian/workspace.json",
+                "staged": false
               }
             }
           }
@@ -85,7 +84,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/_Research/Password Guessing using Random Forest.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/_Research/Password Guessing using Random Forest.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +121,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "source/_posts/_Research/Password Guessing using Random Forest.md"
-              }
+              "state": {}
             }
           },
           {
@@ -166,27 +161,26 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "7da95714aa1be4ba",
+  "active": "0a42593def5f0f6d",
   "lastOpenFiles": [
+    "source/_posts/_Research/Password Guessing using Random Forest.md",
     "_proxychains.conf",
     "_deploy.ps1",
-    "db.json",
-    "public/archives/2023/10/index.html",
     "public/categories/Pentest/JavaSec/index.html",
+    "public/archives/2023/10/index.html",
     "public/css/images/banner.jpg",
-    "public/categories/Pentest/JavaSec",
     "public/categories/Pentest/index.html",
-    "public/2023/10/b357e5908cf7.html",
+    "public/categories/Pentest/JavaSec",
     "public/archives/2023/index.html",
-    "public/2023/10/1726c701d497.html",
     "public/archives/2023/10",
+    "public/2023/10/b357e5908cf7.html",
+    "public/2023/10/ac9c8c888b5f.html",
     "public/img/profile.jpg",
-    "public/img/police_beian.png",
-    "public/img/loading.gif",
-    "public/img/default.png",
     "public/img/fluid.png",
+    "public/img/loading.gif",
+    "public/img/police_beian.png",
+    "public/img/default.png",
     "public/img/avatar.png",
-    "source/_posts/_Research/Password Guessing using Random Forest.md",
     "source/_posts/_Programming/Git.md",
     "source/_posts/_Programming/Hexo blog building.md",
     "source/_posts/_Programming/Poc framework design, using python.md",

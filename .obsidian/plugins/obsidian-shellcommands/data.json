@@ -43,7 +43,7 @@
           "convert_ansi_code": true
         },
         "stderr": {
-          "handler": "notification",
+          "handler": "clipboard",
           "convert_ansi_code": true
         }
       },

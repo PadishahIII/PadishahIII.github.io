@@ -3,5 +3,6 @@
   "attachmentFolderPath": "Attachments",
   "spellcheck": true,
   "promptDelete": false,
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "defaultViewMode": "preview"
 }

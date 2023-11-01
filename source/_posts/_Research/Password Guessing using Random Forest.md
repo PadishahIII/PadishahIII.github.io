@@ -64,11 +64,6 @@ B<sub>s</sub>B<sub>s</sub>B<sub>s</sub>B<sub>s</sub>B<sub>s</sub>p , B<sub>s</su
 计算特征向量的方式和上一节类似，我们将上面的N<sub>1</sub>、N<sub>2</sub>定义为*PII Tag*，将*Tag*转化成4维向量：*Tag*类型、值、键盘行列数，键盘行列数取0，N<sub>1</sub>会转化成(1000, 1, 0, 0)。最终我们仍然将数据元转化成26维向量。
 
 
-
-
-
-
-
 %% 如何提取特征 %%
 
 

@@ -12,16 +12,15 @@ kanban-plugin: basic
 - [ ] Practice pentest, explore tools
 - [ ] Explore yakit development
 - [ ] Build blog site
-- [ ] Read doc of Burp
 - [ ] Learn Nmap script
 
 
 ## To complete in Oct
 
 - [ ] JNDIExploit research
+- [ ] Read penetration document
 - [ ] RFGuess PPT
 - [ ] Build blog site
-- [ ] Read penetration document
 
 
 ## Long term fundamental learning

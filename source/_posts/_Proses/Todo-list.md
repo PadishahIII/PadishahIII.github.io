@@ -40,3 +40,19 @@
 - [ ] Master <span style="background:#d3f8b6">reverse engineering</span>
 - [ ] Bypass anti-virus
 
+
+---
+
+# Periodic plan
+### 2023 Q4
+- [ ] Learn Intranet penetration, domain penetration, improve or develop some tools, read several books
+- [ ] Master Android reverse engineering, shell and unshell
+- [ ] Take a glance at Cloud Security, learn basis
+- [ ] Join a specialized group
+- [ ] Write 
+- [ ] Learn the architecture of Tomcat, Spring
+- [ ] Master design mode
+- [ ] Design and program your Exp framework
+- [ ] Master NodeJs
+- [ ] Master Go
+

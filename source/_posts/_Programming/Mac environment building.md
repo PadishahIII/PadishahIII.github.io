@@ -3,6 +3,7 @@
 TODO:
 - [ ] install npm
 - [ ] install hexo 
+- [ ] obsi
 - [ ] test to write and deploy blog
 - [ ] install jenv and jdk environments
 - [ ] install tomcat and php

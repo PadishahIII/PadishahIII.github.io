@@ -13,4 +13,4 @@ If any change was committed to `release` by mistake, you should merge the change
 git checkout main
 git merge release
 ```
-If there are conflicts when merging, the files relating to the conflicts will be modified to reveal the details of conflict. Just check them one by one(use *vscode*) and commit without having conflicts. 
+If there are conflicts when merging, the files relating to the conflicts will be modified to reveal the details of conflict. Just check them one by one(use *vscode*) and commit without having conflicts. This is a test

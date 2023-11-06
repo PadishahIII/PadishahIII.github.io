@@ -1,8 +1,8 @@
 
 # Journal
 TODO:
-- [ ] install npm
-- [ ] install hexo 
+- [x] install npm
+- [x] install hexo 
 - [ ] obsidian-git cannot push
 - [ ] test to write and deploy blog
 - [ ] install jenv and jdk environments

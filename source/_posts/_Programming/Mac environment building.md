@@ -4,7 +4,7 @@ TODO:
 - [x] install npm
 - [x] install hexo 
 - [x] obsidian-git cannot push
-- [ ] test to write and deploy blog
+- [x] test to write and deploy blog
 - [ ] install jenv and jdk environments
 - [ ] install tomcat and php
 - [ ] install mysql

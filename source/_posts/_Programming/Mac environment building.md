@@ -6,8 +6,9 @@ TODO:
 - [x] obsidian-git cannot push
 - [x] test to write and deploy blog
 - [x] install jenv and jdk environments
-- [ ] install tomcat and php
-- [ ] install mysql
-
-
+- [x] install tomcat and php
+- [x] install mysql
+- [ ] install adb, jeb, noxplayer, IDA, androidkiller
+- [ ] install jadx
 - [ ] build penetration environment, using zsh alias as auxiliary
+- [ ] 

@@ -3,6 +3,7 @@ git add .
 git commit -m "backup"
 git checkout release
 git merge -X theirs main
+source ~/.zshrc
 proxy
 hexo g -d --silent
 unproxy

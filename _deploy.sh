@@ -7,7 +7,7 @@ source ~/.zshrc
 proxy
 hexo g -d --silent
 unproxy
-git restore .obsidian/workspace*.json
+#git restore .obsidian/workspace*.json
 git stash 
 git checkout main
 git stash drop

@@ -4,6 +4,13 @@ kanban-plugin: basic
 
 ---
 
+## 2023/11/10 Reverse engineering progress
+
+- [ ] Solidify the app penetration process, explore tools,  complete [here](obsidian://open?vault=hexo&file=source%2F_posts%2F_Android%26IOS%2FIOS%20Reverse%20engineering) and [there](obsidian://open?vault=hexo&file=source%2F_posts%2F_Android%26IOS%2FAndroid%20reverse%20engineering)
+- [ ] Dump 360 shell for tan8
+- [ ] Follow the [plan](obsidian://open?vault=hexo&file=source%2F_posts%2F_Android%26IOS%2FJournal)
+
+
 ## 2023/10/20 Short term plan
 
 - [ ] JNDIExploit and ysoserial research [[Memshell study JNDI inject memshell JNDI exploit tool development|This note]]
@@ -13,14 +20,6 @@ kanban-plugin: basic
 - [ ] Explore yakit development
 - [ ] Build blog site
 - [ ] Learn Nmap script
-
-
-## To complete in Oct
-
-- [ ] JNDIExploit research
-- [ ] Read penetration document
-- [ ] RFGuess PPT
-- [ ] Build blog site
 
 
 ## Long term fundamental learning

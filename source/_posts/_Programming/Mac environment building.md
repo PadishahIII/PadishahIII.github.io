@@ -11,4 +11,7 @@ TODO:
 - [ ] install adb, jeb, noxplayer, IDA, androidkiller
 - [ ] install jadx
 - [ ] build penetration environment, using zsh alias as auxiliary
-- [ ] 
+- [ ] install frida, xposed, charles, burp
+- [ ] Noxplayer can not launch
+- [ ] install openvpn2 client
+

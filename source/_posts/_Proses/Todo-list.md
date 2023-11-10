@@ -4,6 +4,18 @@
 	- [ ] Windows program design
 	- [ ] Reverse Engineering for Beginners
 	- [ ] Practical Reverse Engineering
+- [ ] Learn Android reverse engineering
+	- [ ] Dump a 1st-generation or 2nd-generation shell by hand
+	- [ ] Prepare a android phone, and install reverse environment
+		- [ ] Study with a systematic tutorial, like [this](https://github.com/733gh/GH-Android-Review-master)
+	- [ ] Flash your phone into an unpacking machine
+	- [ ] Learn the inner logic of android system
+	- [ ] Learn the process of launching app in android
+	- [ ] Study the hook theory of Xposed framework
+	- [ ] Study the architecture of frida
+	- [ ] Research how to hide the feature of frida and xposed to bypass detection
+	- [ ] Learn how to build an unpacking virtual machine, like FART, Youpk
+	- [ ] Use eBPF to hook
 - [ ] Learn bypass anti-virus
 - [ ] Social engineering methods: pdf, rar, word ...
 - [ ] Reproduce and analyze Web component vulnerability

@@ -206,3 +206,9 @@ This updated implementation allows us to maintain a single instance of each obje
 ## Circular import Problem
 - One of the solutions is merge the two modules that import each other
 - Other solution is just placing the import within function where the module is up to use.
+
+## Generate requirements.txt
+```
+pip install pipreqs
+pipreqs .
+```

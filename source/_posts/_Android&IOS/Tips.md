@@ -61,4 +61,5 @@ adb shell am start -D -n  com.xxx/com.yitong.activity.SplashActivity
 ```
 Import the "smali" folder of the apk extracted by apktool into Android Studio. Download "smalidea" plugin to add breakpoints on smali file. Attach to emulator process to start debugging. 
 
-
+### [Solved] adb install "Failure INSTALL_FAILED_UPDATE_INCOMPATIBLE: Package com.uusafe.portal signatures do not match previously installed version;"
+Uninstall the original app completely and try again.

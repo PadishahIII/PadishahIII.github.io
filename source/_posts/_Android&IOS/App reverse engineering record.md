@@ -119,3 +119,9 @@ Using `stackplz` to trace the detection of `/proc/self/maps`:
 ### Bypass anti-root
 This App detects root environment by access file `/system/bin/su`.
 
+
+
+## Tan8
+### Unshell
+In `com.stub.StubApp` class, move `libjiagu.so` in assets folder to `.jiagu/libjiagu.so`, and load
+

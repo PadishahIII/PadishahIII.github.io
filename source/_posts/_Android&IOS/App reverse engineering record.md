@@ -125,3 +125,7 @@ This App detects root environment by access file `/system/bin/su`.
 ### Unshell
 In `com.stub.StubApp` class, move `libjiagu.so` in assets folder to `.jiagu/libjiagu.so`, and load
 
+
+
+# Journal
+- [ ] (Tan8) IDA does not have "Remote Android Debugger" option, try to debug on windows

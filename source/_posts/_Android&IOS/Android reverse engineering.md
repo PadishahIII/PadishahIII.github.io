@@ -9,6 +9,6 @@ keytool -genkey -alias t.keystore -keyalg RSA -validity 40000 -keystore t.keysto
 ```
 Sign the apk.
 ```
-jarsigner -keystore t.keystore -signedjar a_d_s.apk a_debuggable.apk
+jarsigner -keystore t.keystore -signedjar a_d_s.apk a_debuggable.apk t.keystore
 ```
 Finally, we need to uninstall the original app completely and install the new apk.

@@ -131,4 +131,4 @@ In `com.stub.StubApp` class, move `libjiagu.so` in assets folder to `.jiagu/libj
 - [ ] (Tan8) IDA does not have "Remote Android Debugger" option, try to debug on windows
 	- [x] On windows, run android_x64_server with "remote linux debugger" in IDA, can attach to process
 	- [ ] On mac, only android_server64 is compatible with emulator, with "remote gdb debugger" in IDA, but can not attach to any process
-	- [ ] Push IDA server to `/data/data/com.tan8` and the root procession can be ignored. Try in your phone.
+	- [x] [Failed] Push IDA server to `/data/data/com.tan8` and the root procession can be ignored. Try in your phone.

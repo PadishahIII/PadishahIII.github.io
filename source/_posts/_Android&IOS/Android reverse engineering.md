@@ -11,6 +11,10 @@ Sign the apk.
 ```
 jarsigner -keystore t.keystore -signedjar a_d_s.apk a_debuggable.apk t.keystore
 ```
+Align apk:
+```
+zipalign 
+```
 Finally, we need to uninstall the original app completely and install the new apk.
 
 ### Dynamically debug using IDA

@@ -1,4 +1,4 @@
-### Re-pack
+x### Re-pack
 After unpack the apk by apktool, modify the manifest to add debuggable tag. Then re-pack the folder.
 ```
 apktool b <folder>

@@ -133,3 +133,4 @@ In `com.stub.StubApp` class, move `libjiagu.so` in assets folder to `.jiagu/libj
 	- [ ] On mac, only android_server64 is compatible with emulator, with "remote gdb debugger" in IDA, but can not attach to any process
 	- [x] [Failed] Push IDA server to `/data/data/com.tan8` and the root procession can be ignored. Try in your phone.
 	- [ ] On windows, when get IDA dynamically debug tan8 app, SIGILL exception occurred. May be wrong with Leidian emulator and Noxplayer. If use AVD, IDA would crack right after execute "attach to process".
+	- [ ] On windows, the above problems remain even if it comes to my network-monitor app hardened by bangbang. **In conclusion, any emulator has failed to support dynamical debugging of IDA over either bangbang or 360 harden. Try dynamical debug in a real phone.**

@@ -63,3 +63,9 @@ Import the "smali" folder of the apk extracted by apktool into Android Studio. D
 
 ### [Solved] adb install "Failure INSTALL_FAILED_UPDATE_INCOMPATIBLE: Package com.uusafe.portal signatures do not match previously installed version;"
 Uninstall the original app completely and try again.
+
+### [Solved] DDMS monitor.exe start error on windows
+DDMS only supports JDK8. You should copy the `jre` folder of JDK into the path monitor.exe locates. It's noticeable that `jenv` can not work out this problem.
+
+### [Solved] DDMS fails to show procession names on windows
+All procession names are `?` in DDMS. You should set the system property `ro.debuggable` to 1, ensure the emulator is rooted, and restart DDMS.

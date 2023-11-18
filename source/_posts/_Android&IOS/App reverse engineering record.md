@@ -132,3 +132,4 @@ In `com.stub.StubApp` class, move `libjiagu.so` in assets folder to `.jiagu/libj
 	- [x] On windows, run android_x64_server with "remote linux debugger" in IDA, can attach to process
 	- [ ] On mac, only android_server64 is compatible with emulator, with "remote gdb debugger" in IDA, but can not attach to any process
 	- [x] [Failed] Push IDA server to `/data/data/com.tan8` and the root procession can be ignored. Try in your phone.
+	- [ ] On windows, when get IDA dynamically  SIGILL exception occurred

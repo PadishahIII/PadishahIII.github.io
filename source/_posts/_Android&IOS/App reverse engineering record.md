@@ -134,7 +134,10 @@ Cannot run in Noxplayer, can run in AVD
 
 **Hook:** Frida spawn and objection attach, objection successfully inspect all activities at the start page.
 
-**Sniff:** Test on huawei phone, cannot proxy the network flow, may using okhttp
+**Sniff:** 
+- Test on huawei phone, cannot proxy the network flow, may using okhttp
+- Failed with drony
+- [ ] Try httpcanary
 
 
 

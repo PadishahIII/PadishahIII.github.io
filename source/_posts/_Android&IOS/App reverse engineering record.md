@@ -126,6 +126,18 @@ This App detects root environment by access file `/system/bin/su`.
 In `com.stub.StubApp` class, move `libjiagu.so` in assets folder to `.jiagu/libjiagu.so`, and load
 
 
+## Yalla SRC
+### Yalla.apk
+No shell
+Obfuscated by proguard
+Cannot run in Noxplayer, can run in AVD
+
+**Hook:** Frida spawn and objection attach, objection successfully inspect all activities at the start page.
+
+
+
+---
+
 
 # Journal
 - [ ] (Tan8) IDA does not have "Remote Android Debugger" option, try to debug on windows

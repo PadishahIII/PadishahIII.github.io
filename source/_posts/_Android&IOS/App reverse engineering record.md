@@ -124,7 +124,10 @@ This App detects root environment by access file `/system/bin/su`.
 ## Tan8
 ### Unshell
 In `com.stub.StubApp` class, move `libjiagu.so` in assets folder to `.jiagu/libjiagu.so`, and load
+**dumpDex Failed**
+**frida-dexdump Failed to dump tan8 package**
 
+---
 
 ## Yalla SRC
 ### Yalla.apk

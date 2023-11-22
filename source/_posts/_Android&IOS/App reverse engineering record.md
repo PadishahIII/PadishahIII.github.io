@@ -126,6 +126,8 @@ This App detects root environment by access file `/system/bin/su`.
 In `com.stub.StubApp` class, move `libjiagu.so` in assets folder to `.jiagu/libjiagu.so`, and load
 **dumpDex Failed**
 **frida-dexdump Failed to dump tan8 package**
+**mHook not worked**
+**BlackDex not worked(crash on unshelling)**
 
 ---
 

@@ -147,7 +147,7 @@ Cannot run in Noxplayer, can run in AVD
 ### Okey101
 No shell
 SSL pinning, r0capture not worked
-
+Android11 is too high to add system certificate
 
 ---
 

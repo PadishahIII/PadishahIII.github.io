@@ -42,3 +42,4 @@ frida  -f com.nbbank -l printActivities.js -H 127.0.0.1:8888
 or
 objection -p 8889 -h 127.0.0.1 -N -g bishe.networkmonitor explore
 ```
+

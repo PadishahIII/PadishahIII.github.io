@@ -69,3 +69,8 @@ DDMS only supports JDK8. You should copy the `jre` folder of JDK into the path m
 
 ### [Solved] DDMS fails to show procession names on windows
 All procession names are `?` in DDMS. You should set the system property `ro.debuggable` to 1, ensure the emulator is rooted, and restart DDMS.
+
+## Android
+### [Solved] Remount failed: read-only file system
+On pixel3 android11, I intend to add charles certificate as system certificate, but when push the cer file into /system/security/xxx, an error occurred: "/dev/xx/dm-0 read-only file system". **This feature is added in android10 that all system file partitions are read-only.** After checking the /proc/mounts file, there is no /system mount. So, we need to unlock the system partition. After tons of searching work, I found [this tool](https://github.com/HuskyDG/magic_overlayfs/tree/v3.2.2). Update magisk to 23+ and 
+

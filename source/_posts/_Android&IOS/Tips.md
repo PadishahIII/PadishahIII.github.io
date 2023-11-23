@@ -72,5 +72,12 @@ All procession names are `?` in DDMS. You should set the system property `ro.deb
 
 ## Android
 ### [Solved] Remount failed: read-only file system
-On pixel3 android11, I intend to add charles certificate as system certificate, but when push the cer file into /system/security/xxx, an error occurred: "/dev/xx/dm-0 read-only file system". **This feature is added in android10 that all system file partitions are read-only.** After checking the /proc/mounts file, there is no /system mount. So, we need to unlock the system partition. After tons of searching work, I found [this tool](https://github.com/HuskyDG/magic_overlayfs/tree/v3.2.2). Update magisk to 23+ and 
-
+On pixel3 android11, I intend to add charles certificate as system certificate, but when push the cer file into /system/security/xxx, an error occurred: "/dev/xx/dm-0 read-only file system". **This feature is added in android10 that all system file partitions are read-only.** After checking the /proc/mounts file, there is no /system mount. So, we need to unlock the system partition. After tons of searching work, I found [this tool](https://github.com/HuskyDG/magic_overlayfs/tree/v3.2.2). Update magisk to 23+ and install this module. Remount the system partitions to rw by running :
+```
+su -mm -c magic_remount_rw
+```
+Restore to ro by running:
+```
+su -mm -c magic_remount_ro
+```
+Finally, i can push my certificate into system certificate folder.(Note that, the /system folder is still read-only but its subfolders are read-writable.)

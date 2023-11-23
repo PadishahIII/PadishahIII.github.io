@@ -132,7 +132,7 @@ In `com.stub.StubApp` class, move `libjiagu.so` in assets folder to `.jiagu/libj
 ---
 
 ## Yalla SRC
-### Yalla.apk
+### Yalla
 No shell
 Obfuscated by proguard
 Cannot run in Noxplayer, can run in AVD
@@ -144,6 +144,9 @@ Cannot run in Noxplayer, can run in AVD
 - Failed with drony
 - [ ] Try httpcanary
 
+### Okey101
+No shell
+SSL pinning, r0capture not worked
 
 
 ---

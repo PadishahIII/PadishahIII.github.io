@@ -149,6 +149,7 @@ No shell
 SSL pinning, r0capture not worked
 - [x] Android11 is too high to add system certificate
 Add charles certificate to system and proxy yalla successfully.
+Network overtime when using burp proxy.
 
 
 ---

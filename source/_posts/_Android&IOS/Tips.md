@@ -81,3 +81,7 @@ Restore to ro by running:
 su -mm -c magic_remount_ro
 ```
 Finally, i can push my certificate into system certificate folder.(Note that, the /system folder is still read-only but its subfolders are read-writable.)
+
+## Hook
+### [Solved] Frida conflicted with VPN
+When set VPN by ProxyDruid, frida would not able to connect to the frida-server normally. We need to add bypass list: `127.0.0.1/24, 10.96.9.0/17, 10,96.4.0/17`. After that, frida can c

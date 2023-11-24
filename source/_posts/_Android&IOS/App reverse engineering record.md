@@ -150,6 +150,7 @@ SSL pinning, r0capture not worked
 - [x] Android11 is too high to add system certificate
 Add charles certificate to system and proxy yalla successfully.
 Network overtime when using burp proxy.
+`TrustManagerImpl` is called. Try extracting the args. There is harden facilities on server certificates, but cannot locate corresponding code. Cannot proxy the "兑换码" network request, maybe under protection.
 
 
 ---

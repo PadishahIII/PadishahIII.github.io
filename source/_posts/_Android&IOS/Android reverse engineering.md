@@ -43,3 +43,8 @@ or
 objection -p 8889 -h 127.0.0.1 -N -g bishe.networkmonitor explore
 ```
 
+### Proxify foreign app 
+We need to capture the network flow of the target app, while the app requires overseas VPN. After some tests, I choose to this method: ProxyDroid -> Charles -> Clash.
+Firstly, we should configure ProxyDroid to connect to the SOCKS proxy of Charles, normally 8889 port. And specify the `Bypass Addresses` attribute as `127.0.0.1/24, 10.96.9.0/17, 10.96.4.0/17`(the IP ranges of WLAN).
+Then configure Charles to open SOCKS proxy in `Proxy Setting` panel. And set `External proxy setting` to direct traffic to the upstream server i.e. Clash. 
+Clash should unset the `system proxy` switch

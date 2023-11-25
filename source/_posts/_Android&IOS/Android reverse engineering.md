@@ -43,8 +43,26 @@ or
 objection -p 8889 -h 127.0.0.1 -N -g bishe.networkmonitor explore
 ```
 
+## Set up proxy and Capture traffic
+
+### Proxy with Charles
+#### Import system certificate
+Export the certificate of Charles and run the command below to transform DER certificate to PEM. 
+```
+openssl x509 -inform DER -in cert.cer -out cacert.pem
+```
+Get MD5 hash head:
+```
+openssl x509 -inform PEM -subject_hash_old -in cacert.pem
+```
+Rename the pem file to `<hash>.0` like `fbb5727a.0`. Push the certificate to `/system/etc/security/cacerts/` and change its privilege to 644. Reboot the phone and you can check it in the system-trusted certificate list.
+
+
 ### Proxify foreign app 
 We need to capture the network flow of the target app, while the app requires overseas VPN. After some tests, I choose to this method: ProxyDroid -> Charles -> Clash.
 Firstly, we should configure ProxyDroid to connect to the SOCKS proxy of Charles, normally 8889 port. And specify the `Bypass Addresses` attribute as `127.0.0.1/24, 10.96.9.0/17, 10.96.4.0/17`(the IP ranges of WLAN).
 Then configure Charles to open SOCKS proxy in `Proxy Setting` panel. And set `External proxy setting` to direct traffic to the upstream server i.e. Clash. 
-Clash should unset the `system proxy` switch
+Clash should unselect the `system proxy` attribute and set the proxy mode to `Global`. Finally, the target app can work normally with Clash and we can capture the https traffic.
+Note that, if Frida cannot connect to the server after set up proxy, it may be caused by the confliction with ProxyDroid, you need to fix the `Bypass Addresses` of ProxyDroid to the correct value.
+
+

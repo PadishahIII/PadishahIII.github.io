@@ -158,7 +158,7 @@ Post body is the result of `Framework.Common.MD5Helper::DoAesEncrypt` whose key 
 Nonce can re-use.
 MD5 Salt: `urCpW8t7vGQ23sD8`
 - [ ] Cannot reproduce MD5 encrypting function.
-
+Use ASCII encoding when encode x-baggage.
 
 
 ---

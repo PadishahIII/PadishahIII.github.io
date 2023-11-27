@@ -159,7 +159,7 @@ Nonce can re-use.
 MD5 Salt: `urCpW8t7vGQ23sD8`
 - [ ] Cannot reproduce MD5 encrypting function.
 Use ASCII encoding when encode x-baggage.
-MD5 alg is re-w
+- [ ] MD5 alg is re-written.
 
 
 ---

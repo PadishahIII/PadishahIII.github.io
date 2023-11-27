@@ -157,7 +157,7 @@ x-baggage: JWT of nonce
 Post body is the result of `Framework.Common.MD5Helper::DoAesEncrypt` whose key and iv is dynamically changed. Key is from MD5(nonce). IV is generated from key, with 4 bytes tripped from head and tail.
 Nonce can re-use.
 MD5 Salt: `urCpW8t7vGQ23sD8`
-
+Cannot reproduce MD5 encrypting function
 
 
 ---

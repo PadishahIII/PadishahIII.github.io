@@ -154,7 +154,8 @@ Network overtime when using burp proxy.
 
 "HttpRequestMgr::GetNonce": x-hera
 x-baggage: JWT of nonce
-Post body is the result of `Framework.Common.MD5Helper::DoAesEncrypt` whose key and iv is dynamically changed.
+Post body is the result of `Framework.Common.MD5Helper::DoAesEncrypt` whose key and iv is dynamically changed. Key is from MD5(nonce)
+
 
 
 ---

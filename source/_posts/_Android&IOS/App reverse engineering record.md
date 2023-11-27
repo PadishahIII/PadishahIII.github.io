@@ -153,11 +153,12 @@ Network overtime when using burp proxy.
 `TrustManagerImpl` is called. Try extracting the args. There is harden facilities on server certificates, but cannot locate corresponding code. Cannot proxy the "兑换码" network request, maybe under protection.
 
 "HttpRequestMgr::GetNonce": x-hera
-x-baggage: JWT of nonce
+x-baggage: JWT of nonce, **this header is just a base64-encoded json, without signature**.
 Post body is the result of `Framework.Common.MD5Helper::DoAesEncrypt` whose key and iv is dynamically changed. Key is from MD5(nonce). IV is generated from key, with 4 bytes tripped from head and tail.
 Nonce can re-use.
 MD5 Salt: `urCpW8t7vGQ23sD8`
-Cannot reproduce MD5 encrypting function
+- [ ] Cannot reproduce MD5 encrypting function.
+
 
 
 ---

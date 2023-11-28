@@ -7,10 +7,15 @@ Then we need to generate a keystore.
 ```
 keytool -genkey -alias t.keystore -keyalg RSA -validity 40000 -keystore t.keystore
 ```
-Sign the apk.
+Sign the apk with V1 signature.
 ```
 jarsigner -keystore t.keystore -signedjar a_d_s.apk a_debuggable.apk t.keystore
 ```
+Sign the apk with V2 signature.
+```
+apksigner sign --ks ~/Documents/t.keystore --ks-key-alias t.keystore --out Match_d_s_v2.apk Match_d_s.apk
+```
+
 Align apk:
 check whether it is aligned:
 ```
@@ -18,7 +23,7 @@ zipalign -c -v 4 xx.apk
 ```
 Align:
 ```
-zipalign -p -f xx.apk out.apk
+zipalign -p -f 4 xx.apk out.apk
 ```
 
 Finally, we need to uninstall the original app completely and install the new apk.

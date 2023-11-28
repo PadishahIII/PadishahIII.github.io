@@ -41,7 +41,7 @@ sudo spctl --master-disable
 ### IOS reverse tools
 
 
-## Debug
+## Debug&Repack
 ### [Solved] Apktool re-package apk failed
 When unpack the apk, do no decode resources except manifest:
 ```
@@ -52,6 +52,17 @@ Build:
 ```
 apktool b app-source -o app-debuggable.apk
 ```
+
+### [Solved] Apktool re-pack "error: attribute xxx not found"
+Empty framework dir by:
+```
+apktool empty-framework-dir
+```
+Re-pack:
+```
+apktool b  YallaMatch_original -o Match_r.apk [--use-aapt2]
+```
+
 
 ### [Solved] Android studio dynamically debug app
 Refer to [this article](https://cloud.tencent.com/developer/article/1877189). Firstly, we should unpack the apk file with apktoo and modify the `android:debuggable` property in  `AndroidManifest.xml` to 'true'. Re-pack the apk and sign it. 

@@ -70,5 +70,12 @@ Then configure Charles to open SOCKS proxy in `Proxy Setting` panel. And set `Ex
 Clash should unselect the `system proxy` attribute and set the proxy mode to `Global`. Finally, the target app can work normally with Clash and we can capture the https traffic.
 Note that, if Frida cannot connect to the server after set up proxy, it may be caused by the confliction with ProxyDroid, you need to fix the `Bypass Addresses` of ProxyDroid to the correct value.
 
-## Set ro.debuggable
+### Set ro.debuggable
 Use MagiskHidePropsConf.
+
+# Unity Reverse Engineering
+## IL2Cpp reverse engineering
+### Overview
+IL2cpp packing has two features:
+1. `assets/bin/Data/Managed/Metadata/global-metadata.dat`, contains 
+1. Unpack apk

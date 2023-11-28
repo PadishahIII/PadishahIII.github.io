@@ -81,4 +81,9 @@ IL2cpp packing has two features:
 2. `lib/libil2cpp.so`, contains the logics but without symbol.
 
 ### Extract DAT file and libil2cpp.so
-Use GameGuardian and run `LibDumper`
+Use GameGuardian and run [libdumper script]([https://d.gameguardian.net](https://d.gameguardian.net/?f=2740_1B6C.8pQPxsSWhMiuz80GzrX2ZCYaC88nUa8eoTakLQ8r.kvqEINKGgobnH3znYsDskXStiL3nxjb1YR_etc291HAF8emUmfDqfcsVclOEc9ieCkQBFiyuuSCJSGzLqaty0HgDALAi1wQam3UMMh_gR2lHmN856VbvHLy4dfZkj4oHudNsUBliDMyeImVdQY9_0w07X8DTB.4vc-) to dump DAT and `libil2cpp.so` in memory.
+### Decompile using `Il2cppDumper`
+Run [Il2cppDumper](https://github.com/Perfare/Il2CppDumper) with the two files as input, it would generate `script.json` and all DLL files. Use `ILSpy` to inspect the `Assembly-CSharp.dll`. Run IDA script `ida_with_struct_py3.py` which is within the github files, with `script.json` as input to load symbols for IDA.
+
+### Hook using `frida-il2cpp-bridge`
+Firstly, trace all methods to locate key functions. Then you can hook as a normal app.

@@ -32,6 +32,11 @@ There is exactly a frida server in /system but this issue occurs when run it.
 mount -o rw,remount /
 ```
 
+### [Solved] ADB install "error Incremental installation not allowed"
+```
+
+```
+
 ## Mac
 ### Mac accept app from everywhere
 ```

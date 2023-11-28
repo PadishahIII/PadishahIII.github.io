@@ -77,5 +77,8 @@ Use MagiskHidePropsConf.
 ## IL2Cpp reverse engineering
 ### Overview
 IL2cpp packing has two features:
-1. `assets/bin/Data/Managed/Metadata/global-metadata.dat`, contains 
-1. Unpack apk
+1. `assets/bin/Data/Managed/Metadata/global-metadata.dat`, contains symbol informations such as class definition, method signature.
+2. `lib/libil2cpp.so`, contains the logics but without symbol.
+
+### Extract DAT file and libil2cpp.so
+Use GameGuardian and run `LibDumper`

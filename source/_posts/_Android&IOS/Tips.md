@@ -34,7 +34,7 @@ mount -o rw,remount /
 
 ### [Solved] ADB install "error Incremental installation not allowed"
 ```
-
+adb install -r --no-incremental Match_d_s_v2.apk
 ```
 
 ## Mac

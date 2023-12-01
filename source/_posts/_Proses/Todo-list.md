@@ -61,7 +61,6 @@
 - [ ] Master Android reverse engineering, shell and unshell
 - [ ] Take a glance at Cloud Security, learn basis
 - [ ] Join a specialized group
-- [ ] Write 
 - [ ] Learn the architecture of Tomcat, Spring
 - [ ] Master design mode
 - [ ] Design and program your Exp framework

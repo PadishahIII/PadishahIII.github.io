@@ -129,6 +129,105 @@ In `com.stub.StubApp` class, move `libjiagu.so` in assets folder to `.jiagu/libj
 **mHook not worked**
 **BlackDex not worked(crash on unshelling)**
 
+### Runtime Protection
+```
+padishah@Harris Frida_WorkSpace % frida -f com.tan8 -U -l fridaBypass.js 
+     ____
+    / _  |   Frida 16.1.5 - A world-class dynamic instrumentation toolkit
+   | (_| |
+    > _  |   Commands:
+   /_/ |_|       help      -> Displays the help system
+   . . . .       object?   -> Display information about 'object'
+   . . . .       exit/quit -> Exit
+   . . . .
+   . . . .   More info at https://frida.re/docs/home/
+   . . . .
+   . . . .   Connected to Pixel 3 (id=8B7X14VWS)
+Spawned `com.tan8`. Resuming main thread!                               
+[Pixel 3::com.tan8 ]-> strcmp-> Lde/robv/android/xposed/XSharedPreferences;;;; Lde/robv/android/xposed/XSharedPreferences;
+strcmp-> Lde/robv/android/xposed/callbacks/XC_LayoutInflated;;;; Lde/robv/android/xposed/callbacks/XC_LayoutInflated;
+strcmp-> Lde/robv/android/xposed/callbacks/XC_LayoutInflated$Unhook;;;; Lde/robv/android/xposed/callbacks/XC_LayoutInflated$Unhook;
+strcmp-> Lde/robv/android/xposed/XC_MethodHook$Unhook;;;; Lde/robv/android/xposed/XC_MethodHook$Unhook;
+load:/system/framework/oat/arm64/org.apache.http.legacy.odex
+load:/data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/oat/arm64/base.odex
+android version 11
+strcmp-> Lde/robv/android/xposed/callbacks/XCallback$Param;;;; Lde/robv/android/xposed/callbacks/XCallback$Param;
+strcmp-> Lde/robv/android/xposed/XposedInit$2;;;; Lde/robv/android/xposed/MethodHooker;
+open hooked-> /proc/self/cmdline
+open hooked-> /data/data/com.tan8/.jiagu/libjiagu.so
+open hooked-> /data/data/com.tan8/.jiagu/libjiagu_64.so
+load:/data/data/com.tan8/.jiagu/libjiagu_64.so
+open hooked-> /proc/self/status
+open hooked-> /proc/self/maps
+open hooked-> /proc/self/maps
+open hooked-> /proc/self/maps
+open hooked-> /proc/self/maps
+open hooked-> /proc/self/maps
+open hooked-> /proc/self/maps
+open hooked-> /proc/self/maps
+open hooked-> /proc/self/maps
+open hooked-> /proc/self/maps
+open hooked-> /proc/self/maps
+load:/data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/oat/arm64/base.odex
+open hooked-> /proc/self/cmdline
+strstr-> /apex/com.android.art/javalib/boot.art];;; io.va.exposed
+open hooked-> /data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libjgdtc.so
+open hooked-> /system/lib64/libjgdtc.so
+open hooked-> /system_ext/lib64/libjgdtc.so
+open hooked-> /product/lib64/libjgdtc.so
+load:libjgdtc.so
+load:/data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libjgdtc.so
+strcmp-> Lcom/google/gson/annotations/Expose;;;; Lcom/google/gson/annotations/Expose;
+[Pixel 3::com.tan8 ]-> open hooked-> /proc/tty/drivers
+open hooked-> /proc/cpuinfo
+[Pixel 3::com.tan8 ]-> open hooked-> /proc/self/cmdline
+open hooked-> /proc/self/cmdline
+open hooked-> /proc/22507/cmdline
+open hooked-> /data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libBugly-ext.so
+load:/data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libBugly-ext.so
+open hooked-> /proc/22507/maps
+open hooked-> /proc/meminfo
+open hooked-> /proc/self/cmdline
+open hooked-> /data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libumeng-spy.so
+load:/data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libumeng-spy.so
+open hooked-> /proc/cpuinfo
+open hooked-> /data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libmidiSynth.so
+load:/data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libmidiSynth.so
+open hooked-> /proc/cpuinfo
+load:/vendor/lib64/hw/gralloc.sdm845.so
+load:/vendor/lib64/hw/android.hardware.graphics.mapper@2.0-impl-qti-display.so
+open hooked-> /proc/self/cmdline
+open hooked-> /proc/self/cmdline
+open hooked-> /proc/self/cmdline
+open hooked-> /proc/22923/timerslack_ns
+open hooked-> /proc/22924/timerslack_ns
+open hooked-> /proc/22925/timerslack_ns
+open hooked-> /proc/22927/timerslack_ns
+open hooked-> /proc/22926/timerslack_ns
+open hooked-> /data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libtan8guitar.so
+load:/data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libtan8guitar.so
+open hooked-> /data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libclib.so
+load:/data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libclib.so
+open hooked-> /data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libdzqLibrary.so
+load:/data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libdzqLibrary.so
+open hooked-> /proc/22943/timerslack_ns
+open hooked-> /proc/22945/timerslack_ns
+open hooked-> /proc/22944/timerslack_ns
+open hooked-> /proc/22947/timerslack_ns
+open hooked-> /proc/22948/timerslack_ns
+open hooked-> /proc/22946/timerslack_ns
+open hooked-> /proc/22951/timerslack_ns
+open hooked-> /data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libmsc.so
+load:/data/app/~~GBxWEqPwE_AOu0z0NerBmQ==/com.tan8-Glbo378AoaMloOBUJeHEFA==/lib/arm64/libmsc.so
+load:/vendor/lib64/hw/android.hardware.renderscript@1.0-impl.so
+open hooked-> /proc/cpuinfo
+open hooked-> /proc/cpuinfo
+open hooked-> /proc/cpuinfo
+open hooked-> /proc/cpuinfo
+open hooked-> /proc/cpuinfo
+open hooked-> /proc/cpuinfo
+```
+
 ### Capture traffic
 
 ### Trace

@@ -243,6 +243,7 @@ Download:
 Whole:
 ![[Pasted image 20231211163023.png]]
 
+![[Pasted image 20231211174558.png]]
 #### Init user
 ```
 /codeindex.php?d=tan8&c=myself&m=user_info

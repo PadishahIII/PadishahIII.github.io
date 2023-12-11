@@ -129,6 +129,12 @@ In `com.stub.StubApp` class, move `libjiagu.so` in assets folder to `.jiagu/libj
 **mHook not worked**
 **BlackDex not worked(crash on unshelling)**
 
+### Capture traffic
+
+### Trace
+
+
+
 ---
 
 ## Yalla SRC

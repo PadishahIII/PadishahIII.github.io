@@ -229,6 +229,7 @@ open hooked-> /proc/cpuinfo
 ```
 
 ### Capture traffic
+When request a free 
 
 ### Trace
 Frida-trace:

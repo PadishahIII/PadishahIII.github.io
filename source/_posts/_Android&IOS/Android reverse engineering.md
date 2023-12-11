@@ -78,6 +78,10 @@ Charles -> Mitmproxy -> Burp
 ```
 mitmproxy -s mitm.py --listen-host 0.0.0.0 -p 8001 --mode upstream:http://127.0.0.1:8080 -k
 ```
+Or
+```
+mitmweb -s mitm.py --listen-host 0.0.0.0 -p 8001 --mode upstream:http://127.0.0.1:8080 -k --set web_port=8082
+```
 
 ---
 

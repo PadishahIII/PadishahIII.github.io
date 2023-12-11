@@ -73,6 +73,14 @@ Note that, if Frida cannot connect to the server after set up proxy, it may be c
 ### Set ro.debuggable
 Use MagiskHidePropsConf.
 
+## Mitmproxy
+Charles -> Mitmproxy -> Burp
+```
+mitmproxy -s mitm.py --listen-host 0.0.0.0 -p 8001 --mode upstream:http://127.0.0.1:8080 -k
+```
+
+---
+
 # Unity Reverse Engineering
 ## IL2Cpp reverse engineering
 ### Overview

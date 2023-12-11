@@ -229,7 +229,18 @@ open hooked-> /proc/cpuinfo
 ```
 
 ### Capture traffic
-When request a free 
+When request a free score:
+![[Pasted image 20231211162704.png]]
+
+CheckYuePu:
+![[Pasted image 20231211162719.png]]
+
+Download:
+
+![[Pasted image 20231211162412.png]]
+
+Whole:
+![[Pasted image 20231211163023.png]]
 
 ### Trace
 Frida-trace:

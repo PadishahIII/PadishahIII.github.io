@@ -231,6 +231,7 @@ open hooked-> /proc/cpuinfo
 ### Capture traffic
 
 ### Trace
+Frida-trace:
 ```
 #Spawn and bypass:
 frida -f com.tan8 -U -l fridaBypass.js
@@ -238,6 +239,10 @@ frida -f com.tan8 -U -l fridaBypass.js
 frida-trace -F -U -j "com.tan8*\!*" -J "com.tan8.service*\!*"
 ```
 
+r0tracer:
+```
+frida -l r0tracer.js -U -f com.tan8
+```
 
 
 ---

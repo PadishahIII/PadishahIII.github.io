@@ -229,6 +229,7 @@ open hooked-> /proc/cpuinfo
 ```
 
 ### Capture traffic
+#### Request a score
 When request a free score:
 ![[Pasted image 20231211162704.png]]
 
@@ -241,6 +242,141 @@ Download:
 
 Whole:
 ![[Pasted image 20231211163023.png]]
+
+#### Init user
+```
+/codeindex.php?d=tan8&c=myself&m=user_info
+```
+
+```
+{
+	"data": {
+		"code": 1,
+		"islogin": 1,
+		"result": {
+			"uid": "4449367",
+			"username": "jdkdkdks",
+			"user_avatar": "https:\/\/oss.tan8.com\/resource\/attachment\/4449367\/4449367.png?v=1702287215",
+			"user_big_avatar": "https:\/\/oss.tan8.com\/resource\/attachment\/4449367\/4449367.png?v=1702287215",
+			"vip": "0",
+			"authentication": "0",
+			"authentication_info": "",
+			"authenticImage": "",
+			"background_image": "https:\/\/oss.tan8.com\/app\/image1.jpg",
+			"vipInfo": {
+				"piano_vip": "0",
+				"guitar_vip": "0",
+				"ukulele_vip": "0",
+				"keyboard_vip": "0",
+				"piano_vip_endtime": "0",
+				"guitar_vip_endtime": "0",
+				"ukulele_vip_endtime": "0",
+				"keyboard_vip_endtime": "0",
+				"violin_vip": "0",
+				"violin_vip_endtime": "0"
+			},
+			"classVip": "0",
+			"status": 0,
+			"gender": "1",
+			"self_introduction": "aaa",
+			"emailstatus": "0",
+			"areacode": "86",
+			"adminid": "0",
+			"webname": "jdkdkdks",
+			"regdate": "1517738517",
+			"gold": "0.0",
+			"tan8Gold": "0",
+			"piano_code": "0",
+			"guitar_code": "0",
+			"piano_coin": "99",
+			"EXP_value": "0",
+			"avatarstatus": "2",
+			"push_message": "1",
+			"push_fans": "1",
+			"push_comment": "1",
+			"thread_hot": 0,
+			"other_hot": 0,
+			"message": 0,
+			"msg_count_nums": "0",
+			"thread_count": "0",
+			"thread_like_count": "0",
+			"follow_count": "0",
+			"fans_count": "0",
+			"video_thread_count": "0",
+			"guitar_user": 0,
+			"piano_user": 0,
+			"vipStateAboutIP": "1",
+			"phoneStatus": 1,
+			"forceBindphoneStatus": "0",
+			"thread_collect": "0",
+			"piano_collect": 11,
+			"keyboard_collect_count": 0,
+			"violin_collect_count": 0,
+			"guitar_collect": 0,
+			"ukulele_collect_count": "0",
+			"total_collect_count": 11,
+			"piano_post_count": 5,
+			"keyboard_post_count": 0,
+			"violin_post_count": 0,
+			"guitar_post_count": 0,
+			"ukulele_post_count": "0",
+			"total_post_count": "5",
+			"piano_count": "5",
+			"address": "",
+			"remaining_vip_time": "0",
+			"canChangeBackgroundImage": "0",
+			"giftList": [{
+				"id": "2",
+				"giftTitle": "\u9c9c\u82b1",
+				"giftAmount": ""
+			}],
+			"medal": [],
+			"all_vip_status": {
+				"svip_status": "false",
+				"svip_img": "https:\/\/oss.tan8.com\/app\/big_NewVIP@2x.png?v=2",
+				"paino_vip_status": "false",
+				"paino_vip_img": "https:\/\/oss.tan8.com\/static\/tan8_app\/img\/vip_btn_piano@2x_hy.png?v=2",
+				"guitar_vip_status": "false",
+				"guitar_vip_img": "https:\/\/oss.tan8.com\/static\/tan8_app\/img\/vip_btn_guitar@2x_hy.png?v=2",
+				"ukulele_vip_status": "false",
+				"ukulele_vip_img": "https:\/\/oss.tan8.com\/static\/tan8_app\/img\/vip_btn_ukulele@2x_hy.png?v=2",
+				"keyboard_vip_status": "false",
+				"keyboard_vip_img": "https:\/\/oss.tan8.com\/app\/vip_btn_keyboard@2x.png?v=2",
+				"violin_vip_status": "false",
+				"violin_vip_img": "https:\/\/oss.tan8.com\/app\/vip_btn_violin@2x.png?v=2"
+			},
+			"honour": [],
+			"user_attachment": {
+				"name_color": [],
+				"img1": "true",
+				"img1_url": "https:\/\/oss.tan8.com\/app\/alert_men@2x.png",
+				"img2": "true",
+				"img2_url": "https:\/\/oss.tan8.com\/resource\/data\/attachment\/memberlevel\/levelIconAndroid_20170525190755.png",
+				"img3": "false",
+				"img3_url": "https:\/\/oss.tan8.com\/app\/mapAlert_VIP_android@2x.png?v=2",
+				"img4": "false",
+				"img4_url": "https:\/\/oss.tan8.com\/static\/tan8_app\/img\/vip_btn_piano@2x_hy.png?v=2",
+				"img5": "false",
+				"img5_url": "https:\/\/oss.tan8.com\/static\/tan8_app\/img\/vip_btn_guitar@2x_hy.png?v=2",
+				"img6": "false",
+				"img6_url": "https:\/\/oss.tan8.com\/static\/tan8_app\/img\/vip_btn_ukulele@2x_hy.png?v=2",
+				"img7": "false",
+				"img7_url": "https:\/\/oss.tan8.com\/app\/vip_btn_keyboard@2x.png?v=2",
+				"img8": "false",
+				"img8_url": "https:\/\/oss.tan8.com\/app\/vip_btn_violin@2x.png?v=2"
+			},
+			"AuthenticationInfo": {
+				"authenticIsShow": "0",
+				"authenticImage": "",
+				"authenticText": ""
+			},
+			"isMyblankList": "0",
+			"isMuted": "0"
+		}
+	}
+}
+```
+
 
 ### Trace
 Frida-trace:

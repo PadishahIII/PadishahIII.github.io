@@ -97,6 +97,11 @@ Decryption on encrypted data →
 frida-server, hook raw param →(rpc) python frida client →(http) burp →(http) echo server, reply with request →
 Return modified data(HTTP response)
 
+#### Launch Step
+1. Start frida-server on phone
+2. Burp set listener on port `127.0.0.1:26080`
+3. Burp set `Redirect` to `127.0.0.1:27080`
+4. Adb forward frida port, `adb for`
 
 ---
 

@@ -48,7 +48,7 @@ or
 objection -p 8889 -h 127.0.0.1 -N -g bishe.networkmonitor explore
 ```
 
-## Set up proxy and Capture traffic
+## Proxy and Capture traffic
 
 ### Proxy with Charles
 #### Import system certificate
@@ -73,7 +73,7 @@ Note that, if Frida cannot connect to the server after set up proxy, it may be c
 ### Set ro.debuggable
 Use MagiskHidePropsConf.
 
-## Mitmproxy
+### Mitmproxy
 Charles -> Mitmproxy -> Burp
 ```
 mitmproxy -s mitm.py --listen-host 0.0.0.0 -p 8001 --mode upstream:http://127.0.0.1:8080 -k
@@ -82,6 +82,21 @@ Or
 ```
 mitmweb -s mitm.py --listen-host 0.0.0.0 -p 8001 --mode upstream:http://127.0.0.1:8080 -k --set web_port=8082
 ```
+
+## Deal with traffic encryption
+### Frida&Burp
+[repo](https://github.com/noobpk/frida-intercept-encrypted-api)
+#### **Hook Encryption**
+Entrance of **Encrypt()** →
+frida-server, hook raw param →(rpc) python frida client →(http) burp →(http) echo server, reply with request →
+**Encryption** on modified params
+
+#### Hook Decryption
+Entrance of **Decrypt()** →
+Decryption on encrypted data →
+frida-server, hook raw param →(rpc) python frida client →(http) burp →(http) echo server, reply with request →
+Return modified data(HTTP response)
+
 
 ---
 

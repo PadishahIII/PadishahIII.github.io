@@ -100,8 +100,12 @@ Return modified data(HTTP response)
 #### Launch Step
 1. Start frida-server on phone
 2. Burp set listener on port `127.0.0.1:26080`
-3. Burp set `Redirect` to `127.0.0.1:27080`
-4. Adb forward frida port, `adb for`
+3. Burp set `Redirect` to `127.0.0.1:27081`
+4. (Optional) Launch mitmproxy on port 27081 and redirect to 27080, `mitmproxy -s mitm.py --listen-host 0.0.0.0 -p 27081 --mode upstream:http://127.0.0.1:27080 -k`
+5. Adb forward frida port, `adb forward tcp:27042 tcp:27042`
+6. Launch the echo server on port 27080, `python echoServer.py`
+7. Launch frida client, `python burpTracer.py -s hook.js -n 弹琴吧`(attach mode, set `-p` to spawn)
+8. Intercept the raw request before encryption on Burp.
 
 ---
 

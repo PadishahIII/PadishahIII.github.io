@@ -84,6 +84,21 @@ mitmweb -s mitm.py --listen-host 0.0.0.0 -p 8001 --mode upstream:http://127.0.0.
 ```
 
 ## Deal with traffic encryption
+### Trace encrypt/decrypt function
+Frida-trace:
+```
+#Spawn and bypass:
+frida -f com.tan8 -U -l fridaBypass.js
+#Attach:
+frida-trace -F -U -j "com.tan8*\!*encrypt*/i" -J "com.tan8.service*\!*"
+```
+
+r0tracer:
+```
+frida -l r0tracer.js -U -f com.tan8
+```
+
+
 ### Frida&Burp
 [repo](https://github.com/noobpk/frida-intercept-encrypted-api)
 #### **Hook Encryption**

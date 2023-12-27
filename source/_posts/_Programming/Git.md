@@ -8,4 +8,5 @@ git checkout main
 git stash pop
 ```
 
-### 
+### Remove big files from git history
+Use [BFG](https://rtyley.github.io/bfg-repo-cleaner/)

@@ -8,5 +8,8 @@ git checkout main
 git stash pop
 ```
 
+### Merge && Rebase
+Current branch A, `git merge B` means that 
+
 ### Remove big files from git history
 Use [BFG](https://rtyley.github.io/bfg-repo-cleaner/)

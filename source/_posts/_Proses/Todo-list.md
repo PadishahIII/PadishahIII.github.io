@@ -6,7 +6,7 @@
 	- [ ] Practical Reverse Engineering
 - [ ] Learn Android reverse engineering
 	- [ ] Dump a 1st-generation or 2nd-generation shell by hand
-	- [ ] Prepare a android phone, and install reverse environment
+	- [x] Prepare a android phone, and install reverse environment
 		- [ ] Study with a systematic tutorial, like [this](https://github.com/733gh/GH-Android-Review-master)
 	- [ ] Flash your phone into an unpacking machine
 	- [ ] Learn the inner logic of android system

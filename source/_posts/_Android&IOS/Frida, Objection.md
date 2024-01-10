@@ -1,6 +1,9 @@
 # Frida
 ## CMD Tools
-- 
+
+### Anti-detection
+[repo](https://github.com/hzzheyang/strongR-frida-android)
+
 
 
 
@@ -28,3 +31,4 @@
 - `android hooking watch class_method <app_package> <class_name>.<method_name> --dump-args --dump-backtrace --dump-return`: 监视方法并记录其参数、返回值和回溯信息
 - `android hooking watch class <app_package> <class_name> --dump-args --dump-return`: 监视整个类并记录其方法的参数和返回值
 - `android heap print_instances <class>`: show instance in heap
+

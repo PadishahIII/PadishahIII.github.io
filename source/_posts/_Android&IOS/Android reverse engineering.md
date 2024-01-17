@@ -76,9 +76,26 @@ Run by `./spawn text_view.js`. This script hook the `setText` and `getText` func
 ```
 TextViewClz: android.widget.TextView
 ViewId: 2131300657
-Text: 检测到您的手机可能存在Root或双开风险，为保障您的账户安全，请谨慎使用
+Text:检测到您的手机可能存在Root或双开风险，为保障您的账户安全，请谨慎使用
+------------startFlag:38794753,objectHash:268084761,thread(id:2,name:main),timestamp:1705499757886---------------
+android.widget.TextView.setText()
+        at android.widget.TextView.setText(Native Method)
+        at com.yitong.mobile.common.ui.CommonDialog.setMessage(CommonDialog.java:219)
+        at com.tlczbank.trusfort.provider.TrusfortServiceImpl.checkEnvironment(TrusfortServiceImpl.java:83)
+        at com.yitong.mobile.biz.launcher.app.maindynamiclayout.DynamicLayoutMainActivity.initSDK(DynamicLayoutMainActivity.java:932)
+        at com.yitong.mobile.biz.launcher.app.maindynamiclayout.DynamicLayoutMainActivity.access$200(DynamicLayoutMainActivity.java:194)
+        at com.yitong.mobile.biz.launcher.app.maindynamiclayout.DynamicLayoutMainActivity$2$1.run(DynamicLayoutMainActivity.java:320)
+        at android.app.Activity.runOnUiThread(Activity.java:7068)
+        at com.yitong.mobile.biz.launcher.app.maindynamiclayout.DynamicLayoutMainActivity$2.run(DynamicLayoutMainActivity.java:316)
+        at android.os.Handler.handleCallback(Handler.java:938)
+        at android.os.Handler.dispatchMessage(Handler.java:99)
+        at android.os.Looper.loop(Looper.java:223)
+        at android.app.ActivityThread.main(ActivityThread.java:7660)
+        at java.lang.reflect.Method.invoke(Native Method)
+        at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:592)
+        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:947)
 ```
-The view id here is as for the `TextView` that holds the text.
+The view id here is as for the `TextView` that holds the text. In the most cases, `setText` is more precise, you can comment the code about hooking for`getText` function. 
 
 ## Proxy and Capture traffic
 

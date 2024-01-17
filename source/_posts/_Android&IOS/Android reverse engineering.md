@@ -55,6 +55,18 @@ or
 objection -p 8889 -h 127.0.0.1 -N -g bishe.networkmonitor explore
 ```
 
+## Hooking
+### [Tool] Hooker
+
+To start, *hooker* needs the `radar.dex` for support(contains some helper function), you should ensure the dex file available on the data folder of the target app(e.g. `/data/user/0/com.nbbank/radar.dex`).
+```
+./hooker
+(select package, this will generate a folder named as the package name, enter this folder)
+```
+Edit `.hooker_driver` to switch the way for frida connection(*-U* or *-H* ). At the package specified folder, run `./spawn xx.js` to start hooking.
+
+
+
 ## Proxy and Capture traffic
 
 ### Proxy with Charles

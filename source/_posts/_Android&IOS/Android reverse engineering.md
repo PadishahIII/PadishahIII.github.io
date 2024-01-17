@@ -69,8 +69,16 @@ Edit `.hooker_driver` to switch the way for frida connection(*-U* or *-H* ). At 
 For example, the target app will trigger a confirm dialog to warn you that the device is rooted. You want to locate the code the trigger this dialog.
 
 #### Hooker's click.js
-Run by `./spawn click.js`. This script only track the click button itself and is unable to locate the dial
+Run by `./spawn click.js`. This script only track the click button itself and is unable to locate its parent dialog. When clicking a button, this script will print its view id, like `2131296895`. With this id, you can search in decompiled code, sometimes you need to search the hex format of view id.
 
+#### Hooker's text_view.js
+Run by `./spawn text_view.js`. This script hook the `setText` and `getText` function of `android.widget.TextView` and is more effective. A sample output is like:
+```
+TextViewClz: android.widget.TextView
+ViewId: 2131300657
+Text: 检测到您的手机可能存在Root或双开风险，为保障您的账户安全，请谨慎使用
+```
+The view id here is as for the `TextView` that holds the text.
 
 ## Proxy and Capture traffic
 

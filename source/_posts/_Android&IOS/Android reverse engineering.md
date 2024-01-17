@@ -61,10 +61,15 @@ objection -p 8889 -h 127.0.0.1 -N -g bishe.networkmonitor explore
 To start, *hooker* needs the `radar.dex` for support(contains some helper function), you should ensure the dex file available on the data folder of the target app(e.g. `/data/user/0/com.nbbank/radar.dex`).
 ```
 ./hooker
-(select app name, this will generate a folder named as the package name, enter this folder)
+(select app name/pid, this will generate a folder named as the package name, enter this folder)
 ```
 Edit `.hooker_driver` to switch the way for frida connection(*-U* or *-H* ). At the package specified folder, run `./spawn xx.js` to start hooking.
 
+### Locate UI element trigger
+For example, the target app will trigger a confirm dialog to warn you that the device is rooted. You want to locate the code the trigger this dialog.
+
+#### Hooker's click.js
+Run by `./spawn click.js`. This script only track the click button itself and is unable to locate the dial
 
 
 ## Proxy and Capture traffic

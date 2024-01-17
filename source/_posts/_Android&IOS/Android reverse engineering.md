@@ -97,6 +97,17 @@ android.widget.TextView.setText()
 ```
 The view id here is as for the `TextView` that holds the text. In the most cases, `setText` is more precise, you can comment the code about hooking for`getText` function. 
 
+### Dump so by frida
+Use frida-dump. Modify the connection type in `dump_so.py` first and run below command to get the loaded libraries.
+```
+python dump_so.py 
+```
+Append the library name to the command to extract library.
+```
+python dump_so.py libxxx.so
+```
+
+
 ## Proxy and Capture traffic
 
 ### Proxy with Charles

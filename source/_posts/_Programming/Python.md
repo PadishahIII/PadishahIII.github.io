@@ -212,3 +212,8 @@ This updated implementation allows us to maintain a single instance of each obje
 pip install pipreqs
 pipreqs .
 ```
+
+## Regex match Chinese character
+```
+re.findall("[\u4e00-\u9fa5]+","啊啊啊")
+```

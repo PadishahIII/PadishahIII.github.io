@@ -1,7 +1,7 @@
 ## Scan all decorators under a package
 
 
-> [!question] questioin
+> [!question] question
 > in python, given a package name like "Core.Beans", i want to scan all python modules under this package recursively and extract all python class infomation including decorators like "@Bean", class name, class members, decorators on class members, and other infos about this class. in sum, i want to get all decorators and the class or member they decorate.
 
 To scan all Python modules under a package recursively and extract information about the classes and their decorators, we can use the `pkgutil` and `inspect` modules from the Python standard library.

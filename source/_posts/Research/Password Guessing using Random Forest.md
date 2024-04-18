@@ -1,6 +1,8 @@
 ---
-title: "[论文复现] 用机器学习实现社工字典生成工具 Password Guessing using Random Forest"
-date: 2023-10-28
+title: '[论文复现] 用机器学习实现社工字典生成工具 Password Guessing using Random Forest'
+categories:
+  - Research
+date: 2023-10-28 00:00:00
 tags:
 ---
 # 概述
